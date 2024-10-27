@@ -3,12 +3,24 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@core/*": ["src/app/core/*"],
+      "@intro/*": ["src/app/features/intro/*"],
+      "@auth/*": ["src/app/features/auth/*"],
+      "@boxes/*": ["src/app/features/boxes/*"],
+      "@profile/*": ["src/app/features/profile/*"],
+      "@share-link/*": ["src/app/features/share-link/*"],
+      "@layouts/*": ["src/app/layouts/*"]
+    },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "strictNullChecks": false,
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
@@ -28,6 +40,6 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
   }
 }
