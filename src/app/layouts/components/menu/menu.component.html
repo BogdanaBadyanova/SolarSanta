@@ -1,1 +1,27 @@
-<p>menu works!</p>
+<ng-container
+  [ngTemplateOutlet]="currentUser() ? authorized : unauthorized"
+  [ngTemplateOutletContext]="{ $implicit: currentUser() }"
+></ng-container>
+
+<ng-template #unauthorized>
+  <div class="flex justify-content-between">
+    <ng-container *[ngTemplateOutlet]="logo"></ng-container>
+
+    <button size="m" tuiButton [routerLink]="urls.SIGN_IN_URL">Войти</button>
+  </div>
+</ng-template>
+
+<ng-template #authorized let-user>
+  <div class="flex justify-content-between">
+    <ng-container *[ngTemplateOutlet]="logo"></ng-container>
+
+    <button appearance="accent" size="m" tuiButton>
+      <tui-avatar size="xs" src="https://avatars.githubusercontent.com/u/11832552" />
+      {{ user.firstname }} {{ user.lastName }}
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #logo>
+  <img src="" alt="Secret Santa" />
+</ng-template>

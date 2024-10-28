@@ -112,7 +112,7 @@ export class AuthService {
     }
   }
 
-  private _getCurrentUser() {
+  private _getCurrentUser(): Observable<ICurrentUser | null> {
     return this._apiService.getCurrentUser().pipe(
       first(),
       map((user) => this._apiCurrentUserAdapter.fromApi(user)),
