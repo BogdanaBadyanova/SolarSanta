@@ -1,8 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { TuiAlertService, TuiAlertOptions } from '@taiga-ui/core';
+import { MessageService, ToastMessageOptions } from 'primeng/api';
 import { authMessages } from '@core/services/toast/configs/auth-messages';
 import { MessageConfig } from '@core/services/toast/types/message-config';
-import { first } from 'rxjs';
 
 /**
  * Сервис для отображения всплывающих уведомлений (тостов) в приложении.
@@ -11,7 +10,7 @@ import { first } from 'rxjs';
   providedIn: 'root',
 })
 export class ToastService {
-  private _messageService = inject(TuiAlertService);
+  private _messageService = inject(MessageService);
 
   /**
    * Объединение всех конфигураций сообщений
@@ -36,7 +35,7 @@ export class ToastService {
    *
    * В данном примере поле detail будет переопределено, а остальные поля будут взяты из конфигурации.
    */
-  public showMessage(messageKey: string, config?: TuiAlertOptions): void {
+  public showMessage(messageKey: string, config?: ToastMessageOptions): void {
     const messageConfig = this._messageConfig[messageKey];
 
     if (!messageConfig) {
@@ -44,12 +43,9 @@ export class ToastService {
       return;
     }
 
-    this._messageService
-      .open({
-        ...messageConfig,
-        ...Object.fromEntries(Object.entries(config || {}).filter(([_, value]) => !!value)),
-      })
-      .pipe(first())
-      .subscribe();
+    this._messageService.add({
+      ...messageConfig,
+      ...Object.fromEntries(Object.entries(config || {}).filter(([_, value]) => !!value)),
+    });
   }
 }

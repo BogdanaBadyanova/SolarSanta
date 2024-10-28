@@ -3,6 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { UrlsService } from '@core/services/urls.service';
 import { ToastService } from '@core/services/toast/toast.service';
 import { AuthToastEnum } from '@auth/enums/auth-toast-enum';
+import { AuthService } from '@/app/features/auth/services/auth.service';
 
 /**
  * AuthGuard для предотвращения доступа к маршрутам, требующим неавторизованного пользователя.

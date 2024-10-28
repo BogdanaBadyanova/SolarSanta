@@ -1,4 +1,4 @@
-import { TuiAlertOptions } from '@taiga-ui/core';
+import { ToastMessageOptions } from 'primeng/api';
 
 /**
  * Конфигурация сообщений для тостов.
@@ -7,4 +7,4 @@ import { TuiAlertOptions } from '@taiga-ui/core';
  * @property {string} [key] - Ключ сообщения.
  * @property {ToastMessageOptions} [options] - Опции сообщения.
  */
-export type MessageConfig = Record<string, TuiAlertOptions>;
+export type MessageConfig = Record<string, ToastMessageOptions>;
