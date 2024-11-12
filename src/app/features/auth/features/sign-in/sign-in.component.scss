@@ -1,0 +1,23 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10%;
+}
+
+h2 {
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+    &::after{
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: -150%;
+        width: 301px;
+        height: 6px;
+        background-color: #595151;
+    }
+}

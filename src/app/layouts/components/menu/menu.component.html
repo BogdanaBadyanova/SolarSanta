@@ -4,9 +4,20 @@
 ></ng-container>
 
 <ng-template #unauthorized>
-  <div class="flex justify-content-between">
+  <div class="flex justify-content-between align-items-center py-4 menu">
     <ng-container *ngTemplateOutlet="logo"></ng-container>
-    <p-button size="small" [routerLink]="urls.SIGN_IN_URL" label="Войти" />
+    <div class="flex align-items-center justify-cantent-between gap-5">
+      <p class="cursor-pointer" routerLink="/">Об игре</p>
+      <p class="cursor-pointer" routerLink="/">Правила</p>
+      <p class="cursor-pointer" routerLink="/">Контакты</p>
+    </div>
+    <p-button
+      class="cursor-pointer"
+      [routerLink]="urls.SIGN_IN_URL"
+      label="Войти"
+      [outlined]="true"
+      severity="danger"
+    />
   </div>
 </ng-template>
 
@@ -22,5 +33,5 @@
 </ng-template>
 
 <ng-template #logo>
-  <img src="" alt="Secret Santa" />
+  <svg-icon class="cursor-pointer" src="logo.svg" routerLink="/"></svg-icon>
 </ng-template>
