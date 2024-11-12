@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { MessageService, ToastMessageOptions } from 'primeng/api';
+import { MessageService, Message } from 'primeng/api';
 import { authMessages } from '@core/services/toast/configs/auth-messages';
 import { MessageConfig } from '@core/services/toast/types/message-config';
 
@@ -35,7 +35,7 @@ export class ToastService {
    *
    * В данном примере поле detail будет переопределено, а остальные поля будут взяты из конфигурации.
    */
-  public showMessage(messageKey: string, config?: ToastMessageOptions): void {
+  public showMessage(messageKey: string, config?: Message): void {
     const messageConfig = this._messageConfig[messageKey];
 
     if (!messageConfig) {

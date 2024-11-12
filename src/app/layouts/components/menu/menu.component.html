@@ -5,20 +5,19 @@
 
 <ng-template #unauthorized>
   <div class="flex justify-content-between">
-    <ng-container *[ngTemplateOutlet]="logo"></ng-container>
-
-    <button size="m" tuiButton [routerLink]="urls.SIGN_IN_URL">Войти</button>
+    <ng-container *ngTemplateOutlet="logo"></ng-container>
+    <p-button size="small" [routerLink]="urls.SIGN_IN_URL" label="Войти" />
   </div>
 </ng-template>
 
 <ng-template #authorized let-user>
   <div class="flex justify-content-between">
-    <ng-container *[ngTemplateOutlet]="logo"></ng-container>
+    <ng-container *ngTemplateOutlet="logo"></ng-container>
 
-    <button appearance="accent" size="m" tuiButton>
-      <tui-avatar size="xs" src="https://avatars.githubusercontent.com/u/11832552" />
+    <p-button size="small">
+      <p-avatar size="normal" src="https://avatars.githubusercontent.com/u/11832552" />
       {{ user.firstname }} {{ user.lastName }}
-    </button>
+    </p-button>
   </div>
 </ng-template>
 

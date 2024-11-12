@@ -3,13 +3,13 @@ import { UrlsService } from '@/app/core/services/urls.service';
 import { NgTemplateOutlet } from '@angular/common';
 import { Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TuiButton } from '@taiga-ui/core';
-import { TuiAvatar } from '@taiga-ui/kit';
+import { AvatarModule } from 'primeng/avatar';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'ss-menu',
   standalone: true,
-  imports: [NgTemplateOutlet, TuiButton, TuiAvatar, RouterLink],
+  imports: [NgTemplateOutlet, ButtonModule, AvatarModule, RouterLink],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
 })
