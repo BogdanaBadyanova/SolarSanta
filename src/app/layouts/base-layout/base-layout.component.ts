@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, Signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MenuComponent } from '@layouts/components/menu/menu.component';
-import { FooterComponent } from '@layouts/components/footer/footer.component';
 import { ICurrentUser } from '@/app/core/interfaces/icurrent-user';
 import { AuthService } from '@/app/features/auth/services/auth.service';
 
 @Component({
   standalone: true,
-  imports: [RouterOutlet, MenuComponent, FooterComponent],
+  imports: [RouterOutlet, MenuComponent],
   templateUrl: './base-layout.component.html',
   styleUrl: './base-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
