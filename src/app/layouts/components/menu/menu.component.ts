@@ -22,11 +22,11 @@ export class MenuComponent {
 
   public Urls = Urls;
 
-  public toggleMenu() {
+  public toggleMenu(): void {
     this.isVisibleMenu.set(!this.isVisibleMenu());
   }
 
-  public redirectToIntro() {
+  public redirectToIntro(): void {
     this.isVisibleMenu.set(false);
     this._router.navigate(Urls.INTRO_URL);
   }

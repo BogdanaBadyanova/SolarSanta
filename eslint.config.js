@@ -30,7 +30,30 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
+      '@typescript-eslint/explicit-member-accessibility': [
+        'error',
+        {
+          accessibility: 'explicit',
+          "overrides": {
+              "accessors": "off",
+              "constructors": "no-public",
+              "methods": "explicit",
+              "properties": "explicit",
+              "parameterProperties": "explicit"
+            }
+        },
+      ],
+      '@typescript-eslint/explicit-function-return-type': [
+        'error',
+        {
+          allowExpressions: true,
+          allowTypedFunctionExpressions: true,
+          allowHigherOrderFunctions: true,
+          allowConciseArrowFunctionExpressionsStartingWithVoid: true,
+        },
+      ],
     },
+    ignores: ["src/app/infrastructure/**"],
   },
   {
     files: ["**/*.html"],
@@ -42,5 +65,11 @@ module.exports = tseslint.config(
       "@angular-eslint/template/click-events-have-key-events": "off",
       "@angular-eslint/template/interactive-supports-focus": "off",
     },
-  }
+  },
+  {
+    files: ["**/*-routing.module.ts", "**/routes.ts"],
+    rules: {
+      '@typescript-eslint/explicit-function-return-type': 'off',
+    },
+  },
 );

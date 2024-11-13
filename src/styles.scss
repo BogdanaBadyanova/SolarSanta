@@ -1,2 +1,6 @@
-@import url("styles/_reset.scss");
-@import url("styles/theme/theme.css");
+@import url('styles/_reset.scss');
+@import url('styles/theme/theme.css');
+
+body {
+    color: var(--text-color);
+}

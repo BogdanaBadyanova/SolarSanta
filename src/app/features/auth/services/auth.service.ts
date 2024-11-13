@@ -41,7 +41,7 @@ export class AuthService {
     return this._currentUser.asReadonly();
   }
 
-  public init() {
+  public init(): Observable<unknown> {
     return of(null).pipe(
       first(),
       tap(() => this._getCurrentUserClaims()),
@@ -94,7 +94,7 @@ export class AuthService {
     );
   }
 
-  public logout() {
+  public logout(): void {
     this._currentUser.set(null);
     this._currentUserClaims.set(null);
     this._ls.removeItem(CommonConstants.userClaimsLocalStorageKey);

@@ -1,6 +1,14 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Urls } from '@/app/core/utils/urls';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
@@ -9,26 +17,33 @@ import { PasswordModule } from 'primeng/password';
 @Component({
   selector: 'ss-sign-in',
   standalone: true,
-  imports: [InputTextModule, FloatLabelModule, FormsModule, PasswordModule, ReactiveFormsModule, ButtonModule],
+  imports: [
+    InputTextModule,
+    FloatLabelModule,
+    FormsModule,
+    PasswordModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    RouterLink,
+  ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent implements OnInit {
-  public formSingIn: FormGroup
-  private _router = inject(Router)
+  private _fb = inject(FormBuilder);
+  
+  public Urls = Urls;
 
-  ngOnInit(): void {
-    this.formSingIn = new FormGroup({
+  public form = signal<FormGroup>(null);
+
+  public ngOnInit(): void {
+    this.form.set(this._fb.group({
       email: new FormControl('', [Validators.email]),
-      password: new FormControl()
-    })
+      password: new FormControl(),
+    }));
   }
 
-  retirectTo() {
-    this._router.navigate(['/auth/sign-up'])
-  }
-
-  submit() {
-    console.log(this.formSingIn.value);
+  public submit(): void {
+    console.log(this.form().value);
   }
 }

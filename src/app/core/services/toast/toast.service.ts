@@ -45,7 +45,7 @@ export class ToastService {
 
     this._messageService.add({
       ...messageConfig,
-      ...Object.fromEntries(Object.entries(config || {}).filter(([_, value]) => !!value)),
+      ...Object.fromEntries(Object.entries(config || {}).filter(([, value]) => !!value)),
     });
   }
 }

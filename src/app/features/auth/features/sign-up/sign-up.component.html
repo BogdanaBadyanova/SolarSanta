@@ -1,14 +1,14 @@
 <h2>Зарегистрироваться</h2>
 <div class="flex mt-6">
-  <form [formGroup]="formSingUp" (ngSubmit)="submit()" class="flex flex-column">
+  <form [formGroup]="form()" (ngSubmit)="submit()" class="flex flex-column">
     <label class="mb-2" for="username">Имя</label>
     <input pInputText id="username" formControlName="username" class="w-full" />
     <label class="mb-2 mt-3" for="email">Электронная почта</label>
     <input pInputText id="email" formControlName="email" class="w-full" />
     <label class="mb-2 mt-3" for="password">Пароль</label>
     <p-password class="w-full" formControlName="password" id="password" />
-    <label class="mb-2 mt-3" for="ConfirmPassword">Подтвердите пароль</label>
-    <p-password class="w-full" formControlName="ConfirmPassword" id="ConfirmPassword" />
+    <label class="mb-2 mt-3" for="confirmPassword">Подтвердите пароль</label>
+    <p-password class="w-full" formControlName="confirmPassword" id="confirmPassword" />
     <p-button type="submit" class="mx-auto mt-4" label="Зарегистрироваться" />
   </form>
 </div>

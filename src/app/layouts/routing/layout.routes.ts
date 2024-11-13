@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 import { LayoutRoutes } from './layout-routes.enum';
-import { BaseLayoutComponent } from '@layouts/base-layout/base-layout.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: LayoutRoutes.INTRO },
   {
     path: '',
-    component: BaseLayoutComponent,
+    loadComponent: () =>
+      import('@layouts/base-layout/base-layout.component').then((c) => c.BaseLayoutComponent),
     children: [
       {
         path: LayoutRoutes.AUTH,

@@ -1,14 +1,17 @@
 <h2>Войти</h2>
 <div class="flex mt-6">
-  <form [formGroup]="formSingIn" (ngSubmit)="submit()" class="flex flex-column">
+  <form [formGroup]="form()" (ngSubmit)="submit()" class="flex flex-column">
     <label class="mb-2" for="username">Электронная почта</label>
     <input pInputText id="username" formControlName="email" class="w-full" />
 
     <label class="mb-2 mt-3" for="password">Пароль</label>
     <input pInputText class="w-full" type="password" formControlName="password" id="password" />
 
-    <p class="mt-2">Нет аккаунта? <span class="reg cursor-pointer" (click)="retirectTo()"> Зарегистрироваться</span></p>
-    <p-button type="submit" class="mx-auto mt-4" label="Войти" />
+    <p class="my-3">
+      Нет аккаунта?
+      <span class="reg cursor-pointer" [routerLink]="Urls.SIGN_UP_URL"> Зарегистрироваться</span>
+    </p>
+    <p-button type="submit" class="mx-auto" label="Войти" />
   </form>
 </div>
 

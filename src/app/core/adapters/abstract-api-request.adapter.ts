@@ -12,7 +12,7 @@ export abstract class AbstractApiRequestAdapter<TApiModel, TAppModel>
    * @param appModel Модель приложения.
    * @returns Модель API.
    */
-  abstract toApi(appModel: TAppModel): TApiModel;
+  public abstract toApi(appModel: TAppModel): TApiModel;
 
   /**
    * Преобразует массив моделей приложения в массив моделей API.

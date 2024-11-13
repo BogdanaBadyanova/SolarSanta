@@ -10,9 +10,18 @@ import { InputTextModule } from 'primeng/inputtext';
 @Component({
   selector: 'ss-create-box',
   standalone: true,
-  imports: [InputTextModule, FloatLabelModule, FormsModule, ReactiveFormsModule, ButtonModule, SvgIconComponent, CalendarModule, InputSwitchModule  ],
+  imports: [
+    InputTextModule,
+    FloatLabelModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    SvgIconComponent,
+    CalendarModule,
+    InputSwitchModule,
+  ],
   templateUrl: './create-box.component.html',
   styleUrl: './create-box.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateBoxComponent {}

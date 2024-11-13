@@ -21,6 +21,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": false,
+    "strictPropertyInitialization": false,
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
