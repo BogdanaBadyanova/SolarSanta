@@ -1,10 +1,10 @@
 :host {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     margin-top: 10%;
+    overflow: hidden;
 }
 
 h2 {
@@ -12,7 +12,8 @@ h2 {
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1.75rem;
-    &::after{
+
+    &::after {
         content: "";
         position: absolute;
         bottom: -15px;
@@ -23,12 +24,31 @@ h2 {
     }
 }
 
-.img{
+.reg{
+    color: #D42E2E;
+}
+
+.img {
     position: absolute;
-    bottom: 0;
     right: 0;
-    background-image: url('/public/image-6.png');
-    background-position: center;
-    width: 250px;
-    height: auto;
+    top: 40%;
+    z-index: -1;
+    background-image: url("../../../../../../public/image-6.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    width: 436px;
+    height: 519px;
+}
+
+@media screen and (max-width: 1441px) {
+    .img {
+        top: 35%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .img {
+        top: 30%;
+    }
 }

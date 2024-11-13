@@ -1,10 +1,13 @@
 <h2>Войти</h2>
-<div class="card flex justify-content-center mt-6">
+<div class="flex mt-6">
   <form [formGroup]="formSingIn" (ngSubmit)="submit()" class="flex flex-column">
     <label class="mb-2" for="username">Электронная почта</label>
-    <input pInputText id="username" formControlName="email" />
+    <input pInputText id="username" formControlName="email" class="w-full" />
+
     <label class="mb-2 mt-3" for="password">Пароль</label>
-    <p-password formControlName="password" id="password" [feedback]="false" />
+    <input pInputText class="w-full" type="password" formControlName="password" id="password" />
+
+    <p class="mt-2">Нет аккаунта? <span class="reg cursor-pointer" (click)="retirectTo()"> Зарегистрироваться</span></p>
     <p-button type="submit" class="mx-auto mt-4" label="Войти" />
   </form>
 </div>
