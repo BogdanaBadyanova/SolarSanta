@@ -1,0 +1,71 @@
+.wrap {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 75px;
+
+    .title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.75rem;
+    }
+
+    &__form {
+        margin-top: 25px;
+
+        .calendar {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-top: 15px;
+        }
+
+        .price {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-top: 15px;
+        }
+
+        .place {
+            margin-top: 15px;
+        }
+    }
+}
+
+.img {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    z-index: -1;
+    background-image: url("../../../../../../public/image10.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    width: 350px;
+    height: 520px;
+}
+
+@media screen and (max-width: 1441px) {
+    .img {
+        top: 35%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .img {
+        top: 30%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .calendar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .price {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

@@ -17,7 +17,7 @@ import { SvgIconComponent } from 'angular-svg-icon';
 })
 export class MenuComponent {
   public urls = inject(UrlsService);
-  private _router: Router
+  private _router = inject(Router)
 
   public isVisibleMenu = false;
 
