@@ -1,7 +1,16 @@
-:host{
+:host {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 50px;
     padding: 20px 200px;
+}
+
+@media screen and (max-width: 769px) {
+    :host {
+        gap: 20px;
+        justify-content: start;
+        margin-top: 30px;
+        padding: 20px;
+    }
 }

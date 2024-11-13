@@ -1,4 +1,5 @@
 :host {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,4 +21,14 @@ h2 {
         height: 6px;
         background-color: #595151;
     }
+}
+
+.img{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-image: url('/public/image-6.png');
+    background-position: center;
+    width: 250px;
+    height: auto;
 }

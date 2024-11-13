@@ -4,13 +4,20 @@
 ></ng-container>
 
 <ng-template #unauthorized>
-  <div class="flex justify-content-between align-items-center py-4 menu">
-    <ng-container *ngTemplateOutlet="logo"></ng-container>
-    <div class="flex align-items-center justify-cantent-between gap-5">
+  <div class="flex menu">
+    <div class="flex align-items-center gap-2 cursor-pointer" routerLink="/">
+      <ng-container *ngTemplateOutlet="logo"></ng-container>
+      <p class="font-semibold white-space-nowrap">Тайный Санта</p>
+    </div>
+    <div class="menu__link">
       <p class="cursor-pointer" routerLink="/">Об игре</p>
       <p class="cursor-pointer" routerLink="/">Правила</p>
       <p class="cursor-pointer" routerLink="/">Контакты</p>
     </div>
+    <div class="cursor-pointer burger" (click)="openMenu()">
+      <div class="burger-line"></div>
+    </div>
+
     <p-button
       class="cursor-pointer"
       [routerLink]="urls.SIGN_IN_URL"
@@ -33,5 +40,17 @@
 </ng-template>
 
 <ng-template #logo>
-  <svg-icon class="cursor-pointer" src="logo.svg" routerLink="/"></svg-icon>
+  <svg-icon src="logo.svg"></svg-icon>
 </ng-template>
+
+<div *ngIf="isVisibleMenu" class="menu__link-mob">
+  <div class="button" (click)="closeMenu()">
+    <div class="cross"></div>
+  </div>
+  <div class="link">
+    <ng-container *ngTemplateOutlet="logo"></ng-container>
+    <p class="cursor-pointer" (click)="toRedirect()">Об игре</p>
+    <p class="cursor-pointer" (click)="toRedirect()">Правила</p>
+    <p class="cursor-pointer" (click)="toRedirect()">Контакты</p>
+  </div>
+</div>
