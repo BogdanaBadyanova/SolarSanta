@@ -1,8 +1,8 @@
 import { computed, inject, Injectable, Signal, signal } from '@angular/core';
 import { LocalStorageService } from '@core/services/local-storage.service';
 import { Router } from '@angular/router';
-import { UrlsService } from '@core/services/urls.service';
-import { CommonConstants } from '@core/services/common-constants';
+import { Urls } from '@/app/core/utils/urls';
+import { CommonConstants } from '@/app/core/utils/common-constants';
 import { ToastService } from '@core/services/toast/toast.service';
 import { ICurrentUser } from '@core/interfaces/icurrent-user';
 import { IAuthResult } from '@auth/interfaces/iauth-result';
@@ -22,8 +22,6 @@ import { ApiSignUpRequestAdapter } from '@/app/core/adapters/api-sign-up-request
 export class AuthService {
   private _ls = inject(LocalStorageService);
   private _router = inject(Router);
-  private _urls = inject(UrlsService);
-  private _constants = inject(CommonConstants);
   private _toastService = inject(ToastService);
   private _apiService = inject(AuthApiService);
   private _apiCurrentUserAdapter = inject(ApiCurrentUserAdapter);
@@ -51,7 +49,7 @@ export class AuthService {
         iif(
           () => !!this._currentUserClaims(),
           this._getCurrentUser(),
-          of(null).pipe(tap(() => this._router.navigate(this._urls.SIGN_IN_URL))),
+          of(null).pipe(tap(() => this._router.navigate(Urls.SIGN_IN_URL))),
         ),
       ),
     );
@@ -71,10 +69,10 @@ export class AuthService {
       tap(() => this._toastService.showMessage(AuthToastEnum.SIGN_IN_SUCCESS)),
       tap((data: IAuthResult) => this._currentUserClaims.set(data)),
       tap((data: IAuthResult) => {
-        this._ls.setItem(this._constants.userClaimsLocalStorageKey, JSON.stringify(data));
+        this._ls.setItem(CommonConstants.userClaimsLocalStorageKey, JSON.stringify(data));
       }),
       switchMap(() => this._getCurrentUser()),
-      tap(() => this._router.navigate(this._urls.INTRO_URL)),
+      tap(() => this._router.navigate(Urls.INTRO_URL)),
       takeUntilDestroyed(),
     );
   }
@@ -91,7 +89,7 @@ export class AuthService {
         throw new Error(message);
       }),
       tap(() => this._toastService.showMessage(AuthToastEnum.SIGN_UP_SUCCESS)),
-      tap(() => this._router.navigate(this._urls.SIGN_IN_URL)),
+      tap(() => this._router.navigate(Urls.SIGN_IN_URL)),
       takeUntilDestroyed(),
     );
   }
@@ -99,12 +97,12 @@ export class AuthService {
   public logout() {
     this._currentUser.set(null);
     this._currentUserClaims.set(null);
-    this._ls.removeItem(this._constants.userClaimsLocalStorageKey);
-    this._router.navigate(this._urls.SIGN_IN_URL);
+    this._ls.removeItem(CommonConstants.userClaimsLocalStorageKey);
+    this._router.navigate(Urls.SIGN_IN_URL);
   }
 
   private _getCurrentUserClaims(): void {
-    const claimsString = this._ls.getItem(this._constants.userClaimsLocalStorageKey);
+    const claimsString = this._ls.getItem(CommonConstants.userClaimsLocalStorageKey);
     const claims = claimsString ? (JSON.parse(claimsString) as IAuthResult) : null;
 
     if (claims?.token) {

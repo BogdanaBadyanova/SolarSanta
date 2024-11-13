@@ -1,0 +1,17 @@
+export enum BoxLogo {
+  Bag = 'box-logo/bag.png',
+  Ball = 'box-logo/ball.png',
+  Garland = 'box-logo/garland.png',
+  Gift = 'box-logo/gift.png',
+  Glasses = 'box-logo/glasses.png',
+  Happy = 'box-logo/happy.png',
+  Head = 'box-logo/head.png',
+  Hoho = 'box-logo/hoho.png',
+  Horns = 'box-logo/horns.png',
+  Mittens = 'box-logo/mittens.png',
+  Rocket = 'box-logo/rocket.png',
+  Sleigh = 'box-logo/sleigh.png',
+  Snowflake = 'box-logo/snowflake.png',
+  Snowman = 'box-logo/snowman.png',
+  Sock = 'box-logo/sock.png',
+}

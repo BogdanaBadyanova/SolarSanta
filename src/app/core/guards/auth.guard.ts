@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { UrlsService } from '@core/services/urls.service';
+import { Urls } from '@/app/core/utils/urls';
 import { ToastService } from '@core/services/toast/toast.service';
 import { AuthToastEnum } from '@auth/enums/auth-toast-enum';
 import { AuthService } from '@/app/features/auth/services/auth.service';
@@ -22,11 +22,10 @@ export const authGuard: CanActivateFn = () => {
   const _authService = inject(AuthService);
   const _router = inject(Router);
   const _toastService = inject(ToastService);
-  const _routes = inject(UrlsService);
 
   if (_authService.isAuthenticated()) {
     _toastService.showMessage(AuthToastEnum.ALREADY_AUTHORIZED);
-    _router.navigate(_routes.INTRO_URL);
+    _router.navigate(Urls.INTRO_URL);
     return false;
   }
 
