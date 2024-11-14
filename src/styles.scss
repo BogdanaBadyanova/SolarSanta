@@ -4,3 +4,12 @@
 body {
   color: var(--text-color);
 }
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -27,6 +27,14 @@
 }
 
 .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.section {
   margin-top: 40px;
   max-width: 500px;
   width: 100%;
@@ -72,13 +80,13 @@
 }
 
 @media screen and (max-width: 520px) {
-  .box__wrap {
+  .boxes__wrap {
     grid-template-columns: repeat(3, 100px);
   }
 }
 
 @media screen and (max-width: 390px) {
-  .box__wrap {
+  .boxes__wrap {
     grid-template-columns: repeat(2, 100px);
   }
 }
