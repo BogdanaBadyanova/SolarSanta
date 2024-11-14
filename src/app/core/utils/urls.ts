@@ -51,19 +51,19 @@ export class Urls {
    */
   public static BOX_DETAILS_URL = (id: string): string[] => {
     return [...this.BOX_URL, BoxesRoutes.CREATE, id];
-  }
+  };
 
   /**
    * URL для страницы приглашения участника в коробку.
    */
   public static SHARE_LINK_URL = (id: string): string[] => {
     return [...this.BOX_URL, BoxesRoutes.SHARE, id];
-  }
+  };
 
   /**
    * URL для страницы профиля участника.
    */
   public static PROFILE_URL = (id: string): string[] => {
     return [...this.BASE_URL, LayoutRoutes.PROFILE, id];
-  }
+  };
 }

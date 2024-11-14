@@ -1,4 +1,4 @@
-export enum BoxLogo {
+export enum BoxLogoEnum {
   Bag = 'box-logo/bag.png',
   Ball = 'box-logo/ball.png',
   Garland = 'box-logo/garland.png',

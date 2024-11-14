@@ -1,1 +1,10 @@
-<p>select-box-icon works!</p>
+<div class="icons">
+  @for (image of images; track $index) {
+    <ss-box-icon
+      [selected]="selectedItemType === image.type"
+      [type]="image.type"
+      (click)="selectedItemType = image.type"
+    />
+  }
+</div>
+<p-button [outlined]="true" label="Выбрать" (onClick)="setSelectedIcon()" />

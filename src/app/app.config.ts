@@ -5,6 +5,7 @@ import { provideAngularSvgIcon } from 'angular-svg-icon';
 import { routes } from '@layouts/routing/layout.routes';
 import { MessageService } from 'primeng/api';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { DialogService } from 'primeng/dynamicdialog';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,5 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAngularSvgIcon(),
     MessageService,
+    DialogService,
   ],
 };

@@ -3,7 +3,11 @@
 
   <div class="wrap__form">
     <div class="flex align-items-end gap-3">
-      <svg-icon src="cross.svg" class="cursor-pointer" (click)="showSelectBoxIconDialog()"></svg-icon>
+      <svg-icon
+        src="cross.svg"
+        class="cursor-pointer"
+        (click)="showSelectBoxIconDialog()"
+      ></svg-icon>
       <div class="flex flex-column w-full">
         <label class="mb-2" for="nameBox">Название коробки </label>
         <input pInputText id="nameBox" />
@@ -13,7 +17,7 @@
     <div class="calendar">
       <div class="flex flex-column w-full">
         <label class="mb-2" for="startDate">Принимаем участников до </label>
-        <p-calendar id="startDate" [showIcon]="true"/>
+        <p-calendar id="startDate" [showIcon]="true" />
       </div>
       <div class="flex flex-column w-full">
         <label class="mb-2" for="endDate">Покупаем подарки до </label>
@@ -24,17 +28,17 @@
     <div class="price">
       <div class="flex flex-column w-full">
         <label class="mb-2" for="priceFrom">Сумма подарка от</label>
-        <input pInputText id="priceFrom"/>
+        <input pInputText id="priceFrom" />
       </div>
       <div class="flex flex-column w-full">
         <label class="mb-2" for="priceTo">Сумма подарка до</label>
-        <input pInputText id="priceTo"/>
+        <input pInputText id="priceTo" />
       </div>
     </div>
 
     <div class="flex flex-column place w-full">
       <label class="mb-2" for="place">Место проведения</label>
-      <input pInputText id="place"/>
+      <input pInputText id="place" />
     </div>
 
     <div class="flex align-items-center mt-3 gap-2">

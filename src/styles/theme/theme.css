@@ -2726,7 +2726,7 @@
   }
 
   .p-button.p-button-text:not(:disabled):hover {
-    background: rgba(59, 130, 246, 0.04);
+    background: #fff;
     color: #d32f2f;
     border-color: transparent;
   }
@@ -9044,12 +9044,12 @@
   }
 
   .p-button.p-button-outlined {
-    border-color: var(--primary-200);
+    border-color: var(--primary);
   }
 
   .p-button.p-button-outlined:not(:disabled):hover,
   .p-button.p-button-outlined:not(:disabled):active {
-    border-color: var(--primary-200);
+    border-color: var(--primary);
   }
 
   .p-button.p-button-outlined.p-button-secondary {
