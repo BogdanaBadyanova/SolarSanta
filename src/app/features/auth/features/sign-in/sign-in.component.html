@@ -11,7 +11,7 @@
       Нет аккаунта?
       <span class="reg cursor-pointer" [routerLink]="Urls.SIGN_UP_URL"> Зарегистрироваться</span>
     </p>
-    <p-button type="submit" class="mx-auto" label="Войти" />
+    <p-button type="submit" class="mx-auto" label="Войти" [routerLink]="Urls.PROFILE_URL('user_id')" />
   </form>
 </div>
 
