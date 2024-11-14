@@ -11,6 +11,4 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
-export class ProfileComponent {
-  
-}
+export class ProfileComponent {}
