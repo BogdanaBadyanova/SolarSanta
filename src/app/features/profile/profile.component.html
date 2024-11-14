@@ -1,1 +1,49 @@
-<p>profile works!</p>
+<div class="wrap">
+  <div class="flex align-items-center">
+    <svg-icon src="image-prof.svg"></svg-icon>
+    <h2 class="name">Name Profile</h2>
+  </div>
+
+  <div class="info">
+    <h3 class="title">Основная информация</h3>
+    <div class="flex info__wrap">
+      <p class="info__field">Имя:</p>
+      <p class="info__data">Богдана</p>
+    </div>
+    <div class="flex info__wrap">
+      <p class="info__field">Пол:</p>
+      <p class="info__data">Женский</p>
+    </div>
+    <div class="flex info__wrap">
+      <p class="info__field">Email:</p>
+      <p class="info__data">valentina#example.ru</p>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3 class="title mb-4">О Себе</h3>
+    <textarea rows="5" cols="40" [autoResize]="true" pInputTextarea></textarea>
+  </div>
+
+  <div class="box">
+    <h3 class="title">Мои Коробки</h3>
+    <div class="box__wrap">
+      <svg-icon src="box.svg"></svg-icon>
+      <svg-icon src="box.svg"></svg-icon>
+      <svg-icon src="box.svg"></svg-icon>
+      <svg-icon src="box.svg"></svg-icon>
+
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="flex align-items-center gap-2 mb-4">
+      <h3 class="title">Мои интересы</h3>
+      <p>(Добовлять по одному)</p>
+    </div>
+    <div class="card p-fluid">
+      <p-chips />
+    </div>
+  </div>
+</div>
+<div class="img"></div>

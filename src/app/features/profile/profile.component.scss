@@ -1,0 +1,85 @@
+.wrap{
+    padding: 20px 0 50px 0;
+}
+.info {
+    max-width: 500px;
+    width: 100%;
+    margin-top: 20px;
+
+    &__wrap {
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    &__field {
+        font-size: 1.13rem;
+        font-weight: 400;
+        line-height: 1.31rem;
+        color: #888888;
+    }
+
+    &__data {
+
+        font-size: 1.13rem;
+        font-weight: 400;
+        line-height: 1.31rem;
+        color: #222222;
+    }
+}
+
+.box {
+    margin-top: 40px;
+    max-width: 500px;
+    width: 100%;
+
+    &__wrap {
+        display: grid;
+        grid-template-columns: repeat(4, 100px);
+        gap: 30px;
+        margin-top: 25px;
+    }
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.44rem;
+}
+
+.name {
+    margin-left: 30px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+}
+
+.img {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    z-index: -1;
+    background-image: url('public/image-6.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    width: 436px;
+    height: 519px;
+}
+
+:host::ng-deep .p-chips-multiple-container {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+@media screen and (max-width: 520px) {
+    .box__wrap {
+        grid-template-columns: repeat(3, 100px);
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .box__wrap {
+        grid-template-columns: repeat(2, 100px);
+    }
+}

@@ -114,6 +114,9 @@
 @media screen and (max-width: 769px) {
   .intro {
     flex-direction: column-reverse;
+    .img-box {
+      margin-right: -15px;
+    }
   }
 
   .about__intro {
@@ -122,6 +125,7 @@
     margin-top: 20px;
 
     .img {
+      margin-left: -15px;
       img {
         width: 100%;
       }
