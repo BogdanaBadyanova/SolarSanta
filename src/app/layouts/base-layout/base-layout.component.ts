@@ -3,11 +3,10 @@ import { RouterOutlet } from '@angular/router';
 import { MenuComponent } from '@layouts/components/menu/menu.component';
 import { ICurrentUser } from '@/app/core/interfaces/icurrent-user';
 import { AuthService } from '@/app/features/auth/services/auth.service';
-import { ProfileComponent } from '@/app/features/profile/profile.component';
 
 @Component({
   standalone: true,
-  imports: [RouterOutlet, MenuComponent, ProfileComponent],
+  imports: [RouterOutlet, MenuComponent],
   templateUrl: './base-layout.component.html',
   styleUrl: './base-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
