@@ -18,5 +18,7 @@ export class ProfileComponent {
     { name: 'Первая коробка', type: BoxLogoEnum.Rocket },
     { name: 'Коробка 2', type: BoxLogoEnum.Garland },
     { name: 'Коробка 3', type: BoxLogoEnum.Hoho },
+    { name: 'Коробка 4', type: BoxLogoEnum.Gift },
+    { name: 'Коробка 5', type: BoxLogoEnum.Snowman },
   ]);
 }
