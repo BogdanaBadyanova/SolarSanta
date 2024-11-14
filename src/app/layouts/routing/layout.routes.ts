@@ -14,7 +14,15 @@ export const routes: Routes = [
       },
       {
         path: LayoutRoutes.INTRO,
-        loadChildren: () => import('@intro/routing/intro.routes').then((c) => c.introRoutes),
+        loadComponent: () => import('@intro/intro.component').then((c) => c.IntroComponent),
+      },
+      {
+        path: LayoutRoutes.BOX,
+        loadChildren: () => import('@boxes/routing/boxes.routes').then((c) => c.boxesRoutes),
+      },
+      {
+        path: `${LayoutRoutes.PROFILE}/:id`,
+        loadComponent: () => import('@profile/profile.component').then((c) => c.ProfileComponent),
       },
     ],
   },
