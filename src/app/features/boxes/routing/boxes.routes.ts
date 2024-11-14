@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { BoxesRoutes } from './boxes-routes.enum';
 
 export const boxesRoutes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: BoxesRoutes.DETAILS },
+  { path: '', pathMatch: 'full', redirectTo: BoxesRoutes.CREATE },
   {
     path: '',
     loadComponent: () => import('@boxes/boxes.component').then((c) => c.BoxesComponent),
