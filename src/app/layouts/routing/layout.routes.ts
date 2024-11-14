@@ -10,11 +10,11 @@ export const routes: Routes = [
     children: [
       {
         path: LayoutRoutes.AUTH,
-        loadChildren: () => import('@auth/routing/auth.routes').then((m) => m.authRoutes),
+        loadChildren: () => import('@auth/routing/auth.routes').then((c) => c.authRoutes),
       },
       {
         path: LayoutRoutes.INTRO,
-        loadChildren: () => import('@intro/routing/intro.routes').then((m) => m.introRoutes),
+        loadChildren: () => import('@intro/routing/intro.routes').then((c) => c.introRoutes),
       },
     ],
   },

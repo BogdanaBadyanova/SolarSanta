@@ -32,12 +32,14 @@ export class SignUpComponent implements OnInit {
   public form = signal<FormGroup>(null);
 
   public ngOnInit(): void {
-    this.form.set(this._fb.group({
-      username: new FormControl(''),
-      email: new FormControl('', [Validators.email]),
-      password: new FormControl(),
-      confirmPassword: new FormControl(),
-    }));
+    this.form.set(
+      this._fb.group({
+        username: new FormControl(''),
+        email: new FormControl('', [Validators.email]),
+        password: new FormControl(),
+        confirmPassword: new FormControl(),
+      }),
+    );
   }
 
   public submit(): void {

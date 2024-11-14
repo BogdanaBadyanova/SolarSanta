@@ -31,16 +31,18 @@ import { PasswordModule } from 'primeng/password';
 })
 export class SignInComponent implements OnInit {
   private _fb = inject(FormBuilder);
-  
+
   public Urls = Urls;
 
   public form = signal<FormGroup>(null);
 
   public ngOnInit(): void {
-    this.form.set(this._fb.group({
-      email: new FormControl('', [Validators.email]),
-      password: new FormControl(),
-    }));
+    this.form.set(
+      this._fb.group({
+        email: new FormControl('', [Validators.email]),
+        password: new FormControl(),
+      }),
+    );
   }
 
   public submit(): void {
