@@ -1,3 +1,7 @@
-<ss-menu [currentUser]="currentUser()" (logout)="logout()" />
-<router-outlet />
-<ss-footer />
+<div class="h-screen flex flex-column">
+  <ss-menu [currentUser]="currentUser()" (logout)="logout()" />
+  <div class="flex-grow-1">
+    <router-outlet />
+  </div>
+  <ss-footer />
+</div>
