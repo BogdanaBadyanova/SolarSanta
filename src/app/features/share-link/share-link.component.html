@@ -1,1 +1,34 @@
-<p>share-link works!</p>
+<div class="wrap">
+  <h1>Пригласить участников</h1>
+  <div>
+    <p>Ссылка на игру</p>
+    <input
+      class="w-full"
+      id="disabled-input"
+      type="text"
+      pInputText
+      [disabled]="true"
+      [(ngModel)]="link"
+    />
+  </div>
+  <div>
+    <p>Ссылка на игру</p>
+    <textarea
+      class="w-full"
+      [(ngModel)]="message"
+      rows="5"
+      cols="30"
+      pInputTextarea
+      [disabled]="true"
+    ></textarea>
+  </div>
+
+  <div>
+    <p>Отправить ссылку</p>
+    <div class="flex align-items-center gap-3">
+      <svg-icon (click)="sendLink()" class="cursor-pointer" src="whatsapp.svg"></svg-icon>
+      <svg-icon (click)="sendLink()" class="cursor-pointer" src="telegram.svg"></svg-icon>
+      <svg-icon (click)="sendLink()" class="cursor-pointer" src="share.svg"></svg-icon>
+    </div>
+  </div>
+</div>
