@@ -23,4 +23,8 @@ export class BaseLayoutComponent implements OnInit {
     this._authService.init().pipe(untilDestroyed(this)).subscribe();
     this.currentUser = this._authService.currentUser;
   }
+
+  public logout(): void {
+    this._authService.logout();
+  }
 }

@@ -34,9 +34,17 @@
   <div class="menu">
     <ng-container *ngTemplateOutlet="menu"></ng-container>
 
-    <p-button size="small" [routerLink]="Urls.PROFILE_URL(user.id)">
-      {{ user.firstName }} {{ user.lastName }}
-    </p-button>
+    <div class="flex gap-2">
+      <p-button size="small" [routerLink]="Urls.PROFILE_URL(user.id)">
+        {{ user.firstName }} {{ user.lastName }}
+      </p-button>
+      <p-button
+        size="small"
+        icon="pi pi-sign-out"
+        [text]="true"
+        (onClick)="logout.emit()"
+      ></p-button>
+    </div>
   </div>
 </ng-template>
 
