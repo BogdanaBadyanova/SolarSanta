@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AbstractApiResponseAdapter } from './abstract-api-response.adapter';
 import { ICurrentUser } from '../interfaces/icurrent-user';
-import { ApiApplicationUser } from '@/app/infrastructure/api';
+import { ApiApplicationUser } from '@/app/infrastructure';
 
 @Injectable({
   providedIn: 'root',

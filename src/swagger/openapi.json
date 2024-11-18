@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-openapi-gen/ng-openapi-gen-schema.json",
   "input": "https://solarsantabackend.onrender.com/swagger/v1/swagger.json",
-  "output": "src/app/infrastructure/api",
+  "output": "src/app/infrastructure",
   "serviceSuffix": "ApiService",
   "modelPrefix": "Api",
   "skipJsonSuffix": true,

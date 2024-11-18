@@ -11,27 +11,24 @@ import { RequestBuilder } from '../../request-builder';
 import { ApiBoxView } from '../../models/api-box-view';
 import { ApiCreateBoxRequest } from '../../models/api-create-box-request';
 
-export interface ApiBoxesPost$Plain$Params {
-  body?: ApiCreateBoxRequest;
+export interface ApiBoxesPost$Params {
+      body?: ApiCreateBoxRequest
 }
 
-export function apiBoxesPost$Plain(
-  http: HttpClient,
-  rootUrl: string,
-  params?: ApiBoxesPost$Plain$Params,
-  context?: HttpContext,
-): Observable<StrictHttpResponse<ApiBoxView>> {
-  const rb = new RequestBuilder(rootUrl, apiBoxesPost$Plain.PATH, 'post');
+export function apiBoxesPost(http: HttpClient, rootUrl: string, params?: ApiBoxesPost$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxView>> {
+  const rb = new RequestBuilder(rootUrl, apiBoxesPost.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/*+json');
   }
 
-  return http.request(rb.build({ responseType: 'text', accept: 'text/plain', context })).pipe(
+  return http.request(
+    rb.build({ responseType: 'json', accept: 'text/json', context })
+  ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
       return r as StrictHttpResponse<ApiBoxView>;
-    }),
+    })
   );
 }
 
-apiBoxesPost$Plain.PATH = '/api/Boxes';
+apiBoxesPost.PATH = '/api/Boxes';

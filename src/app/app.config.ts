@@ -6,7 +6,7 @@ import { routes } from '@layouts/routing/layout.routes';
 import { MessageService } from 'primeng/api';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { DialogService } from 'primeng/dynamicdialog';
-import { ApiConfiguration, ApiModule } from '@/app/infrastructure/api';
+import { ApiConfiguration, ApiModule } from '@/app/infrastructure';
 import { environment } from '@/environments/environment';
 
 const apiConfig: ApiConfiguration = {

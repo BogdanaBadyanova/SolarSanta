@@ -11,27 +11,24 @@ import { RequestBuilder } from '../../request-builder';
 import { ApiAuthResult } from '../../models/api-auth-result';
 import { ApiSignInRequest } from '../../models/api-sign-in-request';
 
-export interface ApiAuthLoginPost$Params {
-  body?: ApiSignInRequest;
+export interface ApiAuthLoginPost$Plain$Params {
+      body?: ApiSignInRequest
 }
 
-export function apiAuthLoginPost(
-  http: HttpClient,
-  rootUrl: string,
-  params?: ApiAuthLoginPost$Params,
-  context?: HttpContext,
-): Observable<StrictHttpResponse<ApiAuthResult>> {
-  const rb = new RequestBuilder(rootUrl, apiAuthLoginPost.PATH, 'post');
+export function apiAuthLoginPost$Plain(http: HttpClient, rootUrl: string, params?: ApiAuthLoginPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiAuthResult>> {
+  const rb = new RequestBuilder(rootUrl, apiAuthLoginPost$Plain.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/*+json');
   }
 
-  return http.request(rb.build({ responseType: 'json', accept: 'text/json', context })).pipe(
+  return http.request(
+    rb.build({ responseType: 'text', accept: 'text/plain', context })
+  ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
       return r as StrictHttpResponse<ApiAuthResult>;
-    }),
+    })
   );
 }
 
-apiAuthLoginPost.PATH = '/api/Auth/Login';
+apiAuthLoginPost$Plain.PATH = '/api/Auth/Login';

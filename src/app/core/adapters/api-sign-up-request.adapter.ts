@@ -1,7 +1,7 @@
 import { ISignUpRequest } from '@/app/features/auth/interfaces/isign-up-request';
 import { Injectable } from '@angular/core';
 import { AbstractApiRequestAdapter } from './abstract-api-request.adapter';
-import { ApiSignUpRequest } from '@/app/infrastructure/api';
+import { ApiSignUpRequest } from '@/app/infrastructure';
 
 @Injectable({
   providedIn: 'root',

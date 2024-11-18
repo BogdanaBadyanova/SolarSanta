@@ -10,24 +10,22 @@ import { RequestBuilder } from '../../request-builder';
 
 import { ApiApplicationUser } from '../../models/api-application-user';
 
-export interface ApiAuthCurrentUserGet$Params {}
+export interface ApiAuthCurrentUserGet$Plain$Params {
+}
 
-export function apiAuthCurrentUserGet(
-  http: HttpClient,
-  rootUrl: string,
-  params?: ApiAuthCurrentUserGet$Params,
-  context?: HttpContext,
-): Observable<StrictHttpResponse<ApiApplicationUser>> {
-  const rb = new RequestBuilder(rootUrl, apiAuthCurrentUserGet.PATH, 'get');
+export function apiAuthCurrentUserGet$Plain(http: HttpClient, rootUrl: string, params?: ApiAuthCurrentUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiApplicationUser>> {
+  const rb = new RequestBuilder(rootUrl, apiAuthCurrentUserGet$Plain.PATH, 'get');
   if (params) {
   }
 
-  return http.request(rb.build({ responseType: 'json', accept: 'text/json', context })).pipe(
+  return http.request(
+    rb.build({ responseType: 'text', accept: 'text/plain', context })
+  ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
       return r as StrictHttpResponse<ApiApplicationUser>;
-    }),
+    })
   );
 }
 
-apiAuthCurrentUserGet.PATH = '/api/Auth/Current-user';
+apiAuthCurrentUserGet$Plain.PATH = '/api/Auth/Current-user';
