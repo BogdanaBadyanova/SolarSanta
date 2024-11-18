@@ -29,7 +29,7 @@
     <h3 class="title">Мои Коробки</h3>
     <div class="section__wrap">
       @for (box of userBoxes(); track $index) {
-        <div class="box">
+        <div class="box" [routerLink]="Urls.BOX_DETAILS_URL(box.id)">
           <ss-box-icon [type]="box.type"></ss-box-icon>
           <span>{{ box.name }}</span>
         </div>

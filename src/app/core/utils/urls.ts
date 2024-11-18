@@ -50,7 +50,7 @@ export class Urls {
    * URL для страницы просмотра коробки.
    */
   public static BOX_DETAILS_URL = (id: string): string[] => {
-    return [...this.BOX_URL, BoxesRoutes.CREATE, id];
+    return [...this.BOX_URL, BoxesRoutes.DETAILS, id];
   };
 
   /**
