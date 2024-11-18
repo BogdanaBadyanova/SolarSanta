@@ -11,7 +11,6 @@
       "@auth/*": ["src/app/features/auth/*"],
       "@boxes/*": ["src/app/features/boxes/*"],
       "@profile/*": ["src/app/features/profile/*"],
-      "@share-link/*": ["src/app/features/share-link/*"],
       "@layouts/*": ["src/app/layouts/*"]
     },
     "outDir": "./dist/out-tsc",

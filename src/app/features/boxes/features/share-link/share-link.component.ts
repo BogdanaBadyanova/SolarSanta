@@ -15,7 +15,7 @@ export class ShareLinkComponent {
   public link = 'qweqwasfdza/fasdfasdaf';
   public message = 'qweqwasfrewrew23423542352352323dza/fasdfasdaf';
 
-  public sendLink() {
+  public sendLink(): void {
     console.log('123');
   }
 }

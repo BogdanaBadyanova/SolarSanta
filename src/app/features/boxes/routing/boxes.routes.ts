@@ -21,6 +21,13 @@ export const boxesRoutes: Routes = [
             (c) => c.BoxDetailsComponent,
           ),
       },
+      {
+        path: `${BoxesRoutes.SHARE}/:id`,
+        loadComponent: () =>
+          import('@boxes/features/share-link/share-link.component').then(
+            (c) => c.ShareLinkComponent,
+          ),
+      },
     ],
   },
 ];
