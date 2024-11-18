@@ -59,7 +59,7 @@ export class AuthService {
     );
   }
 
-  public signIn(request: ISignInRequest): Observable<unknown> {
+  public signIn(request: ISignInRequest): Observable<ICurrentUser | null> {
     const dto = this._apiSignInRequestAdapter.toApi(request);
     return this._apiService.apiAuthLoginPost({ body: dto }).pipe(
       first(),
@@ -71,13 +71,11 @@ export class AuthService {
         throw new Error(message);
       }),
       map((response) => this._apiAuthResultAdapter.fromApi(response)),
-      tap(() => this._toastService.showMessage(AuthToastEnum.SIGN_IN_SUCCESS)),
       tap((data: IAuthResult) => this._currentUserClaims.set(data)),
       tap((data: IAuthResult) => {
         this._ls.setItem(CommonConstants.userClaimsLocalStorageKey, JSON.stringify(data));
       }),
       switchMap(() => this._getCurrentUser()),
-      tap((user) => this._router.navigate(Urls.PROFILE_URL(user.id))),
       untilDestroyed(this),
     );
   }
@@ -93,8 +91,6 @@ export class AuthService {
         });
         throw new Error(message);
       }),
-      tap(() => this._toastService.showMessage(AuthToastEnum.SIGN_UP_SUCCESS)),
-      tap(() => this._router.navigate(Urls.SIGN_IN_URL)),
       untilDestroyed(this),
     );
   }
