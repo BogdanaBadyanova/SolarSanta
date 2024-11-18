@@ -1,5 +1,5 @@
 import { Urls } from '@/app/core/utils/urls';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, Signal, signal } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -36,11 +36,15 @@ export class SignInComponent implements OnInit {
   private _fb = inject(FormBuilder);
   private _facade = inject(SignInFacade);
 
+  public form = signal<FormGroup>(null);
+  public submitButtonIcon: Signal<string>;
+  public isSubmitButtonDisabled: Signal<boolean>;
+
   public Urls = Urls;
 
-  public form = signal<FormGroup>(null);
-
   public ngOnInit(): void {
+    this.submitButtonIcon = this._facade.submitButtonIcon;
+    this.isSubmitButtonDisabled = this._facade.isSubmitButtonDisabled;
     this.form.set(
       this._fb.group({
         email: new FormControl('', [Validators.email]),

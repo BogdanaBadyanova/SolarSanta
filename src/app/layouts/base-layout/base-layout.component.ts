@@ -16,6 +16,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export class BaseLayoutComponent implements OnInit {
   private _authService = inject(AuthService);
+
   public currentUser: Signal<ICurrentUser | null>;
 
   public ngOnInit(): void {

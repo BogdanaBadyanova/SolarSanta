@@ -34,6 +34,8 @@ export class SignUpComponent implements OnInit {
   private _facade = inject(SignUpFacade);
 
   public form = signal<FormGroup>(null);
+  public submitButtonIcon = this._facade.submitButtonIcon;
+  public isSubmitButtonDisabled = this._facade.isSubmitButtonDisabled;
 
   public ngOnInit(): void {
     this.form.set(
