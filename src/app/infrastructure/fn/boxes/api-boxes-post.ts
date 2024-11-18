@@ -12,22 +12,25 @@ import { ApiBoxView } from '../../models/api-box-view';
 import { ApiCreateBoxRequest } from '../../models/api-create-box-request';
 
 export interface ApiBoxesPost$Params {
-      body?: ApiCreateBoxRequest
+  body?: ApiCreateBoxRequest;
 }
 
-export function apiBoxesPost(http: HttpClient, rootUrl: string, params?: ApiBoxesPost$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxView>> {
+export function apiBoxesPost(
+  http: HttpClient,
+  rootUrl: string,
+  params?: ApiBoxesPost$Params,
+  context?: HttpContext,
+): Observable<StrictHttpResponse<ApiBoxView>> {
   const rb = new RequestBuilder(rootUrl, apiBoxesPost.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/*+json');
   }
 
-  return http.request(
-    rb.build({ responseType: 'json', accept: 'text/json', context })
-  ).pipe(
+  return http.request(rb.build({ responseType: 'json', accept: 'text/json', context })).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
       return r as StrictHttpResponse<ApiBoxView>;
-    })
+    }),
   );
 }
 

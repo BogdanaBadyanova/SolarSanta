@@ -41,7 +41,10 @@ export class AuthApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiAuthLoginPost$Plain$Response(params?: ApiAuthLoginPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiAuthResult>> {
+  apiAuthLoginPost$Plain$Response(
+    params?: ApiAuthLoginPost$Plain$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<ApiAuthResult>> {
     return apiAuthLoginPost$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -51,9 +54,12 @@ export class AuthApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiAuthLoginPost$Plain(params?: ApiAuthLoginPost$Plain$Params, context?: HttpContext): Observable<ApiAuthResult> {
+  apiAuthLoginPost$Plain(
+    params?: ApiAuthLoginPost$Plain$Params,
+    context?: HttpContext,
+  ): Observable<ApiAuthResult> {
     return this.apiAuthLoginPost$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiAuthResult>): ApiAuthResult => r.body)
+      map((r: StrictHttpResponse<ApiAuthResult>): ApiAuthResult => r.body),
     );
   }
 
@@ -63,7 +69,10 @@ export class AuthApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiAuthLoginPost$Response(params?: ApiAuthLoginPost$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiAuthResult>> {
+  apiAuthLoginPost$Response(
+    params?: ApiAuthLoginPost$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<ApiAuthResult>> {
     return apiAuthLoginPost(this.http, this.rootUrl, params, context);
   }
 
@@ -73,9 +82,12 @@ export class AuthApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiAuthLoginPost(params?: ApiAuthLoginPost$Params, context?: HttpContext): Observable<ApiAuthResult> {
+  apiAuthLoginPost(
+    params?: ApiAuthLoginPost$Params,
+    context?: HttpContext,
+  ): Observable<ApiAuthResult> {
     return this.apiAuthLoginPost$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiAuthResult>): ApiAuthResult => r.body)
+      map((r: StrictHttpResponse<ApiAuthResult>): ApiAuthResult => r.body),
     );
   }
 
@@ -88,7 +100,10 @@ export class AuthApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiAuthRegisterPost$Plain$Response(params?: ApiAuthRegisterPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<boolean>> {
+  apiAuthRegisterPost$Plain$Response(
+    params?: ApiAuthRegisterPost$Plain$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<boolean>> {
     return apiAuthRegisterPost$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -98,9 +113,12 @@ export class AuthApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiAuthRegisterPost$Plain(params?: ApiAuthRegisterPost$Plain$Params, context?: HttpContext): Observable<boolean> {
+  apiAuthRegisterPost$Plain(
+    params?: ApiAuthRegisterPost$Plain$Params,
+    context?: HttpContext,
+  ): Observable<boolean> {
     return this.apiAuthRegisterPost$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<boolean>): boolean => r.body)
+      map((r: StrictHttpResponse<boolean>): boolean => r.body),
     );
   }
 
@@ -110,7 +128,10 @@ export class AuthApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiAuthRegisterPost$Response(params?: ApiAuthRegisterPost$Params, context?: HttpContext): Observable<StrictHttpResponse<boolean>> {
+  apiAuthRegisterPost$Response(
+    params?: ApiAuthRegisterPost$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<boolean>> {
     return apiAuthRegisterPost(this.http, this.rootUrl, params, context);
   }
 
@@ -120,9 +141,12 @@ export class AuthApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiAuthRegisterPost(params?: ApiAuthRegisterPost$Params, context?: HttpContext): Observable<boolean> {
+  apiAuthRegisterPost(
+    params?: ApiAuthRegisterPost$Params,
+    context?: HttpContext,
+  ): Observable<boolean> {
     return this.apiAuthRegisterPost$Response(params, context).pipe(
-      map((r: StrictHttpResponse<boolean>): boolean => r.body)
+      map((r: StrictHttpResponse<boolean>): boolean => r.body),
     );
   }
 
@@ -135,7 +159,10 @@ export class AuthApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiAuthCurrentUserGet$Plain$Response(params?: ApiAuthCurrentUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiApplicationUser>> {
+  apiAuthCurrentUserGet$Plain$Response(
+    params?: ApiAuthCurrentUserGet$Plain$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<ApiApplicationUser>> {
     return apiAuthCurrentUserGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -145,9 +172,12 @@ export class AuthApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiAuthCurrentUserGet$Plain(params?: ApiAuthCurrentUserGet$Plain$Params, context?: HttpContext): Observable<ApiApplicationUser> {
+  apiAuthCurrentUserGet$Plain(
+    params?: ApiAuthCurrentUserGet$Plain$Params,
+    context?: HttpContext,
+  ): Observable<ApiApplicationUser> {
     return this.apiAuthCurrentUserGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiApplicationUser>): ApiApplicationUser => r.body)
+      map((r: StrictHttpResponse<ApiApplicationUser>): ApiApplicationUser => r.body),
     );
   }
 
@@ -157,7 +187,10 @@ export class AuthApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiAuthCurrentUserGet$Response(params?: ApiAuthCurrentUserGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiApplicationUser>> {
+  apiAuthCurrentUserGet$Response(
+    params?: ApiAuthCurrentUserGet$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<ApiApplicationUser>> {
     return apiAuthCurrentUserGet(this.http, this.rootUrl, params, context);
   }
 
@@ -167,10 +200,12 @@ export class AuthApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiAuthCurrentUserGet(params?: ApiAuthCurrentUserGet$Params, context?: HttpContext): Observable<ApiApplicationUser> {
+  apiAuthCurrentUserGet(
+    params?: ApiAuthCurrentUserGet$Params,
+    context?: HttpContext,
+  ): Observable<ApiApplicationUser> {
     return this.apiAuthCurrentUserGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiApplicationUser>): ApiApplicationUser => r.body)
+      map((r: StrictHttpResponse<ApiApplicationUser>): ApiApplicationUser => r.body),
     );
   }
-
 }

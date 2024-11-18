@@ -4,10 +4,11 @@ import { provideRouter } from '@angular/router';
 import { provideAngularSvgIcon } from 'angular-svg-icon';
 import { routes } from '@layouts/routing/layout.routes';
 import { MessageService } from 'primeng/api';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ApiConfiguration, ApiModule } from '@/app/infrastructure';
 import { environment } from '@/environments/environment';
+import { TokenInterceptor } from './core/interceptor/token.interceptor';
 
 const apiConfig: ApiConfiguration = {
   rootUrl: environment.apiUrl,
@@ -21,7 +22,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(ApiModule.forRoot(apiConfig)),
     provideRouter(routes),
     provideAngularSvgIcon(),
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     MessageService,
-    DialogService,
-  ],
+    DialogService,],
 };

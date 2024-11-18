@@ -11,22 +11,27 @@ import { RequestBuilder } from '../../request-builder';
 import { ApiSignUpRequest } from '../../models/api-sign-up-request';
 
 export interface ApiAuthRegisterPost$Plain$Params {
-      body?: ApiSignUpRequest
+  body?: ApiSignUpRequest;
 }
 
-export function apiAuthRegisterPost$Plain(http: HttpClient, rootUrl: string, params?: ApiAuthRegisterPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<boolean>> {
+export function apiAuthRegisterPost$Plain(
+  http: HttpClient,
+  rootUrl: string,
+  params?: ApiAuthRegisterPost$Plain$Params,
+  context?: HttpContext,
+): Observable<StrictHttpResponse<boolean>> {
   const rb = new RequestBuilder(rootUrl, apiAuthRegisterPost$Plain.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/*+json');
   }
 
-  return http.request(
-    rb.build({ responseType: 'text', accept: 'text/plain', context })
-  ).pipe(
+  return http.request(rb.build({ responseType: 'text', accept: 'text/plain', context })).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return (r as HttpResponse<any>).clone({ body: String((r as HttpResponse<any>).body) === 'true' }) as StrictHttpResponse<boolean>;
-    })
+      return (r as HttpResponse<any>).clone({
+        body: String((r as HttpResponse<any>).body) === 'true',
+      }) as StrictHttpResponse<boolean>;
+    }),
   );
 }
 

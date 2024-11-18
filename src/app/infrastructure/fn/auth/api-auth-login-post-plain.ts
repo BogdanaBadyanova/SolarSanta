@@ -12,22 +12,25 @@ import { ApiAuthResult } from '../../models/api-auth-result';
 import { ApiSignInRequest } from '../../models/api-sign-in-request';
 
 export interface ApiAuthLoginPost$Plain$Params {
-      body?: ApiSignInRequest
+  body?: ApiSignInRequest;
 }
 
-export function apiAuthLoginPost$Plain(http: HttpClient, rootUrl: string, params?: ApiAuthLoginPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiAuthResult>> {
+export function apiAuthLoginPost$Plain(
+  http: HttpClient,
+  rootUrl: string,
+  params?: ApiAuthLoginPost$Plain$Params,
+  context?: HttpContext,
+): Observable<StrictHttpResponse<ApiAuthResult>> {
   const rb = new RequestBuilder(rootUrl, apiAuthLoginPost$Plain.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/*+json');
   }
 
-  return http.request(
-    rb.build({ responseType: 'text', accept: 'text/plain', context })
-  ).pipe(
+  return http.request(rb.build({ responseType: 'text', accept: 'text/plain', context })).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
       return r as StrictHttpResponse<ApiAuthResult>;
-    })
+    }),
   );
 }
 

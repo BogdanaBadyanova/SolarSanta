@@ -55,13 +55,13 @@ export class AuthService {
           of(null).pipe(tap(() => this._router.navigate(Urls.SIGN_IN_URL))),
         ),
       ),
-      untilDestroyed(this)
+      untilDestroyed(this),
     );
   }
 
   public signIn(request: ISignInRequest): Observable<unknown> {
     const dto = this._apiSignInRequestAdapter.toApi(request);
-    return this._apiService.apiAuthLoginPost({body: dto}).pipe(
+    return this._apiService.apiAuthLoginPost({ body: dto }).pipe(
       first(),
       catchError((response: { error: string[] }) => {
         const message = response.error.join('. ');
@@ -77,14 +77,14 @@ export class AuthService {
         this._ls.setItem(CommonConstants.userClaimsLocalStorageKey, JSON.stringify(data));
       }),
       switchMap(() => this._getCurrentUser()),
-      tap(() => this._router.navigate(Urls.INTRO_URL)),
-      untilDestroyed(this)
+      tap((user) => this._router.navigate(Urls.PROFILE_URL(user.id))),
+      untilDestroyed(this),
     );
   }
 
   public signUp(request: ISignUpRequest): Observable<boolean> {
     const dto = this._apiSignUpRequestAdapter.toApi(request);
-    return this._apiService.apiAuthRegisterPost({body: dto}).pipe(
+    return this._apiService.apiAuthRegisterPost({ body: dto }).pipe(
       first(),
       catchError((response: { error: string[] }) => {
         const message = response.error.join('. ');
@@ -95,7 +95,7 @@ export class AuthService {
       }),
       tap(() => this._toastService.showMessage(AuthToastEnum.SIGN_UP_SUCCESS)),
       tap(() => this._router.navigate(Urls.SIGN_IN_URL)),
-      untilDestroyed(this)
+      untilDestroyed(this),
     );
   }
 
@@ -120,7 +120,7 @@ export class AuthService {
       first(),
       map((user) => this._apiApplicationUserAdapter.fromApi(user)),
       tap((user: ICurrentUser) => this._currentUser.set(user)),
-      untilDestroyed(this)
+      untilDestroyed(this),
     );
   }
 }

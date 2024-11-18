@@ -10,21 +10,23 @@ import { RequestBuilder } from '../../request-builder';
 
 import { ApiApplicationUser } from '../../models/api-application-user';
 
-export interface ApiAuthCurrentUserGet$Params {
-}
+export interface ApiAuthCurrentUserGet$Params {}
 
-export function apiAuthCurrentUserGet(http: HttpClient, rootUrl: string, params?: ApiAuthCurrentUserGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiApplicationUser>> {
+export function apiAuthCurrentUserGet(
+  http: HttpClient,
+  rootUrl: string,
+  params?: ApiAuthCurrentUserGet$Params,
+  context?: HttpContext,
+): Observable<StrictHttpResponse<ApiApplicationUser>> {
   const rb = new RequestBuilder(rootUrl, apiAuthCurrentUserGet.PATH, 'get');
   if (params) {
   }
 
-  return http.request(
-    rb.build({ responseType: 'json', accept: 'text/json', context })
-  ).pipe(
+  return http.request(rb.build({ responseType: 'json', accept: 'text/json', context })).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
       return r as StrictHttpResponse<ApiApplicationUser>;
-    })
+    }),
   );
 }
 

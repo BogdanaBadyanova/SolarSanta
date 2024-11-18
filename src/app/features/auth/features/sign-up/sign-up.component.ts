@@ -11,7 +11,10 @@ import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { SignUpFacade } from './sign-up.facade';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'ss-sign-up',
   standalone: true,
@@ -28,13 +31,14 @@ import { PasswordModule } from 'primeng/password';
 })
 export class SignUpComponent implements OnInit {
   private _fb = inject(FormBuilder);
+  private _facade = inject(SignUpFacade);
 
   public form = signal<FormGroup>(null);
 
   public ngOnInit(): void {
     this.form.set(
       this._fb.group({
-        username: new FormControl(''),
+        firstName: new FormControl(''),
         email: new FormControl('', [Validators.email]),
         password: new FormControl(),
         confirmPassword: new FormControl(),
@@ -43,6 +47,6 @@ export class SignUpComponent implements OnInit {
   }
 
   public submit(): void {
-    console.log(this.form().value);
+    this._facade.submit(this.form().getRawValue()).pipe(untilDestroyed(this)).subscribe();
   }
 }

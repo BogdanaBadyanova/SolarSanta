@@ -12,22 +12,25 @@ import { ApiBoxViewPaginatedResponse } from '../../models/api-box-view-paginated
 import { ApiGetPagedBoxesRequest } from '../../models/api-get-paged-boxes-request';
 
 export interface ApiBoxesPagedBoxesPost$Params {
-      body?: ApiGetPagedBoxesRequest
+  body?: ApiGetPagedBoxesRequest;
 }
 
-export function apiBoxesPagedBoxesPost(http: HttpClient, rootUrl: string, params?: ApiBoxesPagedBoxesPost$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxViewPaginatedResponse>> {
+export function apiBoxesPagedBoxesPost(
+  http: HttpClient,
+  rootUrl: string,
+  params?: ApiBoxesPagedBoxesPost$Params,
+  context?: HttpContext,
+): Observable<StrictHttpResponse<ApiBoxViewPaginatedResponse>> {
   const rb = new RequestBuilder(rootUrl, apiBoxesPagedBoxesPost.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/*+json');
   }
 
-  return http.request(
-    rb.build({ responseType: 'json', accept: 'text/json', context })
-  ).pipe(
+  return http.request(rb.build({ responseType: 'json', accept: 'text/json', context })).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
       return r as StrictHttpResponse<ApiBoxViewPaginatedResponse>;
-    })
+    }),
   );
 }
 

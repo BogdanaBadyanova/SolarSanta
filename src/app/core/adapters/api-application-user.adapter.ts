@@ -7,7 +7,7 @@ import { ApiApplicationUser } from '@/app/infrastructure';
   providedIn: 'root',
 })
 export class ApiApplicationUserAdapter extends AbstractApiResponseAdapter<
-ApiApplicationUser,
+  ApiApplicationUser,
   ICurrentUser
 > {
   public fromApi(apiModel: ApiApplicationUser): ICurrentUser {
@@ -15,9 +15,8 @@ ApiApplicationUser,
       id: apiModel.id ?? null,
       email: apiModel.email ?? null,
       emailConfirmed: apiModel.emailConfirmed ?? false,
-      firstName: apiModel.firstName ?? null,
-      lastName: apiModel.lastName ?? null,
-      middleName: apiModel.middleName ?? null,
+      firstName: apiModel.firstName || "TestF",
+      lastName: apiModel.lastName || "TestL",
     };
   }
 }

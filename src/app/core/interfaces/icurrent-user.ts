@@ -26,9 +26,4 @@ export interface ICurrentUser {
    * Фамилия пользователя
    */
   lastName: string;
-
-  /**
-   * Отчество пользователя (может отсутствовать)
-   */
-  middleName: string | null;
 }

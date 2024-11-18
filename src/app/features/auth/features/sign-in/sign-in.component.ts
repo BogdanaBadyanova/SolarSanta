@@ -13,7 +13,10 @@ import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { SignInFacade } from './sign-in.facade';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'ss-sign-in',
   standalone: true,
@@ -31,6 +34,7 @@ import { PasswordModule } from 'primeng/password';
 })
 export class SignInComponent implements OnInit {
   private _fb = inject(FormBuilder);
+  private _facade = inject(SignInFacade);
 
   public Urls = Urls;
 
@@ -46,6 +50,6 @@ export class SignInComponent implements OnInit {
   }
 
   public submit(): void {
-    console.log(this.form().value);
+    this._facade.submit(this.form().getRawValue()).pipe(untilDestroyed(this)).subscribe();
   }
 }
