@@ -3,19 +3,23 @@
   [ngTemplateOutletContext]="{ $implicit: currentUser() }"
 ></ng-container>
 
+<ng-template #menu>
+  <div class="flex align-items-center gap-2 cursor-pointer" [routerLink]="Urls.INTRO_URL">
+    <ng-container *ngTemplateOutlet="logo"></ng-container>
+    <p class="font-semibold white-space-nowrap">Тайный Санта</p>
+  </div>
+  <div class="menu__link">
+    <a class="cursor-pointer" (click)="redirectToIntro()">Об игре</a>
+    <p class="cursor-pointer" (click)="redirectToIntro()">Правила</p>
+  </div>
+  <div class="cursor-pointer burger" (click)="toggleMenu()">
+    <div class="burger-line"></div>
+  </div>
+</ng-template>
+
 <ng-template #unauthorized>
   <div class="menu">
-    <div class="flex align-items-center gap-2 cursor-pointer" [routerLink]="Urls.INTRO_URL">
-      <ng-container *ngTemplateOutlet="logo"></ng-container>
-      <p class="font-semibold white-space-nowrap">Тайный Санта</p>
-    </div>
-    <div class="menu__link">
-      <a class="cursor-pointer" (click)="redirectToIntro()">Об игре</a>
-      <p class="cursor-pointer" (click)="redirectToIntro()">Правила</p>
-    </div>
-    <div class="cursor-pointer burger" (click)="toggleMenu()">
-      <div class="burger-line"></div>
-    </div>
+    <ng-container *ngTemplateOutlet="menu"></ng-container>
 
     <p-button
       [routerLink]="Urls.SIGN_IN_URL"
@@ -28,9 +32,11 @@
 
 <ng-template #authorized let-user>
   <div class="menu">
-    <ng-container *ngTemplateOutlet="logo"></ng-container>
+    <ng-container *ngTemplateOutlet="menu"></ng-container>
 
-    <p-button size="small" [routerLink]="Urls.PROFILE_URL(user.id)"> {{ user.firstName }} {{ user.lastName }} </p-button>
+    <p-button size="small" [routerLink]="Urls.PROFILE_URL(user.id)">
+      {{ user.firstName }} {{ user.lastName }}
+    </p-button>
   </div>
 </ng-template>
 

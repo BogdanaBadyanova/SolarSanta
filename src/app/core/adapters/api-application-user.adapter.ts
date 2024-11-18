@@ -15,8 +15,8 @@ export class ApiApplicationUserAdapter extends AbstractApiResponseAdapter<
       id: apiModel.id ?? null,
       email: apiModel.email ?? null,
       emailConfirmed: apiModel.emailConfirmed ?? false,
-      firstName: apiModel.firstName || "TestF",
-      lastName: apiModel.lastName || "TestL",
+      firstName: apiModel.firstName || 'TestF',
+      lastName: apiModel.lastName || 'TestL',
     };
   }
 }

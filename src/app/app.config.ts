@@ -24,5 +24,6 @@ export const appConfig: ApplicationConfig = {
     provideAngularSvgIcon(),
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     MessageService,
-    DialogService,],
+    DialogService,
+  ],
 };

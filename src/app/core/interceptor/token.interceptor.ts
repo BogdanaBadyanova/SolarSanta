@@ -32,7 +32,7 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         console.error('Token Interceptor Error:', error);
         return throwError(() => error);
-      })
+      }),
     );
   }
 }
