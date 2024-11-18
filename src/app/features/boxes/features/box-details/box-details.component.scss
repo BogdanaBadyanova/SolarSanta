@@ -1,0 +1,75 @@
+:host {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 50px;
+    margin-top: 50px;
+
+
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.44rem;
+}
+
+.subtitle {
+    margin-top: 38px;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.44rem;
+}
+
+.base-info {
+    max-width: 316px;
+    width: 100%;
+    margin-top: 38px;
+
+    .head {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.19rem;
+        opacity: .8;
+    }
+
+    .text {
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.19rem;
+        color: #222222;
+    }
+}
+
+.bg {
+    background-image: url('../../../../../../public/box-img.png');
+    background-size: inherit;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+}
+
+
+@media screen and (max-width: 999px) {
+    :host {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    :host {
+        grid-template-columns: 1fr;
+        margin-top: 25px;
+        padding-bottom: 50px;
+    }
+
+    .subtitle {
+        margin-top: 0;
+    }
+
+    .base-info .head {
+        opacity: 1;
+    }
+
+    .bg{
+        background-position: bottom;
+    }
+}
