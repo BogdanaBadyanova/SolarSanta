@@ -4,7 +4,7 @@
 ></ng-container>
 
 <ng-template #unauthorized>
-  <div class="flex menu">
+  <div class="menu">
     <div class="flex align-items-center gap-2 cursor-pointer" [routerLink]="Urls.INTRO_URL">
       <ng-container *ngTemplateOutlet="logo"></ng-container>
       <p class="font-semibold white-space-nowrap">Тайный Санта</p>
@@ -27,10 +27,10 @@
 </ng-template>
 
 <ng-template #authorized let-user>
-  <div class="flex justify-content-between">
+  <div class="menu">
     <ng-container *ngTemplateOutlet="logo"></ng-container>
 
-    <p-button size="small"> {{ user.firstName }} {{ user.lastName }} </p-button>
+    <p-button size="small" [routerLink]="Urls.PROFILE_URL(user.id)"> {{ user.firstName }} {{ user.lastName }} </p-button>
   </div>
 </ng-template>
 

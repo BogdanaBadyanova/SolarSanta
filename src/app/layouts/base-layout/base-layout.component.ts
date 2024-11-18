@@ -4,7 +4,9 @@ import { MenuComponent } from '@layouts/components/menu/menu.component';
 import { ICurrentUser } from '@/app/core/interfaces/icurrent-user';
 import { AuthService } from '@/app/features/auth/services/auth.service';
 import { FooterComponent } from '@layouts/components/footer/footer.component';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   standalone: true,
   imports: [RouterOutlet, MenuComponent, FooterComponent],
@@ -17,6 +19,7 @@ export class BaseLayoutComponent implements OnInit {
   public currentUser: Signal<ICurrentUser | null>;
 
   public ngOnInit(): void {
+    this._authService.init().pipe(untilDestroyed(this)).subscribe();
     this.currentUser = this._authService.currentUser;
   }
 }
