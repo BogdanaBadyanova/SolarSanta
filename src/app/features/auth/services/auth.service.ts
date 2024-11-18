@@ -9,13 +9,15 @@ import { IAuthResult } from '@auth/interfaces/iauth-result';
 import { catchError, first, iif, map, Observable, of, switchMap, tap } from 'rxjs';
 import { ISignInRequest } from '@auth/interfaces/isign-in-request';
 import { AuthToastEnum } from '@auth/enums/auth-toast-enum';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ISignUpRequest } from '@auth/interfaces/isign-up-request';
-import { ApiCurrentUserAdapter } from '@/app/core/adapters/api-current-user.adapter';
-import { AuthApiService } from '@/app/infrastructure/services/auth-api.service';
+import { ApiApplicationUserAdapter } from '@/app/core/adapters/api-application-user.adapter';
 import { ApiSignInRequestAdapter } from '@/app/core/adapters/api-sign-in-request.adapter';
 import { ApiSignUpRequestAdapter } from '@/app/core/adapters/api-sign-up-request.adapter';
+import { AuthApiService } from '@/app/infrastructure/api';
+import { ApiAuthResultAdapter } from '@/app/core/adapters/api-auth-result.adapter';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Injectable({
   providedIn: 'root',
 })
@@ -24,9 +26,10 @@ export class AuthService {
   private _router = inject(Router);
   private _toastService = inject(ToastService);
   private _apiService = inject(AuthApiService);
-  private _apiCurrentUserAdapter = inject(ApiCurrentUserAdapter);
+  private _apiApplicationUserAdapter = inject(ApiApplicationUserAdapter);
   private _apiSignInRequestAdapter = inject(ApiSignInRequestAdapter);
   private _apiSignUpRequestAdapter = inject(ApiSignUpRequestAdapter);
+  private _apiAuthResultAdapter = inject(ApiAuthResultAdapter);
 
   private _currentUser = signal<ICurrentUser>(null);
   private _currentUserClaims = signal<IAuthResult>(null);
@@ -52,12 +55,13 @@ export class AuthService {
           of(null).pipe(tap(() => this._router.navigate(Urls.SIGN_IN_URL))),
         ),
       ),
+      untilDestroyed(this)
     );
   }
 
   public signIn(request: ISignInRequest): Observable<unknown> {
     const dto = this._apiSignInRequestAdapter.toApi(request);
-    return this._apiService.signIn(dto).pipe(
+    return this._apiService.apiAuthLoginPost({body: dto}).pipe(
       first(),
       catchError((response: { error: string[] }) => {
         const message = response.error.join('. ');
@@ -66,6 +70,7 @@ export class AuthService {
         });
         throw new Error(message);
       }),
+      map((response) => this._apiAuthResultAdapter.fromApi(response)),
       tap(() => this._toastService.showMessage(AuthToastEnum.SIGN_IN_SUCCESS)),
       tap((data: IAuthResult) => this._currentUserClaims.set(data)),
       tap((data: IAuthResult) => {
@@ -73,13 +78,13 @@ export class AuthService {
       }),
       switchMap(() => this._getCurrentUser()),
       tap(() => this._router.navigate(Urls.INTRO_URL)),
-      takeUntilDestroyed(),
+      untilDestroyed(this)
     );
   }
 
   public signUp(request: ISignUpRequest): Observable<boolean> {
     const dto = this._apiSignUpRequestAdapter.toApi(request);
-    return this._apiService.signUp(dto).pipe(
+    return this._apiService.apiAuthRegisterPost({body: dto}).pipe(
       first(),
       catchError((response: { error: string[] }) => {
         const message = response.error.join('. ');
@@ -90,7 +95,7 @@ export class AuthService {
       }),
       tap(() => this._toastService.showMessage(AuthToastEnum.SIGN_UP_SUCCESS)),
       tap(() => this._router.navigate(Urls.SIGN_IN_URL)),
-      takeUntilDestroyed(),
+      untilDestroyed(this)
     );
   }
 
@@ -111,11 +116,11 @@ export class AuthService {
   }
 
   private _getCurrentUser(): Observable<ICurrentUser | null> {
-    return this._apiService.getCurrentUser().pipe(
+    return this._apiService.apiAuthCurrentUserGet().pipe(
       first(),
-      map((user) => this._apiCurrentUserAdapter.fromApi(user)),
+      map((user) => this._apiApplicationUserAdapter.fromApi(user)),
       tap((user: ICurrentUser) => this._currentUser.set(user)),
-      takeUntilDestroyed(),
+      untilDestroyed(this)
     );
   }
 }

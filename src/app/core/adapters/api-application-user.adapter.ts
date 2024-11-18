@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AbstractApiResponseAdapter } from './abstract-api-response.adapter';
 import { ICurrentUser } from '../interfaces/icurrent-user';
-import { ApiCurrentUser } from '@/app/infrastructure/models/api-current-user';
+import { ApiApplicationUser } from '@/app/infrastructure/api';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ApiCurrentUserAdapter extends AbstractApiResponseAdapter<
-  ApiCurrentUser,
+export class ApiApplicationUserAdapter extends AbstractApiResponseAdapter<
+ApiApplicationUser,
   ICurrentUser
 > {
-  public fromApi(apiModel: ApiCurrentUser): ICurrentUser {
+  public fromApi(apiModel: ApiApplicationUser): ICurrentUser {
     return {
       id: apiModel.id ?? null,
       email: apiModel.email ?? null,

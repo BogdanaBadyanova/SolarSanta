@@ -15,11 +15,6 @@ export interface ISignUpRequest {
   lastName: string | null;
 
   /**
-   * Отчество нового пользователя
-   */
-  middleName?: string | null;
-
-  /**
    * Пароль нового пользователя
    */
   password: string | null;
