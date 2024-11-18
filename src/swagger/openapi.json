@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/ng-openapi-gen/ng-openapi-gen-schema.json",
+  "input": "https://solarsantabackend.onrender.com/swagger/v1/swagger.json",
+  "output": "src/app/infrastructure/api",
+  "serviceSuffix": "ApiService",
+  "modelPrefix": "Api",
+  "skipJsonSuffix": true,
+  "indexFile": true,
+  "enumStyle": "upper",
+  "customizedResponseType": {
+    "/api/v1/trades/{tradeId}/application/documents": {
+      "toUse": "blob"
+    }
+  }
+}

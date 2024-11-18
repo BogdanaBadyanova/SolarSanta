@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "prettier": "npx prettier \"src/**/*.{js,jsx,ts,tsx,html,css,scss}\" --write",
     "pretty-quick": "pretty-quick --staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "swagger": "ng-openapi-gen --config .\\src\\swagger\\openapi.json"
   },
   "private": true,
   "dependencies": {

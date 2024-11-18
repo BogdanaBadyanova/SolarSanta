@@ -10,4 +10,4 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './participants.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ParticipantsComponent { }
+export class ParticipantsComponent {}

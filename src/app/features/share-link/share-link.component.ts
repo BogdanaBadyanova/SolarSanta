@@ -12,11 +12,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   styleUrl: './share-link.component.scss',
 })
 export class ShareLinkComponent {
-  public link = 'qweqwasfdza/fasdfasdaf'
-  public message = 'qweqwasfrewrew23423542352352323dza/fasdfasdaf'
+  public link = 'qweqwasfdza/fasdfasdaf';
+  public message = 'qweqwasfrewrew23423542352352323dza/fasdfasdaf';
 
   public sendLink() {
     console.log('123');
-
   }
 }
