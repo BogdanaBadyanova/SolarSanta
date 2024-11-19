@@ -11,4 +11,5 @@ export interface ApiCreateBoxRequest {
   meetingDate: string;
   minGiftValue: number;
   name: string;
+  showResults: boolean;
 }

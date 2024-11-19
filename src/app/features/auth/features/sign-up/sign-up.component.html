@@ -2,7 +2,9 @@
 <div class="flex mt-6">
   <form [formGroup]="form()" (ngSubmit)="submit()" class="flex flex-column">
     <label class="mb-2" for="firstName">Имя</label>
-    <input pInputText id="username" formControlName="firstName" class="w-full" />
+    <input pInputText id="firstName" formControlName="firstName" class="w-full" />
+    <label class="mb-2 mt-3" for="lastName">Фамилия</label>
+    <input pInputText id="lastName" formControlName="lastName" class="w-full" />
     <label class="mb-2 mt-3" for="email">Электронная почта</label>
     <input pInputText id="email" formControlName="email" class="w-full" />
     <label class="mb-2 mt-3" for="password">Пароль</label>

@@ -63,12 +63,9 @@ export class AuthService {
     const dto = this._apiSignInRequestAdapter.toApi(request);
     return this._apiService.apiAuthLoginPost({ body: dto }).pipe(
       first(),
-      catchError((response: { error: string[] }) => {
-        const message = response.error.join('. ');
-        this._toastService.showMessage(AuthToastEnum.SIGN_IN_FAILED, {
-          detail: message,
-        });
-        throw new Error(message);
+      catchError(() => {
+        this._toastService.showMessage(AuthToastEnum.SIGN_IN_FAILED);
+        throw new Error();
       }),
       map((response) => this._apiAuthResultAdapter.fromApi(response)),
       tap((data: IAuthResult) => this._currentUserClaims.set(data)),
@@ -84,12 +81,9 @@ export class AuthService {
     const dto = this._apiSignUpRequestAdapter.toApi(request);
     return this._apiService.apiAuthRegisterPost({ body: dto }).pipe(
       first(),
-      catchError((response: { error: string[] }) => {
-        const message = response.error.join('. ');
-        this._toastService.showMessage(AuthToastEnum.SIGN_UP_FAILED, {
-          detail: message,
-        });
-        throw new Error(message);
+      catchError(() => {
+        this._toastService.showMessage(AuthToastEnum.SIGN_UP_FAILED);
+        throw new Error();
       }),
       untilDestroyed(this),
     );

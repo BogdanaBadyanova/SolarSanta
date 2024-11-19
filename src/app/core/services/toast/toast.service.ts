@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { MessageService, Message } from 'primeng/api';
-import { authMessages } from '@core/services/toast/configs/auth-messages';
 import { MessageConfig } from '@core/services/toast/types/message-config';
+import { authMessages } from '@core/services/toast/configs/auth-messages';
+import { boxMessages } from './configs/box-messages';
 
 /**
  * Сервис для отображения всплывающих уведомлений (тостов) в приложении.
@@ -17,6 +18,7 @@ export class ToastService {
    */
   private _messageConfig: MessageConfig = {
     ...authMessages,
+    ...boxMessages,
   };
 
   /**

@@ -1,7 +1,7 @@
 <div class="wrap flex align-items-center justify-content-center flex-column">
   <h2 class="title">Создание коробки</h2>
 
-  <form [formGroup]="createBoxForm()" (ngSubmit)="submit()" class="wrap__form">
+  <form [formGroup]="form()" (ngSubmit)="submit()" class="wrap__form">
     <div class="flex align-items-end gap-3">
       <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
 
@@ -9,6 +9,11 @@
         <label class="mb-2" for="nameBox">Название коробки </label>
         <input pInputText id="nameBox" formControlName="name" />
       </div>
+    </div>
+
+    <div class="flex flex-column w-full description mt-3">
+      <label class="mb-2" for="description">Описание</label>
+      <textarea id="description" pInputTextarea formControlName="description"></textarea>
     </div>
 
     <div class="calendar">
@@ -25,28 +30,17 @@
     <div class="price">
       <div class="flex flex-column w-full">
         <label class="mb-2" for="priceFrom">Сумма подарка от</label>
-        <p-inputNumber id="priceFrom" formControlName="minGiftValue" />
+        <p-inputNumber id="priceFrom" formControlName="minGiftValue" styleClass="w-full" />
       </div>
       <div class="flex flex-column w-full">
         <label class="mb-2" for="priceTo">Сумма подарка до</label>
-        <p-inputNumber id="priceTo" formControlName="maxGiftValue" />
+        <p-inputNumber id="priceTo" formControlName="maxGiftValue" styleClass="w-full" />
       </div>
     </div>
 
     <div class="flex flex-column place w-full">
       <label class="mb-2" for="place">Место проведения</label>
       <input pInputText id="place" formControlName="location" />
-    </div>
-
-    <div class="flex flex-column place w-full">
-      <label class="mb-2" for="place">Описание</label>
-      <textarea
-        id="place"
-        rows="5"
-        cols="30"
-        pInputTextarea
-        formControlName="description"
-      ></textarea>
     </div>
 
     <div class="flex align-items-center mt-3 mb-3 gap-2">
@@ -57,6 +51,7 @@
     <p-button
       type="submit"
       label="Создать коробку"
+      class="align-self-center"
       [disabled]="isSubmitButtonDisabled()"
       [icon]="submitButtonIcon()"
     />
@@ -66,11 +61,11 @@
 <div class="img"></div>
 
 <ng-template #iconTemplate>
-  <ng-container *ngIf="iconBox(); else defaultIcon">
-    <p-image [src]="iconBox()" alt="Image" width="50" height="50" />
+  <ng-container *ngIf="boxIcon(); else iconSelector">
+    <p-image [src]="boxIcon()" alt="Image" width="50" height="50" />
   </ng-container>
 
-  <ng-template #defaultIcon>
+  <ng-template #iconSelector>
     <svg-icon src="cross.svg" class="cursor-pointer" (click)="showSelectBoxIconDialog()"></svg-icon>
   </ng-template>
 </ng-template>

@@ -12,6 +12,8 @@ export class ApiSignUpRequestAdapter extends AbstractApiRequestAdapter<
 > {
   public toApi(appModel: ISignUpRequest): ApiSignUpRequest {
     return {
+      firstName: appModel.firstName || null,
+      lastName: appModel.lastName || null,
       email: appModel.email || null,
       password: appModel.password || null,
     };
