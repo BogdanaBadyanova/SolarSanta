@@ -1,10 +1,10 @@
-
 {
-    "printWidth": 100,
-    "tabWidth": 2,
-    "tabs": false,
-    "singleQuote": true,
-    "semicolon": true,
-    "quoteProps": "preserve",
-    "bracketSpacing": true
-  }  
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true,
+  "printWidth": 100,
+  "trailingComma": "all",
+  "noSemi": true,
+  "rcVerbose": true,
+  "endOfLine": "auto"
+}

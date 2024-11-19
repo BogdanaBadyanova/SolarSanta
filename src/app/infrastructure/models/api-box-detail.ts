@@ -5,16 +5,14 @@
 import { ApiParticipant } from '../models/api-participant';
 export interface ApiBoxDetail {
   description?: string | null;
-  endDate?: string;
-  giftPurchaseEndDate?: string;
   icon?: string | null;
   id?: string;
   idCode?: string | null;
+  inviteEndDate?: string;
   location?: string | null;
   maxGiftValue?: number;
+  meetingDate?: string;
   minGiftValue?: number;
   name?: string | null;
   participants?: Array<ApiParticipant> | null;
-  randomizationDate?: string;
-  startDate?: string;
 }

@@ -44,10 +44,7 @@ export class BoxesApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiBoxesPagedBoxesPost$Plain$Response(
-    params?: ApiBoxesPagedBoxesPost$Plain$Params,
-    context?: HttpContext,
-  ): Observable<StrictHttpResponse<ApiBoxViewPaginatedResponse>> {
+  apiBoxesPagedBoxesPost$Plain$Response(params?: ApiBoxesPagedBoxesPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxViewPaginatedResponse>> {
     return apiBoxesPagedBoxesPost$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -57,14 +54,9 @@ export class BoxesApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiBoxesPagedBoxesPost$Plain(
-    params?: ApiBoxesPagedBoxesPost$Plain$Params,
-    context?: HttpContext,
-  ): Observable<ApiBoxViewPaginatedResponse> {
+  apiBoxesPagedBoxesPost$Plain(params?: ApiBoxesPagedBoxesPost$Plain$Params, context?: HttpContext): Observable<ApiBoxViewPaginatedResponse> {
     return this.apiBoxesPagedBoxesPost$Plain$Response(params, context).pipe(
-      map(
-        (r: StrictHttpResponse<ApiBoxViewPaginatedResponse>): ApiBoxViewPaginatedResponse => r.body,
-      ),
+      map((r: StrictHttpResponse<ApiBoxViewPaginatedResponse>): ApiBoxViewPaginatedResponse => r.body)
     );
   }
 
@@ -74,10 +66,7 @@ export class BoxesApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiBoxesPagedBoxesPost$Response(
-    params?: ApiBoxesPagedBoxesPost$Params,
-    context?: HttpContext,
-  ): Observable<StrictHttpResponse<ApiBoxViewPaginatedResponse>> {
+  apiBoxesPagedBoxesPost$Response(params?: ApiBoxesPagedBoxesPost$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxViewPaginatedResponse>> {
     return apiBoxesPagedBoxesPost(this.http, this.rootUrl, params, context);
   }
 
@@ -87,14 +76,9 @@ export class BoxesApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiBoxesPagedBoxesPost(
-    params?: ApiBoxesPagedBoxesPost$Params,
-    context?: HttpContext,
-  ): Observable<ApiBoxViewPaginatedResponse> {
+  apiBoxesPagedBoxesPost(params?: ApiBoxesPagedBoxesPost$Params, context?: HttpContext): Observable<ApiBoxViewPaginatedResponse> {
     return this.apiBoxesPagedBoxesPost$Response(params, context).pipe(
-      map(
-        (r: StrictHttpResponse<ApiBoxViewPaginatedResponse>): ApiBoxViewPaginatedResponse => r.body,
-      ),
+      map((r: StrictHttpResponse<ApiBoxViewPaginatedResponse>): ApiBoxViewPaginatedResponse => r.body)
     );
   }
 
@@ -107,10 +91,7 @@ export class BoxesApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiBoxesPost$Plain$Response(
-    params?: ApiBoxesPost$Plain$Params,
-    context?: HttpContext,
-  ): Observable<StrictHttpResponse<ApiBoxView>> {
+  apiBoxesPost$Plain$Response(params?: ApiBoxesPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxView>> {
     return apiBoxesPost$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -120,12 +101,9 @@ export class BoxesApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiBoxesPost$Plain(
-    params?: ApiBoxesPost$Plain$Params,
-    context?: HttpContext,
-  ): Observable<ApiBoxView> {
+  apiBoxesPost$Plain(params?: ApiBoxesPost$Plain$Params, context?: HttpContext): Observable<ApiBoxView> {
     return this.apiBoxesPost$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiBoxView>): ApiBoxView => r.body),
+      map((r: StrictHttpResponse<ApiBoxView>): ApiBoxView => r.body)
     );
   }
 
@@ -135,10 +113,7 @@ export class BoxesApiService extends BaseService {
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiBoxesPost$Response(
-    params?: ApiBoxesPost$Params,
-    context?: HttpContext,
-  ): Observable<StrictHttpResponse<ApiBoxView>> {
+  apiBoxesPost$Response(params?: ApiBoxesPost$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxView>> {
     return apiBoxesPost(this.http, this.rootUrl, params, context);
   }
 
@@ -150,7 +125,7 @@ export class BoxesApiService extends BaseService {
    */
   apiBoxesPost(params?: ApiBoxesPost$Params, context?: HttpContext): Observable<ApiBoxView> {
     return this.apiBoxesPost$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiBoxView>): ApiBoxView => r.body),
+      map((r: StrictHttpResponse<ApiBoxView>): ApiBoxView => r.body)
     );
   }
 
@@ -163,10 +138,7 @@ export class BoxesApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiBoxesIdGet$Plain$Response(
-    params: ApiBoxesIdGet$Plain$Params,
-    context?: HttpContext,
-  ): Observable<StrictHttpResponse<ApiBoxDetail>> {
+  apiBoxesIdGet$Plain$Response(params: ApiBoxesIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxDetail>> {
     return apiBoxesIdGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -176,12 +148,9 @@ export class BoxesApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiBoxesIdGet$Plain(
-    params: ApiBoxesIdGet$Plain$Params,
-    context?: HttpContext,
-  ): Observable<ApiBoxDetail> {
+  apiBoxesIdGet$Plain(params: ApiBoxesIdGet$Plain$Params, context?: HttpContext): Observable<ApiBoxDetail> {
     return this.apiBoxesIdGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiBoxDetail>): ApiBoxDetail => r.body),
+      map((r: StrictHttpResponse<ApiBoxDetail>): ApiBoxDetail => r.body)
     );
   }
 
@@ -191,10 +160,7 @@ export class BoxesApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiBoxesIdGet$Response(
-    params: ApiBoxesIdGet$Params,
-    context?: HttpContext,
-  ): Observable<StrictHttpResponse<ApiBoxDetail>> {
+  apiBoxesIdGet$Response(params: ApiBoxesIdGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxDetail>> {
     return apiBoxesIdGet(this.http, this.rootUrl, params, context);
   }
 
@@ -206,7 +172,7 @@ export class BoxesApiService extends BaseService {
    */
   apiBoxesIdGet(params: ApiBoxesIdGet$Params, context?: HttpContext): Observable<ApiBoxDetail> {
     return this.apiBoxesIdGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiBoxDetail>): ApiBoxDetail => r.body),
+      map((r: StrictHttpResponse<ApiBoxDetail>): ApiBoxDetail => r.body)
     );
   }
 
@@ -219,10 +185,7 @@ export class BoxesApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  apiBoxesIdDelete$Response(
-    params: ApiBoxesIdDelete$Params,
-    context?: HttpContext,
-  ): Observable<StrictHttpResponse<void>> {
+  apiBoxesIdDelete$Response(params: ApiBoxesIdDelete$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
     return apiBoxesIdDelete(this.http, this.rootUrl, params, context);
   }
 
@@ -234,7 +197,8 @@ export class BoxesApiService extends BaseService {
    */
   apiBoxesIdDelete(params: ApiBoxesIdDelete$Params, context?: HttpContext): Observable<void> {
     return this.apiBoxesIdDelete$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body),
+      map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
+
 }

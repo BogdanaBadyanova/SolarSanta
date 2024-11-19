@@ -13,6 +13,7 @@ export type { ApiBoxDetail } from './models/api-box-detail';
 export type { ApiBoxView } from './models/api-box-view';
 export type { ApiBoxViewPaginatedResponse } from './models/api-box-view-paginated-response';
 export type { ApiCreateBoxRequest } from './models/api-create-box-request';
+export { ApiGenderEnum } from './models/api-gender-enum';
 export type { ApiGetPagedBoxesRequest } from './models/api-get-paged-boxes-request';
 export type { ApiParticipant } from './models/api-participant';
 export type { ApiSignInRequest } from './models/api-sign-in-request';

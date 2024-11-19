@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AbstractApiResponseAdapter } from './abstract-api-response.adapter';
+import { AbstractApiResponseAdapter } from '../../../core/adapters/abstract-api-response.adapter';
 import { IAuthResult } from '@/app/features/auth/interfaces/iauth-result';
 import { ApiAuthResult } from '@/app/infrastructure';
 

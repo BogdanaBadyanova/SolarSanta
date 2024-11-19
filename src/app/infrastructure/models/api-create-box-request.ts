@@ -4,14 +4,11 @@
 
 export interface ApiCreateBoxRequest {
   description?: string | null;
-  discussionEndDate: string;
-  endDate: string;
-  giftPurchaseEndDate: string;
   icon?: string | null;
+  inviteEndDate: string;
   location?: string | null;
   maxGiftValue: number;
+  meetingDate: string;
   minGiftValue: number;
   name: string;
-  randomizationDate: string;
-  startDate: string;
 }

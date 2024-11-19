@@ -14,22 +14,19 @@ export interface ApiBoxesIdGet$Params {
   id: string;
 }
 
-export function apiBoxesIdGet(
-  http: HttpClient,
-  rootUrl: string,
-  params: ApiBoxesIdGet$Params,
-  context?: HttpContext,
-): Observable<StrictHttpResponse<ApiBoxDetail>> {
+export function apiBoxesIdGet(http: HttpClient, rootUrl: string, params: ApiBoxesIdGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxDetail>> {
   const rb = new RequestBuilder(rootUrl, apiBoxesIdGet.PATH, 'get');
   if (params) {
     rb.path('id', params.id, {});
   }
 
-  return http.request(rb.build({ responseType: 'json', accept: 'text/json', context })).pipe(
+  return http.request(
+    rb.build({ responseType: 'json', accept: 'text/json', context })
+  ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
       return r as StrictHttpResponse<ApiBoxDetail>;
-    }),
+    })
   );
 }
 

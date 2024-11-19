@@ -13,11 +13,6 @@ export interface ICurrentUser {
   email: string;
 
   /**
-   * Статус подтверждения электронной почты
-   */
-  emailConfirmed: boolean;
-
-  /**
    * Имя пользователя
    */
   firstName: string;

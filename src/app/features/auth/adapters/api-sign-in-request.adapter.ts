@@ -1,6 +1,6 @@
 import { ISignInRequest } from '@/app/features/auth/interfaces/isign-in-request';
 import { Injectable } from '@angular/core';
-import { AbstractApiRequestAdapter } from './abstract-api-request.adapter';
+import { AbstractApiRequestAdapter } from '../../../core/adapters/abstract-api-request.adapter';
 import { ApiSignInRequest } from '@/app/infrastructure';
 
 @Injectable({

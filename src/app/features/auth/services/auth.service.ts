@@ -10,11 +10,11 @@ import { catchError, first, iif, map, Observable, of, switchMap, tap } from 'rxj
 import { ISignInRequest } from '@auth/interfaces/isign-in-request';
 import { AuthToastEnum } from '@auth/enums/auth-toast-enum';
 import { ISignUpRequest } from '@auth/interfaces/isign-up-request';
-import { ApiApplicationUserAdapter } from '@/app/core/adapters/api-application-user.adapter';
-import { ApiSignInRequestAdapter } from '@/app/core/adapters/api-sign-in-request.adapter';
-import { ApiSignUpRequestAdapter } from '@/app/core/adapters/api-sign-up-request.adapter';
+import { ApiApplicationUserAdapter } from '@/app/features/auth/adapters/api-application-user.adapter';
+import { ApiSignInRequestAdapter } from '@/app/features/auth/adapters/api-sign-in-request.adapter';
+import { ApiSignUpRequestAdapter } from '@/app/features/auth/adapters/api-sign-up-request.adapter';
 import { AuthApiService } from '@/app/infrastructure';
-import { ApiAuthResultAdapter } from '@/app/core/adapters/api-auth-result.adapter';
+import { ApiAuthResultAdapter } from '@/app/features/auth/adapters/api-auth-result.adapter';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
