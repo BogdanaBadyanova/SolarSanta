@@ -4,22 +4,13 @@
     <p class="see-all">Смотреть всех</p>
   </div>
   <div class="wrap-participants">
-    <div class="flex align-items-center justify-content-center flex-column">
-      <svg-icon src="part.svg"></svg-icon>
-      <p class="name mt-3">Валентина</p>
-    </div>
-    <div class="flex align-items-center justify-content-center flex-column">
-      <svg-icon src="part.svg"></svg-icon>
-      <p class="name mt-3">Валентина</p>
-    </div>
-    <div class="flex align-items-center justify-content-center flex-column">
-      <svg-icon src="part.svg"></svg-icon>
-      <p class="name mt-3">Валентина</p>
-    </div>
-    <div class="flex align-items-center justify-content-center flex-column">
-      <svg-icon src="part.svg"></svg-icon>
-      <p class="name mt-3">Валентина</p>
-    </div>
+    @for (participant of participants(); track participant) {
+      <div class="flex align-items-center justify-content-center flex-column">
+        <p-image [src]="randomLogo" width="70" height="70"></p-image>
+        <p class="name mt-3">{{ participant.name }}</p>
+      </div>
+    }
+
     <div class="flex align-items-center justify-content-center flex-column">
       <svg-icon src="holder.svg"></svg-icon>
       <p class="name mt-3">Добавить</p>
@@ -34,7 +25,6 @@
     <svg-icon src="part.svg"></svg-icon>
     <div>
       <p class="name">Валентина</p>
-      <p class="see-all mt-2">08.06.2001</p>
       <p class="see-all mt-2">Женский</p>
     </div>
   </div>

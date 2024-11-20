@@ -1,40 +1,37 @@
-<div class="bg">
+<div class="bg" *ngIf="data$ | async as info">
   <div class="flex align-items-center gap-3">
-    <svg-icon src="olen.svg"></svg-icon>
-    <p class="title">Веселые гномики</p>
+    <p-image width="50" height="50" [src]="info.icon"></p-image>
+    <p class="title">{{ info.name }}</p>
   </div>
 
   <p class="subtitle">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sem quam lacus quis nisi, sed duis.
-    Sodales arcu tristique fames non justo. Bibendum sed vitae fermentum dolor, urna, habitasse
-    mauris. In ut scelerisque tellus et. Et, elit sodales accumsan mattis lacus eget. Viverra nibh
-    orci, leo et risus. Eu suspendisse potenti sed ut nibh leo leo volutpat et. .
+    {{ info.description }}
   </p>
   <div class="base-info">
     <h3>Основная информация</h3>
     <div class="flex align-items-center justify-content-between mb-2">
       <p class="head">Принимаем участиков до</p>
-      <p class="text">28.12 .2022</p>
+      <p class="text">{{ info.inviteEndDate | dateFormat: 'DD.MM.YYYY' }}</p>
     </div>
     <div class="flex align-items-center justify-content-between mb-2">
       <p class="head">Покупаем подарки до</p>
-      <p class="text">28.12 .2022</p>
+      <p class="text">{{ info.meetingDate | dateFormat: 'DD.MM.YYYY' }}</p>
     </div>
     <div class="flex align-items-center justify-content-between mb-2">
       <p class="head">Сумма подарка от</p>
-      <p class="text">1000 руб.</p>
+      <p class="text">{{ info.minGiftValue }} руб.</p>
     </div>
     <div class="flex align-items-center justify-content-between mb-2">
       <p class="head">Сумма подарка до</p>
-      <p class="text">2000 руб.</p>
+      <p class="text">{{ info.maxGiftValue }} руб.</p>
     </div>
     <div class="flex align-items-center justify-content-between mb-4">
       <p class="head">Место проведения</p>
-      <p class="text">Под елкой</p>
+      <p class="text">{{ info.location }}</p>
     </div>
 
     <p-button label="Запустить Санту" />
   </div>
 </div>
 
-<ss-participants></ss-participants>
+<ss-participants [participants]="(data$ | async)?.participants"></ss-participants>
