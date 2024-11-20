@@ -1,4 +1,4 @@
-import { ICreateBox } from '@/app/core/interfaces/create-box';
+import { ICreateBox } from '@/app/features/boxes/features/create-box/interfaces/create-box';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiCreateBoxRequestAdapter } from '../features/create-box/adapters/api-create-box-request.adapter';

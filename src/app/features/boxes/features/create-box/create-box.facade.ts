@@ -1,5 +1,5 @@
 import { FormFacade } from '@/app/core/services/form.facade';
-import { ICreateBox } from '@/app/core/interfaces/create-box';
+import { ICreateBox } from '@/app/features/boxes/features/create-box/interfaces/create-box';
 import { inject, Injectable } from '@angular/core';
 import { catchError, combineLatest, finalize, Observable, tap, timer } from 'rxjs';
 import { BoxToastEnum } from '../../enums/box-toast.enum';

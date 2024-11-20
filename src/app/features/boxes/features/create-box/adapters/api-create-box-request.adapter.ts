@@ -1,5 +1,5 @@
 import { AbstractApiRequestAdapter } from '@/app/core/adapters/abstract-api-request.adapter';
-import { ICreateBox } from '@/app/core/interfaces/create-box';
+import { ICreateBox } from '@/app/features/boxes/features/create-box/interfaces/create-box';
 import { ApiCreateBoxRequest } from '@/app/infrastructure';
 import { Injectable } from '@angular/core';
 
