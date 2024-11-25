@@ -2,13 +2,13 @@ import { inject, Injectable } from '@angular/core';
 import { IBoxDetails } from '../interfaces/detail-box';
 import { ApiBoxDetail } from '@/app/infrastructure';
 import { AbstractApiResponseAdapter } from '@/app/core/adapters/abstract-api-response.adapter';
-import { ApiParticipantAdapter } from './api-participant.adapter';
+import { ApiParticipantViewAdapter } from './api-participant-view.adapter';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiBoxDetailAdapter extends AbstractApiResponseAdapter<ApiBoxDetail, IBoxDetails> {
-  private _apiParticipantAdapter = inject(ApiParticipantAdapter);
+  private _apiParticipantAdapter = inject(ApiParticipantViewAdapter);
 
   public override fromApi(apiModel: ApiBoxDetail): IBoxDetails {
     return {

@@ -7,7 +7,7 @@
     @for (participant of participants(); track participant) {
       <div class="flex align-items-center justify-content-center flex-column">
         <p-image [src]="randomLogo" width="70" height="70"></p-image>
-        <p class="name mt-3">{{ participant.name }}</p>
+        <p class="name mt-3">{{ participant.firstName }} {{ participant.lastName }}</p>
       </div>
     }
 

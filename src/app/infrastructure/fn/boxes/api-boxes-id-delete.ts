@@ -10,21 +10,25 @@ import { RequestBuilder } from '../../request-builder';
 
 
 export interface ApiBoxesIdDelete$Params {
+
+/**
+ * Уникальный идентификатор коробки для удаления.
+ */
   id: string;
 }
 
-export function apiBoxesIdDelete(http: HttpClient, rootUrl: string, params: ApiBoxesIdDelete$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+export function apiBoxesIdDelete(http: HttpClient, rootUrl: string, params: ApiBoxesIdDelete$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
   const rb = new RequestBuilder(rootUrl, apiBoxesIdDelete.PATH, 'delete');
   if (params) {
     rb.path('id', params.id, {});
   }
 
   return http.request(
-    rb.build({ responseType: 'text', accept: '*/*', context })
+    rb.build({ responseType: 'json', accept: 'text/json', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+      return r as StrictHttpResponse<string>;
     })
   );
 }

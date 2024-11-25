@@ -5,15 +5,28 @@
     <input pInputText id="firstName" formControlName="firstName" class="w-full" />
     <label class="mb-2 mt-3" for="lastName">Фамилия</label>
     <input pInputText id="lastName" formControlName="lastName" class="w-full" />
+    <label class="mb-2 mt-3" for="gender">Пол</label>
+    <div class="field-checkbox">
+      @for (gender of genders; track $index) {
+        <p-radioButton [inputId]="gender.value" [value]="gender.key" formControlName="gender" />
+        <label [for]="gender.key" class="mr-4">
+          {{ gender.value }}
+        </label>
+      }
+    </div>
     <label class="mb-2 mt-3" for="email">Электронная почта</label>
     <input pInputText id="email" formControlName="email" class="w-full" />
     <label class="mb-2 mt-3" for="password">Пароль</label>
     <p-password class="w-full" formControlName="password" id="password" />
     <label class="mb-2 mt-3" for="confirmPassword">Подтвердите пароль</label>
     <p-password class="w-full" formControlName="confirmPassword" id="confirmPassword" />
+    <p class="my-3">
+      Есть аккаунт?
+      <span class="reg cursor-pointer" [routerLink]="Urls.SIGN_IN_URL"> Войти</span>
+    </p>
     <p-button
       type="submit"
-      class="mx-auto mt-4"
+      class="mx-auto mt-2"
       label="Зарегистрироваться"
       [disabled]="isSubmitButtonDisabled()"
       [icon]="submitButtonIcon()"

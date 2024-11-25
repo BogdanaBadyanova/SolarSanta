@@ -11,6 +11,10 @@ import { RequestBuilder } from '../../request-builder';
 import { ApiBoxDetail } from '../../models/api-box-detail';
 
 export interface ApiBoxesIdGet$Params {
+
+/**
+ * ID коробки
+ */
   id: string;
 }
 

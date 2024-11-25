@@ -4,3 +4,4 @@
 
 export { AuthApiService } from './services/auth-api.service';
 export { BoxesApiService } from './services/boxes-api.service';
+export { UserApiService } from './services/user-api.service';

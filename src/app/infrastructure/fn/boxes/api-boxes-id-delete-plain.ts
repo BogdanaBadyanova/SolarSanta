@@ -8,14 +8,19 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { ApiApplicationUser } from '../../models/api-application-user';
 
-export interface ApiAuthCurrentUserGet$Plain$Params {
+export interface ApiBoxesIdDelete$Plain$Params {
+
+/**
+ * Уникальный идентификатор коробки для удаления.
+ */
+  id: string;
 }
 
-export function apiAuthCurrentUserGet$Plain(http: HttpClient, rootUrl: string, params?: ApiAuthCurrentUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiApplicationUser>> {
-  const rb = new RequestBuilder(rootUrl, apiAuthCurrentUserGet$Plain.PATH, 'get');
+export function apiBoxesIdDelete$Plain(http: HttpClient, rootUrl: string, params: ApiBoxesIdDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+  const rb = new RequestBuilder(rootUrl, apiBoxesIdDelete$Plain.PATH, 'delete');
   if (params) {
+    rb.path('id', params.id, {});
   }
 
   return http.request(
@@ -23,9 +28,9 @@ export function apiAuthCurrentUserGet$Plain(http: HttpClient, rootUrl: string, p
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<ApiApplicationUser>;
+      return r as StrictHttpResponse<string>;
     })
   );
 }
 
-apiAuthCurrentUserGet$Plain.PATH = '/api/Auth/Current-user';
+apiBoxesIdDelete$Plain.PATH = '/api/Boxes/{id}';

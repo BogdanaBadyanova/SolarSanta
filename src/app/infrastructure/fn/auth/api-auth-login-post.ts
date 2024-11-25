@@ -12,7 +12,11 @@ import { ApiAuthResult } from '../../models/api-auth-result';
 import { ApiSignInRequest } from '../../models/api-sign-in-request';
 
 export interface ApiAuthLoginPost$Params {
-      body?: ApiSignInRequest
+  
+    /**
+     * Учетные данные пользователя, включая email и пароль.
+     */
+    body?: ApiSignInRequest
 }
 
 export function apiAuthLoginPost(http: HttpClient, rootUrl: string, params?: ApiAuthLoginPost$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiAuthResult>> {

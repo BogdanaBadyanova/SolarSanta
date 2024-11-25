@@ -11,10 +11,14 @@ import { RequestBuilder } from '../../request-builder';
 import { ApiSignUpRequest } from '../../models/api-sign-up-request';
 
 export interface ApiAuthRegisterPost$Plain$Params {
-      body?: ApiSignUpRequest
+  
+    /**
+     * Данные для регистрации пользователя, включая email, пароль и личную информацию.
+     */
+    body?: ApiSignUpRequest
 }
 
-export function apiAuthRegisterPost$Plain(http: HttpClient, rootUrl: string, params?: ApiAuthRegisterPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<boolean>> {
+export function apiAuthRegisterPost$Plain(http: HttpClient, rootUrl: string, params?: ApiAuthRegisterPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
   const rb = new RequestBuilder(rootUrl, apiAuthRegisterPost$Plain.PATH, 'post');
   if (params) {
     rb.body(params.body, 'application/*+json');
@@ -25,7 +29,7 @@ export function apiAuthRegisterPost$Plain(http: HttpClient, rootUrl: string, par
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return (r as HttpResponse<any>).clone({ body: String((r as HttpResponse<any>).body) === 'true' }) as StrictHttpResponse<boolean>;
+      return r as StrictHttpResponse<string>;
     })
   );
 }

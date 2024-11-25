@@ -11,10 +11,6 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
-import { apiAuthCurrentUserGet } from '../fn/auth/api-auth-current-user-get';
-import { ApiAuthCurrentUserGet$Params } from '../fn/auth/api-auth-current-user-get';
-import { apiAuthCurrentUserGet$Plain } from '../fn/auth/api-auth-current-user-get-plain';
-import { ApiAuthCurrentUserGet$Plain$Params } from '../fn/auth/api-auth-current-user-get-plain';
 import { apiAuthLoginPost } from '../fn/auth/api-auth-login-post';
 import { ApiAuthLoginPost$Params } from '../fn/auth/api-auth-login-post';
 import { apiAuthLoginPost$Plain } from '../fn/auth/api-auth-login-post-plain';
@@ -23,7 +19,6 @@ import { apiAuthRegisterPost } from '../fn/auth/api-auth-register-post';
 import { ApiAuthRegisterPost$Params } from '../fn/auth/api-auth-register-post';
 import { apiAuthRegisterPost$Plain } from '../fn/auth/api-auth-register-post-plain';
 import { ApiAuthRegisterPost$Plain$Params } from '../fn/auth/api-auth-register-post-plain';
-import { ApiApplicationUser } from '../models/api-application-user';
 import { ApiAuthResult } from '../models/api-auth-result';
 
 @Injectable({ providedIn: 'root' })
@@ -36,6 +31,10 @@ export class AuthApiService extends BaseService {
   static readonly ApiAuthLoginPostPath = '/api/Auth/Login';
 
   /**
+   * Аутентификация пользователя на основе учетных данных.
+   *
+   *
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiAuthLoginPost$Plain()` instead.
    *
@@ -46,6 +45,10 @@ export class AuthApiService extends BaseService {
   }
 
   /**
+   * Аутентификация пользователя на основе учетных данных.
+   *
+   *
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiAuthLoginPost$Plain$Response()` instead.
    *
@@ -58,6 +61,10 @@ export class AuthApiService extends BaseService {
   }
 
   /**
+   * Аутентификация пользователя на основе учетных данных.
+   *
+   *
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiAuthLoginPost()` instead.
    *
@@ -68,6 +75,10 @@ export class AuthApiService extends BaseService {
   }
 
   /**
+   * Аутентификация пользователя на основе учетных данных.
+   *
+   *
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiAuthLoginPost$Response()` instead.
    *
@@ -83,93 +94,62 @@ export class AuthApiService extends BaseService {
   static readonly ApiAuthRegisterPostPath = '/api/Auth/Register';
 
   /**
+   * Регистрирует нового пользователя с указанными данными.
+   *
+   *
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiAuthRegisterPost$Plain()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiAuthRegisterPost$Plain$Response(params?: ApiAuthRegisterPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<boolean>> {
+  apiAuthRegisterPost$Plain$Response(params?: ApiAuthRegisterPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
     return apiAuthRegisterPost$Plain(this.http, this.rootUrl, params, context);
   }
 
   /**
+   * Регистрирует нового пользователя с указанными данными.
+   *
+   *
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiAuthRegisterPost$Plain$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiAuthRegisterPost$Plain(params?: ApiAuthRegisterPost$Plain$Params, context?: HttpContext): Observable<boolean> {
+  apiAuthRegisterPost$Plain(params?: ApiAuthRegisterPost$Plain$Params, context?: HttpContext): Observable<string> {
     return this.apiAuthRegisterPost$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<boolean>): boolean => r.body)
+      map((r: StrictHttpResponse<string>): string => r.body)
     );
   }
 
   /**
+   * Регистрирует нового пользователя с указанными данными.
+   *
+   *
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiAuthRegisterPost()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiAuthRegisterPost$Response(params?: ApiAuthRegisterPost$Params, context?: HttpContext): Observable<StrictHttpResponse<boolean>> {
+  apiAuthRegisterPost$Response(params?: ApiAuthRegisterPost$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
     return apiAuthRegisterPost(this.http, this.rootUrl, params, context);
   }
 
   /**
+   * Регистрирует нового пользователя с указанными данными.
+   *
+   *
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiAuthRegisterPost$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiAuthRegisterPost(params?: ApiAuthRegisterPost$Params, context?: HttpContext): Observable<boolean> {
+  apiAuthRegisterPost(params?: ApiAuthRegisterPost$Params, context?: HttpContext): Observable<string> {
     return this.apiAuthRegisterPost$Response(params, context).pipe(
-      map((r: StrictHttpResponse<boolean>): boolean => r.body)
-    );
-  }
-
-  /** Path part for operation `apiAuthCurrentUserGet()` */
-  static readonly ApiAuthCurrentUserGetPath = '/api/Auth/Current-user';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAuthCurrentUserGet$Plain()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  apiAuthCurrentUserGet$Plain$Response(params?: ApiAuthCurrentUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiApplicationUser>> {
-    return apiAuthCurrentUserGet$Plain(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiAuthCurrentUserGet$Plain$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  apiAuthCurrentUserGet$Plain(params?: ApiAuthCurrentUserGet$Plain$Params, context?: HttpContext): Observable<ApiApplicationUser> {
-    return this.apiAuthCurrentUserGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiApplicationUser>): ApiApplicationUser => r.body)
-    );
-  }
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiAuthCurrentUserGet()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  apiAuthCurrentUserGet$Response(params?: ApiAuthCurrentUserGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiApplicationUser>> {
-    return apiAuthCurrentUserGet(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiAuthCurrentUserGet$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  apiAuthCurrentUserGet(params?: ApiAuthCurrentUserGet$Params, context?: HttpContext): Observable<ApiApplicationUser> {
-    return this.apiAuthCurrentUserGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiApplicationUser>): ApiApplicationUser => r.body)
+      map((r: StrictHttpResponse<string>): string => r.body)
     );
   }
 

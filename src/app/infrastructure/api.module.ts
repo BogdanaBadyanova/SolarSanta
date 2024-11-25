@@ -8,6 +8,7 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { AuthApiService } from './services/auth-api.service';
 import { BoxesApiService } from './services/boxes-api.service';
+import { UserApiService } from './services/user-api.service';
 
 /**
  * Module that provides all services and configuration.
@@ -19,6 +20,7 @@ import { BoxesApiService } from './services/boxes-api.service';
   providers: [
     AuthApiService,
     BoxesApiService,
+    UserApiService,
     ApiConfiguration
   ],
 })

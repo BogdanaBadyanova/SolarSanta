@@ -12,7 +12,11 @@ import { ApiBoxViewPaginatedResponse } from '../../models/api-box-view-paginated
 import { ApiGetPagedBoxesRequest } from '../../models/api-get-paged-boxes-request';
 
 export interface ApiBoxesPagedBoxesPost$Params {
-      body?: ApiGetPagedBoxesRequest
+  
+    /**
+     * Параметры пагинации
+     */
+    body?: ApiGetPagedBoxesRequest
 }
 
 export function apiBoxesPagedBoxesPost(http: HttpClient, rootUrl: string, params?: ApiBoxesPagedBoxesPost$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxViewPaginatedResponse>> {

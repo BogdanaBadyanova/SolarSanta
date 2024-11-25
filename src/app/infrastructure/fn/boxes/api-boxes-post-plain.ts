@@ -12,7 +12,11 @@ import { ApiBoxView } from '../../models/api-box-view';
 import { ApiCreateBoxRequest } from '../../models/api-create-box-request';
 
 export interface ApiBoxesPost$Plain$Params {
-      body?: ApiCreateBoxRequest
+  
+    /**
+     * Данные для создания коробки
+     */
+    body?: ApiCreateBoxRequest
 }
 
 export function apiBoxesPost$Plain(http: HttpClient, rootUrl: string, params?: ApiBoxesPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxView>> {

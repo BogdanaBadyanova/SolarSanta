@@ -14,6 +14,11 @@ import { PasswordModule } from 'primeng/password';
 import { SignUpFacade } from './sign-up.facade';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { CommonConstants } from '@/app/core/utils/common-constants';
+import { RouterLink } from '@angular/router';
+import { Urls } from '@/app/core/utils/urls';
+
 @UntilDestroy()
 @Component({
   selector: 'ss-sign-up',
@@ -25,6 +30,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
     PasswordModule,
     ReactiveFormsModule,
     ButtonModule,
+    RadioButtonModule,
+    RouterLink,
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
@@ -36,12 +43,15 @@ export class SignUpComponent implements OnInit {
   public form = signal<FormGroup>(null);
   public submitButtonIcon = this._facade.submitButtonIcon;
   public isSubmitButtonDisabled = this._facade.isSubmitButtonDisabled;
+  public genders = CommonConstants.genders;
+  public Urls = Urls;
 
   public ngOnInit(): void {
     this.form.set(
       this._fb.group({
         firstName: new FormControl(''),
         lastName: new FormControl(''),
+        gender: new FormControl(''),
         email: new FormControl('', [Validators.email]),
         password: new FormControl(),
         confirmPassword: new FormControl(),

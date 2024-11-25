@@ -8,14 +8,16 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { ApiApplicationUser } from '../../models/api-application-user';
+import { ApiUpdateUserRequest } from '../../models/api-update-user-request';
 
-export interface ApiAuthCurrentUserGet$Params {
+export interface UpdatePut$Params {
+      body?: ApiUpdateUserRequest
 }
 
-export function apiAuthCurrentUserGet(http: HttpClient, rootUrl: string, params?: ApiAuthCurrentUserGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiApplicationUser>> {
-  const rb = new RequestBuilder(rootUrl, apiAuthCurrentUserGet.PATH, 'get');
+export function updatePut(http: HttpClient, rootUrl: string, params?: UpdatePut$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+  const rb = new RequestBuilder(rootUrl, updatePut.PATH, 'put');
   if (params) {
+    rb.body(params.body, 'application/*+json');
   }
 
   return http.request(
@@ -23,9 +25,9 @@ export function apiAuthCurrentUserGet(http: HttpClient, rootUrl: string, params?
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<ApiApplicationUser>;
+      return r as StrictHttpResponse<string>;
     })
   );
 }
 
-apiAuthCurrentUserGet.PATH = '/api/Auth/Current-user';
+updatePut.PATH = '/update';

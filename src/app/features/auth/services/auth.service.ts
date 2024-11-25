@@ -10,12 +10,12 @@ import { catchError, first, iif, map, Observable, of, switchMap, tap } from 'rxj
 import { ISignInRequest } from '@auth/interfaces/isign-in-request';
 import { AuthToastEnum } from '@auth/enums/auth-toast-enum';
 import { ISignUpRequest } from '@auth/interfaces/isign-up-request';
-import { ApiApplicationUserAdapter } from '@/app/features/auth/adapters/api-application-user.adapter';
 import { ApiSignInRequestAdapter } from '@/app/features/auth/adapters/api-sign-in-request.adapter';
 import { ApiSignUpRequestAdapter } from '@/app/features/auth/adapters/api-sign-up-request.adapter';
-import { AuthApiService } from '@/app/infrastructure';
+import { AuthApiService, UserApiService } from '@/app/infrastructure';
 import { ApiAuthResultAdapter } from '@/app/features/auth/adapters/api-auth-result.adapter';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ApiApplicationUserAdapter } from '@/app/core/adapters/api-application-user.adapter';
 
 @UntilDestroy()
 @Injectable({
@@ -30,6 +30,7 @@ export class AuthService {
   private _apiSignInRequestAdapter = inject(ApiSignInRequestAdapter);
   private _apiSignUpRequestAdapter = inject(ApiSignUpRequestAdapter);
   private _apiAuthResultAdapter = inject(ApiAuthResultAdapter);
+  private _userApiService = inject(UserApiService);
 
   private _currentUser = signal<ICurrentUser>(null);
   private _currentUserClaims = signal<IAuthResult>(null);
@@ -77,7 +78,7 @@ export class AuthService {
     );
   }
 
-  public signUp(request: ISignUpRequest): Observable<boolean> {
+  public signUp(request: ISignUpRequest): Observable<string> {
     const dto = this._apiSignUpRequestAdapter.toApi(request);
     return this._apiService.apiAuthRegisterPost({ body: dto }).pipe(
       first(),
@@ -106,7 +107,7 @@ export class AuthService {
   }
 
   private _getCurrentUser(): Observable<ICurrentUser | null> {
-    return this._apiService.apiAuthCurrentUserGet().pipe(
+    return this._userApiService.currentUserGet().pipe(
       first(),
       map((user) => this._apiApplicationUserAdapter.fromApi(user)),
       tap((user: ICurrentUser) => this._currentUser.set(user)),

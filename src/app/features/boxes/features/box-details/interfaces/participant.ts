@@ -1,5 +1,6 @@
 export interface Participant {
   email: string;
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
 }

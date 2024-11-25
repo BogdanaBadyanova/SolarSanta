@@ -11,8 +11,14 @@ import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
 
+import { apiBoxesBoxIdAddParticipantPost } from '../fn/boxes/api-boxes-box-id-add-participant-post';
+import { ApiBoxesBoxIdAddParticipantPost$Params } from '../fn/boxes/api-boxes-box-id-add-participant-post';
+import { apiBoxesBoxIdAddParticipantPost$Plain } from '../fn/boxes/api-boxes-box-id-add-participant-post-plain';
+import { ApiBoxesBoxIdAddParticipantPost$Plain$Params } from '../fn/boxes/api-boxes-box-id-add-participant-post-plain';
 import { apiBoxesIdDelete } from '../fn/boxes/api-boxes-id-delete';
 import { ApiBoxesIdDelete$Params } from '../fn/boxes/api-boxes-id-delete';
+import { apiBoxesIdDelete$Plain } from '../fn/boxes/api-boxes-id-delete-plain';
+import { ApiBoxesIdDelete$Plain$Params } from '../fn/boxes/api-boxes-id-delete-plain';
 import { apiBoxesIdGet } from '../fn/boxes/api-boxes-id-get';
 import { ApiBoxesIdGet$Params } from '../fn/boxes/api-boxes-id-get';
 import { apiBoxesIdGet$Plain } from '../fn/boxes/api-boxes-id-get-plain';
@@ -39,6 +45,10 @@ export class BoxesApiService extends BaseService {
   static readonly ApiBoxesPagedBoxesPostPath = '/api/Boxes/paged-boxes';
 
   /**
+   * Получение пагинированного списка коробок.
+   *
+   *
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiBoxesPagedBoxesPost$Plain()` instead.
    *
@@ -49,6 +59,10 @@ export class BoxesApiService extends BaseService {
   }
 
   /**
+   * Получение пагинированного списка коробок.
+   *
+   *
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiBoxesPagedBoxesPost$Plain$Response()` instead.
    *
@@ -61,6 +75,10 @@ export class BoxesApiService extends BaseService {
   }
 
   /**
+   * Получение пагинированного списка коробок.
+   *
+   *
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiBoxesPagedBoxesPost()` instead.
    *
@@ -71,6 +89,10 @@ export class BoxesApiService extends BaseService {
   }
 
   /**
+   * Получение пагинированного списка коробок.
+   *
+   *
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiBoxesPagedBoxesPost$Response()` instead.
    *
@@ -86,6 +108,10 @@ export class BoxesApiService extends BaseService {
   static readonly ApiBoxesPostPath = '/api/Boxes';
 
   /**
+   * Создание новой коробки.
+   *
+   *
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiBoxesPost$Plain()` instead.
    *
@@ -96,6 +122,10 @@ export class BoxesApiService extends BaseService {
   }
 
   /**
+   * Создание новой коробки.
+   *
+   *
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiBoxesPost$Plain$Response()` instead.
    *
@@ -108,6 +138,10 @@ export class BoxesApiService extends BaseService {
   }
 
   /**
+   * Создание новой коробки.
+   *
+   *
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiBoxesPost()` instead.
    *
@@ -118,6 +152,10 @@ export class BoxesApiService extends BaseService {
   }
 
   /**
+   * Создание новой коробки.
+   *
+   *
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiBoxesPost$Response()` instead.
    *
@@ -133,6 +171,10 @@ export class BoxesApiService extends BaseService {
   static readonly ApiBoxesIdGetPath = '/api/Boxes/{id}';
 
   /**
+   * Получение коробки по ID.
+   *
+   *
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiBoxesIdGet$Plain()` instead.
    *
@@ -143,6 +185,10 @@ export class BoxesApiService extends BaseService {
   }
 
   /**
+   * Получение коробки по ID.
+   *
+   *
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiBoxesIdGet$Plain$Response()` instead.
    *
@@ -155,6 +201,10 @@ export class BoxesApiService extends BaseService {
   }
 
   /**
+   * Получение коробки по ID.
+   *
+   *
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiBoxesIdGet()` instead.
    *
@@ -165,6 +215,10 @@ export class BoxesApiService extends BaseService {
   }
 
   /**
+   * Получение коробки по ID.
+   *
+   *
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiBoxesIdGet$Response()` instead.
    *
@@ -180,24 +234,125 @@ export class BoxesApiService extends BaseService {
   static readonly ApiBoxesIdDeletePath = '/api/Boxes/{id}';
 
   /**
+   * Удаляет коробку по её уникальному идентификатору.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiBoxesIdDelete$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesIdDelete$Plain$Response(params: ApiBoxesIdDelete$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+    return apiBoxesIdDelete$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Удаляет коробку по её уникальному идентификатору.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiBoxesIdDelete$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesIdDelete$Plain(params: ApiBoxesIdDelete$Plain$Params, context?: HttpContext): Observable<string> {
+    return this.apiBoxesIdDelete$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<string>): string => r.body)
+    );
+  }
+
+  /**
+   * Удаляет коробку по её уникальному идентификатору.
+   *
+   *
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `apiBoxesIdDelete()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiBoxesIdDelete$Response(params: ApiBoxesIdDelete$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  apiBoxesIdDelete$Response(params: ApiBoxesIdDelete$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
     return apiBoxesIdDelete(this.http, this.rootUrl, params, context);
   }
 
   /**
+   * Удаляет коробку по её уникальному идентификатору.
+   *
+   *
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiBoxesIdDelete$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiBoxesIdDelete(params: ApiBoxesIdDelete$Params, context?: HttpContext): Observable<void> {
+  apiBoxesIdDelete(params: ApiBoxesIdDelete$Params, context?: HttpContext): Observable<string> {
     return this.apiBoxesIdDelete$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
+      map((r: StrictHttpResponse<string>): string => r.body)
+    );
+  }
+
+  /** Path part for operation `apiBoxesBoxIdAddParticipantPost()` */
+  static readonly ApiBoxesBoxIdAddParticipantPostPath = '/api/Boxes/{boxId}/add-participant';
+
+  /**
+   * Добавление участника в коробку.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiBoxesBoxIdAddParticipantPost$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdAddParticipantPost$Plain$Response(params: ApiBoxesBoxIdAddParticipantPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+    return apiBoxesBoxIdAddParticipantPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Добавление участника в коробку.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiBoxesBoxIdAddParticipantPost$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdAddParticipantPost$Plain(params: ApiBoxesBoxIdAddParticipantPost$Plain$Params, context?: HttpContext): Observable<string> {
+    return this.apiBoxesBoxIdAddParticipantPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<string>): string => r.body)
+    );
+  }
+
+  /**
+   * Добавление участника в коробку.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiBoxesBoxIdAddParticipantPost()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdAddParticipantPost$Response(params: ApiBoxesBoxIdAddParticipantPost$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
+    return apiBoxesBoxIdAddParticipantPost(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Добавление участника в коробку.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiBoxesBoxIdAddParticipantPost$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdAddParticipantPost(params: ApiBoxesBoxIdAddParticipantPost$Params, context?: HttpContext): Observable<string> {
+    return this.apiBoxesBoxIdAddParticipantPost$Response(params, context).pipe(
+      map((r: StrictHttpResponse<string>): string => r.body)
     );
   }
 
