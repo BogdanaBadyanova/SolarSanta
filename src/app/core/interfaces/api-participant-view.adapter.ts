@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Participant } from '../interfaces/participant';
+import { Participant } from '../../features/boxes/features/box-details/interfaces/participant';
 import { AbstractApiResponseAdapter } from '@/app/core/adapters/abstract-api-response.adapter';
 import { ApiParticipantView } from '@/app/infrastructure';
 

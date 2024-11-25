@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { IBoxDetails } from '../interfaces/detail-box';
 import { ApiBoxDetail } from '@/app/infrastructure';
 import { AbstractApiResponseAdapter } from '@/app/core/adapters/abstract-api-response.adapter';
-import { ApiParticipantViewAdapter } from './api-participant-view.adapter';
+import { ApiParticipantViewAdapter } from '../../../../../core/interfaces/api-participant-view.adapter';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +22,9 @@ export class ApiBoxDetailAdapter extends AbstractApiResponseAdapter<ApiBoxDetail
       minGiftValue: apiModel.minGiftValue || 0,
       meetingDate: apiModel.meetingDate || '',
       name: apiModel.name || '',
-      participants:
-        apiModel.participants.map((item) => this._apiParticipantAdapter.fromApi(item)) || [],
+      participants: apiModel.participants
+        ? apiModel.participants.map((item) => this._apiParticipantAdapter.fromApi(item))
+        : [],
     };
   }
 }

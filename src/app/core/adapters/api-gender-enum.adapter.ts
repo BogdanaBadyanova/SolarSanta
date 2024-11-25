@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AbstractApiAdapter } from './abstract-api.adapter';
 import { ApiGenderEnum } from '@/app/infrastructure';
 import { GenderEnum } from '../enums/gender.enum';
+import { assertionNeverUtil } from '../utils/assertion-never.util';
 
 @Injectable({ providedIn: 'root' })
 export class ApiGenderEnumAdapter implements AbstractApiAdapter<ApiGenderEnum, GenderEnum> {
@@ -12,8 +13,9 @@ export class ApiGenderEnumAdapter implements AbstractApiAdapter<ApiGenderEnum, G
       case ApiGenderEnum.$2:
         return GenderEnum.FEMALE;
       case ApiGenderEnum.$0:
-      default:
         return GenderEnum.UNDEFINED;
+      default:
+        assertionNeverUtil(apiModel, 'Отсутсвует реализация для одного из вариантов');
     }
   }
 
@@ -24,8 +26,9 @@ export class ApiGenderEnumAdapter implements AbstractApiAdapter<ApiGenderEnum, G
       case GenderEnum.FEMALE:
         return ApiGenderEnum.$2;
       case GenderEnum.UNDEFINED:
-      default:
         return ApiGenderEnum.$0;
+      default:
+        assertionNeverUtil(appModel, 'Отсутсвует реализация для одного из вариантов');
     }
   }
 

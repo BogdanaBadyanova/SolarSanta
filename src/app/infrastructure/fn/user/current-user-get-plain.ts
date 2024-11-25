@@ -8,12 +8,12 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { ApiApplicationUser } from '../../models/api-application-user';
+import { ApiCurrentUser } from '../../models/api-current-user';
 
 export interface CurrentUserGet$Plain$Params {
 }
 
-export function currentUserGet$Plain(http: HttpClient, rootUrl: string, params?: CurrentUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiApplicationUser>> {
+export function currentUserGet$Plain(http: HttpClient, rootUrl: string, params?: CurrentUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiCurrentUser>> {
   const rb = new RequestBuilder(rootUrl, currentUserGet$Plain.PATH, 'get');
   if (params) {
   }
@@ -23,7 +23,7 @@ export function currentUserGet$Plain(http: HttpClient, rootUrl: string, params?:
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<ApiApplicationUser>;
+      return r as StrictHttpResponse<ApiCurrentUser>;
     })
   );
 }

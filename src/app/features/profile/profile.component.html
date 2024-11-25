@@ -36,9 +36,9 @@
       <div class="section">
         <h3 class="title">Мои Коробки</h3>
         <div class="section__wrap">
-          @for (box of userBoxes(); track $index) {
+          @for (box of currentUser.boxes; track $index) {
             <div class="box" [routerLink]="Urls.BOX_DETAILS_URL(box.id)">
-              <ss-box-icon [type]="box.type"></ss-box-icon>
+              <ss-box-icon [type]="box.icon"></ss-box-icon>
               <span>{{ box.name }}</span>
             </div>
           }

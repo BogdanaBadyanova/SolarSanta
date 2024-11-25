@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, Signal, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  OnInit,
+  Signal,
+  signal,
+} from '@angular/core';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ChipsModule } from 'primeng/chips';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,24 +43,17 @@ import { IEditUserProfile } from './interfaces/iedit-user-profile';
   styleUrl: './profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileComponent implements OnInit {
-  public Urls = Urls;
-  public userBoxes = signal<{ id: string; name: string; type: BoxLogoEnum }[]>([
-    { id: '1', name: 'Первая коробка', type: BoxLogoEnum.Rocket },
-    { id: '2', name: 'Коробка 2', type: BoxLogoEnum.Garland },
-    { id: '3', name: 'Коробка 3', type: BoxLogoEnum.Hoho },
-    { id: '4', name: 'Коробка 4', type: BoxLogoEnum.Gift },
-    { id: '5', name: 'Коробка 5', type: BoxLogoEnum.Snowman },
-  ]);
+export class ProfileComponent {
+  private _facade = inject(ProfileFacade);
 
   public form = signal<FormGroup>(null);
   public isSubmitButtonDisabled: Signal<boolean>;
   public submitButtonIcon: Signal<string>;
   public currentUser: Signal<ICurrentUser>;
 
-  private _facade = inject(ProfileFacade);
+  public Urls = Urls;
 
-  public ngOnInit(): void {
+  constructor() {
     this.isSubmitButtonDisabled = this._facade.isSubmitButtonDisabled;
     this.submitButtonIcon = this._facade.submitButtonIcon;
     this.currentUser = this._facade._authService.currentUser;
@@ -63,10 +64,16 @@ export class ProfileComponent implements OnInit {
     });
 
     this.form.set(form);
-    // this.form().patchValue({
-    //   about: this.currentUser().about,
-    //   interests: this.currentUser().interests.map((i) => i.title)
-    // });
+
+    effect(() => {
+      const user = this.currentUser();
+      if (user) {
+        this.form().patchValue({
+          about: user.about,
+          interests: user.interests.map((i) => i.title),
+        });
+      }
+    });
   }
 
   public submit(): void {

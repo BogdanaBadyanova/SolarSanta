@@ -57,4 +57,5 @@ export interface ApiBoxView {
    * Наименование коробки.
    */
   name?: string | null;
+  showResults?: boolean;
 }

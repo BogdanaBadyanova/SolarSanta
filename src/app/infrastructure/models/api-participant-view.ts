@@ -14,11 +14,9 @@ export interface ApiParticipantView {
    */
   firstName?: string | null;
 
-  lastName?: string | null;
-  
   /**
    * Уникальный идентификатор участника.
    */
   id?: string;
+  lastName?: string | null;
 }
-

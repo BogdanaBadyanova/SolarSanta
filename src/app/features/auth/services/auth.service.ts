@@ -15,7 +15,7 @@ import { ApiSignUpRequestAdapter } from '@/app/features/auth/adapters/api-sign-u
 import { AuthApiService, UserApiService } from '@/app/infrastructure';
 import { ApiAuthResultAdapter } from '@/app/features/auth/adapters/api-auth-result.adapter';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { ApiApplicationUserAdapter } from '@/app/core/adapters/api-application-user.adapter';
+import { ApiCurrentUserAdapter } from '@/app/core/adapters/api-current-user.adapter';
 
 @UntilDestroy()
 @Injectable({
@@ -26,7 +26,7 @@ export class AuthService {
   private _router = inject(Router);
   private _toastService = inject(ToastService);
   private _apiService = inject(AuthApiService);
-  private _apiApplicationUserAdapter = inject(ApiApplicationUserAdapter);
+  private _apiCurrentUserAdapter = inject(ApiCurrentUserAdapter);
   private _apiSignInRequestAdapter = inject(ApiSignInRequestAdapter);
   private _apiSignUpRequestAdapter = inject(ApiSignUpRequestAdapter);
   private _apiAuthResultAdapter = inject(ApiAuthResultAdapter);
@@ -109,7 +109,7 @@ export class AuthService {
   private _getCurrentUser(): Observable<ICurrentUser | null> {
     return this._userApiService.currentUserGet().pipe(
       first(),
-      map((user) => this._apiApplicationUserAdapter.fromApi(user)),
+      map((user) => this._apiCurrentUserAdapter.fromApi(user)),
       tap((user: ICurrentUser) => this._currentUser.set(user)),
       untilDestroyed(this),
     );

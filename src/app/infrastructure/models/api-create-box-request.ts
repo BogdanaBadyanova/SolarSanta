@@ -43,6 +43,5 @@ export interface ApiCreateBoxRequest {
    * Наименование коробки
    */
   name: string;
-
-  showResults: boolean
+  showResults?: boolean;
 }

@@ -63,4 +63,5 @@ export interface ApiBoxDetail {
    * Список участников коробки.
    */
   participants?: Array<ApiParticipantView> | null;
+  showResults?: boolean;
 }

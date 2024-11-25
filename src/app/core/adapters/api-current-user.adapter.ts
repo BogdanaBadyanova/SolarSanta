@@ -1,24 +1,24 @@
-import { ApiBoxDetailAdapter } from '@/app/features/boxes/features/box-details/adapters/api-box-detail.adapter';
-import { ApiInterestAdapters } from '@/app/features/profile/adapters/api-interest.adapter';
-import { ApiApplicationUser } from '@/app/infrastructure';
+import { ApiInterestViewAdapter } from '@/app/features/profile/adapters/api-interest-view.adapter';
+import { ApiCurrentUser } from '@/app/infrastructure';
 import { inject, Injectable } from '@angular/core';
 import { ICurrentUser } from '../interfaces/icurrent-user';
 import { AbstractApiResponseAdapter } from './abstract-api-response.adapter';
 import { ApiGenderEnumAdapter } from './api-gender-enum.adapter';
 import { GenderEnum } from '../enums/gender.enum';
+import { ApiBoxShortInfoAdapter } from '@/app/features/boxes/adapters/api-box-short-info.adapter';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ApiApplicationUserAdapter extends AbstractApiResponseAdapter<
-  ApiApplicationUser,
+export class ApiCurrentUserAdapter extends AbstractApiResponseAdapter<
+  ApiCurrentUser,
   ICurrentUser
 > {
-  private _apiBoxDetailAdapter = inject(ApiBoxDetailAdapter);
-  private _apiInterestAdapters = inject(ApiInterestAdapters);
+  private _apiBoxShortInfoAdapter = inject(ApiBoxShortInfoAdapter);
+  private _apiInterestViewAdapter = inject(ApiInterestViewAdapter);
   private _apiGenderEnumAdapter = inject(ApiGenderEnumAdapter);
 
-  public fromApi(apiModel: ApiApplicationUser): ICurrentUser {
+  public fromApi(apiModel: ApiCurrentUser): ICurrentUser {
     return {
       id: apiModel.id ?? '',
       email: apiModel.email ?? '',
@@ -28,9 +28,9 @@ export class ApiApplicationUserAdapter extends AbstractApiResponseAdapter<
       gender: apiModel.gender
         ? this._apiGenderEnumAdapter.fromApi(apiModel.gender)
         : GenderEnum.UNDEFINED,
-      boxes: apiModel.boxes ? this._apiBoxDetailAdapter.arrayFromApi(apiModel.boxes) : [],
+      boxes: apiModel.boxes ? this._apiBoxShortInfoAdapter.arrayFromApi(apiModel.boxes) : [],
       interests: apiModel.interests
-        ? this._apiInterestAdapters.arrayFromApi(apiModel.interests)
+        ? this._apiInterestViewAdapter.arrayFromApi(apiModel.interests)
         : [],
     };
   }

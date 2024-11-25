@@ -1,6 +1,6 @@
-import { IInterest } from '../../features/profile/interfaces/iinterest';
-import { IBoxDetailsView } from '@/app/features/boxes/features/box-details/interfaces/detail-box-view';
+import { IInterestView } from '../../features/profile/interfaces/iinterest-view';
 import { GenderEnum } from '../enums/gender.enum';
+import { IBoxShortInfo } from '@/app/features/boxes/interfaces/ibox-short-info';
 
 /**
  * Интерфейс для представления текущего пользователя.
@@ -29,7 +29,7 @@ export interface ICurrentUser {
   /**
    * Интересы пользователя
    */
-  interests: IInterest[];
+  interests: IInterestView[];
 
   /**
    * Пол пользователя
@@ -45,5 +45,5 @@ export interface ICurrentUser {
    * Коробки пользователя
    */
 
-  boxes: IBoxDetailsView[];
+  boxes: IBoxShortInfo[];
 }

@@ -15,7 +15,7 @@ import { addInterestsPost } from '../fn/user/add-interests-post';
 import { AddInterestsPost$Params } from '../fn/user/add-interests-post';
 import { addInterestsPost$Plain } from '../fn/user/add-interests-post-plain';
 import { AddInterestsPost$Plain$Params } from '../fn/user/add-interests-post-plain';
-import { ApiApplicationUser } from '../models/api-application-user';
+import { ApiCurrentUser } from '../models/api-current-user';
 import { currentUserGet } from '../fn/user/current-user-get';
 import { CurrentUserGet$Params } from '../fn/user/current-user-get';
 import { currentUserGet$Plain } from '../fn/user/current-user-get-plain';
@@ -44,7 +44,7 @@ export class UserApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  currentUserGet$Plain$Response(params?: CurrentUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiApplicationUser>> {
+  currentUserGet$Plain$Response(params?: CurrentUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiCurrentUser>> {
     return currentUserGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -58,9 +58,9 @@ export class UserApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  currentUserGet$Plain(params?: CurrentUserGet$Plain$Params, context?: HttpContext): Observable<ApiApplicationUser> {
+  currentUserGet$Plain(params?: CurrentUserGet$Plain$Params, context?: HttpContext): Observable<ApiCurrentUser> {
     return this.currentUserGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiApplicationUser>): ApiApplicationUser => r.body)
+      map((r: StrictHttpResponse<ApiCurrentUser>): ApiCurrentUser => r.body)
     );
   }
 
@@ -74,7 +74,7 @@ export class UserApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  currentUserGet$Response(params?: CurrentUserGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiApplicationUser>> {
+  currentUserGet$Response(params?: CurrentUserGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiCurrentUser>> {
     return currentUserGet(this.http, this.rootUrl, params, context);
   }
 
@@ -88,9 +88,9 @@ export class UserApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  currentUserGet(params?: CurrentUserGet$Params, context?: HttpContext): Observable<ApiApplicationUser> {
+  currentUserGet(params?: CurrentUserGet$Params, context?: HttpContext): Observable<ApiCurrentUser> {
     return this.currentUserGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiApplicationUser>): ApiApplicationUser => r.body)
+      map((r: StrictHttpResponse<ApiCurrentUser>): ApiCurrentUser => r.body)
     );
   }
 
