@@ -34,7 +34,7 @@
   <div class="menu">
     <ng-container *ngTemplateOutlet="menu"></ng-container>
 
-    <div class="flex gap-2">
+    <div class="gap-2 desktop">
       <p-button size="small" [routerLink]="Urls.PROFILE_URL(user.id)">
         {{ user.firstName }} {{ user.lastName }}
       </p-button>
@@ -59,8 +59,21 @@
     </div>
     <div class="link">
       <ng-container *ngTemplateOutlet="logo"></ng-container>
+      <p-button size="small" (onClick)="redirectToProfile()">
+        {{ currentUser().lastName }} {{ currentUser().firstName }}
+      </p-button>
       <p class="cursor-pointer" (click)="redirectToIntro()">Об игре</p>
       <p class="cursor-pointer" (click)="redirectToIntro()">Правила</p>
+
+      <div class="flex gap-2">
+        <p-button
+          size="small"
+          icon="pi pi-sign-out"
+          label="Выйти"
+          [text]="true"
+          (onClick)="logout.emit()"
+        ></p-button>
+      </div>
     </div>
   </div>
 }

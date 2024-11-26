@@ -3,6 +3,14 @@
   grid-template-columns: 1fr auto;
   gap: 50px;
   margin-top: 50px;
+
+  &::ng-deep .delete-button .p-button {
+    &:hover,
+    &:active {
+      background: transparent;
+      color: #474646;
+    }
+  }
 }
 
 .title {

@@ -8,16 +8,22 @@ import { AuthService } from '../../auth/services/auth.service';
 import { IEditUserProfile } from '../interfaces/iedit-user-profile';
 import { IInterestCreateRequest } from '../interfaces/iinterest-create-request';
 import { ApiInterestCreateRequestAdapter } from '../adapters/api-interest-create-request.adapter';
+import { ICurrentUser } from '@/app/core/interfaces/icurrent-user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileFacade extends FormFacade {
-  public _authService = inject(AuthService);
-
+  private _authService = inject(AuthService);
   private _userApiService = inject(UserApiService);
   private _apiUpdateUserRequestAdapter = inject(ApiUpdateUserRequestAdapter);
   private _apiInterestCreateRequestAdapter = inject(ApiInterestCreateRequestAdapter);
+
+  public currentUser = this._authService.currentUser;
+
+  public getCurrentUser(): Observable<ICurrentUser | null> {
+    return this._authService.getCurrentUser();
+  }
 
   public override submit(request: IEditUserProfile): Observable<unknown> {
     this.isLoading.set(true);

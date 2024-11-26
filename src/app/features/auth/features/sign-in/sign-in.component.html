@@ -5,7 +5,16 @@
     <input pInputText id="username" formControlName="email" class="w-full" />
 
     <label class="mb-2 mt-3" for="password">Пароль</label>
-    <input pInputText class="w-full" type="password" formControlName="password" id="password" />
+    <p-password
+      styleClass="w-full"
+      inputStyleClass="w-full"
+      class="w-full"
+      type="password"
+      formControlName="password"
+      id="password"
+      [feedback]="false"
+      [toggleMask]="true"
+    />
 
     <p class="my-3">
       Нет аккаунта?

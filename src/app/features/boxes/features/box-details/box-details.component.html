@@ -1,7 +1,16 @@
 <div class="bg" *ngIf="data$ | async as info">
-  <div class="flex align-items-center gap-3">
-    <p-image width="50" height="50" [src]="info.icon"></p-image>
-    <p class="title">{{ info.name }}</p>
+  <div class="flex align-items-center justify-content-between">
+    <div class="flex align-items-center gap-3">
+      <p-image width="50" height="50" [src]="info.icon"></p-image>
+      <p class="title">{{ info.name }}</p>
+    </div>
+    <p-button
+      class="delete-button"
+      label="Удалить коробку"
+      severity="secondary"
+      [text]="true"
+      (onClick)="deletebox()"
+    />
   </div>
 
   <p class="subtitle">
@@ -33,5 +42,7 @@
     <p-button label="Запустить Санту" />
   </div>
 </div>
-
-<ss-participants [participants]="(data$ | async)?.participants"></ss-participants>
+<div>
+  <ss-participants [participants]="(data$ | async)?.participants" />
+  <ss-santa-info></ss-santa-info>
+</div>

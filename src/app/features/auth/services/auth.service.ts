@@ -52,7 +52,7 @@ export class AuthService {
       switchMap(() =>
         iif(
           () => !!this._currentUserClaims(),
-          this._getCurrentUser(),
+          this.getCurrentUser(),
           of(null).pipe(tap(() => this._router.navigate(Urls.SIGN_IN_URL))),
         ),
       ),
@@ -73,7 +73,7 @@ export class AuthService {
       tap((data: IAuthResult) => {
         this._ls.setItem(CommonConstants.userClaimsLocalStorageKey, JSON.stringify(data));
       }),
-      switchMap(() => this._getCurrentUser()),
+      switchMap(() => this.getCurrentUser()),
       untilDestroyed(this),
     );
   }
@@ -106,7 +106,7 @@ export class AuthService {
     }
   }
 
-  private _getCurrentUser(): Observable<ICurrentUser | null> {
+  public getCurrentUser(): Observable<ICurrentUser | null> {
     return this._userApiService.currentUserGet().pipe(
       first(),
       map((user) => this._apiCurrentUserAdapter.fromApi(user)),

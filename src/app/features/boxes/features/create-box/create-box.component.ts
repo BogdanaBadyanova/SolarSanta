@@ -15,6 +15,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ImageModule } from 'primeng/image';
 import { CommonModule } from '@angular/common';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { RouterModule } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -34,6 +35,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ImageModule,
     CommonModule,
     InputTextareaModule,
+    RouterModule,
   ],
   templateUrl: './create-box.component.html',
   styleUrl: './create-box.component.scss',
@@ -62,7 +64,7 @@ export class CreateBoxComponent implements OnInit {
       minGiftValue: new FormControl(),
       maxGiftValue: new FormControl(),
       location: new FormControl(),
-      showResults: new FormControl(),
+      showResults: new FormControl(false),
     });
 
     this.form.set(form);

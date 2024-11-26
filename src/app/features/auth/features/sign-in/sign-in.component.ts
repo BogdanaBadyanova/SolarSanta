@@ -1,5 +1,5 @@
 import { Urls } from '@/app/core/utils/urls';
-import { Component, inject, OnInit, Signal, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, Signal, signal } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -31,6 +31,7 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInComponent implements OnInit {
   private _fb = inject(FormBuilder);
