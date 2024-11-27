@@ -1,19 +1,23 @@
 <div>
   <div class="flex align-items-center justify-content-between">
-    <p class="title">Участники</p>
-    <p class="see-all">Смотреть всех</p>
+    <p class="title">Участники ({{ participants()?.length }})</p>
+    <p (click)="showListParticipants()" class="see-all cursor-pointer">Смотреть всех</p>
   </div>
   <div class="wrap-participants">
-    @for (participant of participants(); track participant) {
-      <div class="flex align-items-center justify-content-center flex-column">
+    @for (participant of participants() | slice: 0 : 5; track participant) {
+      <div class="flex align-items-center justify-content-center flex-column cursor-pointer">
         <p-image [src]="randomLogo" width="70" height="70"></p-image>
-        <p class="name mt-3">{{ participant.firstName }} {{ participant.lastName }}</p>
+        <p class="name mt-3 text-center">{{ participant.firstName }}</p>
+        <p class="name mt-2 text-center">{{ participant.lastName }}</p>
       </div>
     }
 
-    <div class="flex align-items-center justify-content-center flex-column">
+    <div
+      (click)="show()"
+      class="flex align-items-center justify-content-center flex-column cursor-pointer"
+    >
       <svg-icon src="holder.svg"></svg-icon>
-      <p class="name mt-3">Добавить</p>
+      <p class="name text-center mt-3">Добавить</p>
     </div>
   </div>
 </div>

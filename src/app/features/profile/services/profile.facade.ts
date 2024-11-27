@@ -8,7 +8,7 @@ import { AuthService } from '../../auth/services/auth.service';
 import { IEditUserProfile } from '../interfaces/iedit-user-profile';
 import { IInterestCreateRequest } from '../interfaces/iinterest-create-request';
 import { ApiInterestCreateRequestAdapter } from '../adapters/api-interest-create-request.adapter';
-import { ICurrentUser } from '@/app/core/interfaces/icurrent-user';
+import { IParticipantView } from '@/app/core/interfaces/iparticipant-view';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class ProfileFacade extends FormFacade {
 
   public currentUser = this._authService.currentUser;
 
-  public getCurrentUser(): Observable<ICurrentUser | null> {
+  public getCurrentUser(): Observable<IParticipantView | null> {
     return this._authService.getCurrentUser();
   }
 

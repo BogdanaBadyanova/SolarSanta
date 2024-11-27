@@ -3,8 +3,9 @@ import { inject, Injectable } from '@angular/core';
 import { first, map, Observable } from 'rxjs';
 import { ApiCreateBoxRequestAdapter } from '../features/create-box/adapters/api-create-box-request.adapter';
 import { ApiBoxDetail, BoxesApiService } from '@/app/infrastructure';
-import { IBoxDetails } from '../features/box-details/interfaces/detail-box';
+import { IBoxDetails } from '../features/box-details/interfaces/idetail-box';
 import { ApiBoxDetailAdapter } from '../features/box-details/adapters/api-box-detail.adapter';
+import { IAddPaticipants } from '../features/box-details/interfaces/iadd-participats';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +29,11 @@ export class BoxService {
       first(),
       map((response: ApiBoxDetail) => this._apiBoxDetailAdapter.fromApi(response)),
     );
+  }
+
+  public addParticipant(body: IAddPaticipants): Observable<string> {
+    return this._boxesApiService
+      .apiBoxesBoxIdAddParticipantPost({ boxId: body.id, email: body.email })
+      .pipe(first());
   }
 }

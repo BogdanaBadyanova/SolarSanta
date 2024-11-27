@@ -10,12 +10,14 @@ import { RequestBuilder } from '../../request-builder';
 
 import { ApiParticipantView } from '../../models/api-participant-view';
 
-export interface CurrentUserGet$Params {
+export interface IdGet$Params {
+  id: string;
 }
 
-export function currentUserGet(http: HttpClient, rootUrl: string, params?: CurrentUserGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiParticipantView>> {
-  const rb = new RequestBuilder(rootUrl, currentUserGet.PATH, 'get');
+export function idGet(http: HttpClient, rootUrl: string, params: IdGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiParticipantView>> {
+  const rb = new RequestBuilder(rootUrl, idGet.PATH, 'get');
   if (params) {
+    rb.path('id', params.id, {});
   }
 
   return http.request(
@@ -28,4 +30,4 @@ export function currentUserGet(http: HttpClient, rootUrl: string, params?: Curre
   );
 }
 
-currentUserGet.PATH = '/Current-user';
+idGet.PATH = '/{id}';

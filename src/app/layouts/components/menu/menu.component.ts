@@ -1,4 +1,4 @@
-import { ICurrentUser } from '@/app/core/interfaces/icurrent-user';
+import { IParticipantView } from '@/app/core/interfaces/iparticipant-view';
 import { Urls } from '@/app/core/utils/urls';
 import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input, output, signal } from '@angular/core';
@@ -17,7 +17,7 @@ import { SvgIconComponent } from 'angular-svg-icon';
 export class MenuComponent {
   private _router = inject(Router);
 
-  public currentUser = input.required<ICurrentUser>();
+  public currentUser = input.required<IParticipantView>();
   public logout = output<void>();
 
   public isVisibleMenu = signal(false);

@@ -1,15 +1,10 @@
-import { Participant } from './participant';
+import { IParticipantShortInfo } from './iparticipant-short-info';
 
 export interface IBoxDetails {
   /**
    *   Приватный идентификатор коробки.
    */
   id: string;
-
-  /**
-   *  Публичный идентификатор коробки.
-   */
-  idCode: string;
 
   /**
    * Название коробки
@@ -53,7 +48,17 @@ export interface IBoxDetails {
   location: string;
 
   /**
+   * Флаг, можно ли запускать распределение участников
+   */
+  isExpiredDate: boolean;
+
+  /**
+   * Флаг, показывать ли кнопку запуска коробки
+   */
+  canStartRandomize: boolean;
+
+  /**
    * Участники
    */
-  participants: Participant[];
+  participants: IParticipantShortInfo[];
 }

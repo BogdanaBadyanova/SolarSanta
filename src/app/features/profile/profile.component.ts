@@ -18,7 +18,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { ProfileFacade } from './services/profile.facade';
-import { ICurrentUser } from '@/app/core/interfaces/icurrent-user';
+import { IParticipantView } from '@/app/core/interfaces/iparticipant-view';
 import { GenderPipe } from '@/app/core/pipe/gender.pipe';
 import { IEditUserProfile } from './interfaces/iedit-user-profile';
 
@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
   public form = signal<FormGroup>(null);
   public isSubmitButtonDisabled: Signal<boolean>;
   public submitButtonIcon: Signal<string>;
-  public currentUser: Signal<ICurrentUser>;
+  public currentUser: Signal<IParticipantView>;
 
   public Urls = Urls;
 

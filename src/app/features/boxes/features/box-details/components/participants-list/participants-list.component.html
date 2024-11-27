@@ -1,0 +1,16 @@
+<p-table [value]="participants()">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Имя</th>
+      <th>Фамилия</th>
+      <th>Email</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-participant>
+    <tr>
+      <td>{{ participant.firstName }}</td>
+      <td>{{ participant.lastName }}</td>
+      <td>{{ participant.email }}</td>
+    </tr>
+  </ng-template>
+</p-table>

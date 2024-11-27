@@ -2693,13 +2693,13 @@
   }
 
   .p-button.p-button-outlined:not(:disabled):hover {
-    background: rgba(59, 130, 246, 0.04);
+    background: transparent;
     color: #d32f2f;
     border: 1px solid;
   }
 
   .p-button.p-button-outlined:not(:disabled):active {
-    background: rgba(59, 130, 246, 0.16);
+    background: transparent;
     color: #d32f2f;
     border: 1px solid;
   }

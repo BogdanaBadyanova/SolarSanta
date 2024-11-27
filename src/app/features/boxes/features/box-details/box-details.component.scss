@@ -1,6 +1,6 @@
 :host {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 2fr 1fr;
   gap: 50px;
   margin-top: 50px;
 
@@ -47,7 +47,7 @@
 }
 
 .bg {
-  background-image: url('../../../../../../public/box-img.png');
+  background-image: url('public/box-img.png');
   background-size: inherit;
   background-repeat: no-repeat;
   background-position: bottom right;
