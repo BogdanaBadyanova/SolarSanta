@@ -1,4 +1,4 @@
-@if (currentUser(); as currentUser) {
+@if (user(); as user) {
   <div class="wrap">
     <div class="flex align-items-center">
       <svg-icon src="image-prof.svg"></svg-icon>
@@ -9,15 +9,15 @@
       <h3 class="title">Основная информация</h3>
       <div class="flex info__wrap">
         <p class="info__field">Имя:</p>
-        <p class="info__data">{{ currentUser.firstName }} {{ currentUser.lastName }}</p>
+        <p class="info__data">{{ user.firstName }} {{ user.lastName }}</p>
       </div>
       <div class="flex info__wrap">
         <p class="info__field">Пол:</p>
-        <p class="info__data">{{ currentUser.gender | gender }}</p>
+        <p class="info__data">{{ user.gender | gender }}</p>
       </div>
       <div class="flex info__wrap">
         <p class="info__field">Email:</p>
-        <p class="info__data">{{ currentUser.email }}</p>
+        <p class="info__data">{{ user.email }}</p>
       </div>
     </div>
 
@@ -36,7 +36,7 @@
       <div class="section">
         <h3 class="title">Мои Коробки</h3>
         <div class="section__wrap">
-          @for (box of currentUser.boxes; track $index) {
+          @for (box of user.boxes; track $index) {
             <div class="box" [routerLink]="Urls.BOX_DETAILS_URL(box.id)">
               <ss-box-icon [type]="box.icon"></ss-box-icon>
               <span>{{ box.name }}</span>

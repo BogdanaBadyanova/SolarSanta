@@ -31,4 +31,10 @@ export const authMessages: MessageConfig = {
     summary: 'Уже авторизованы',
     detail: 'Вы уже вошли в свой аккаунт.',
   },
+  [AuthToastEnum.AUTHORIZATION_REQUIRED]: {
+    severity: 'error',
+    summary: 'Требуется авторизация',
+    detail:
+      'Доступ закрыт для неавторизованных пользователей. Войдите в свой аккаунт или зарегистрируйтесь.',
+  },
 };

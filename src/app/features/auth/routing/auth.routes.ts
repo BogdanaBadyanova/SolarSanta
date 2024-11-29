@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthRoutes } from '@auth/routing/auth.routes.enum';
-import { authGuard } from '@core/guards/auth.guard';
+import { authAlreadyGuard } from '@/app/core/guards/auth-already.guard';
 
 export const authRoutes: Routes = [
   {
@@ -12,12 +12,12 @@ export const authRoutes: Routes = [
     path: AuthRoutes.SIGN_IN,
     loadComponent: () =>
       import('@auth/features/sign-in/sign-in.component').then((c) => c.SignInComponent),
-    canActivate: [authGuard],
+    canActivate: [authAlreadyGuard],
   },
   {
     path: AuthRoutes.SIGN_UP,
     loadComponent: () =>
       import('@auth/features/sign-up/sign-up.component').then((c) => c.SignUpComponent),
-    canActivate: [authGuard],
+    canActivate: [authAlreadyGuard],
   },
 ];

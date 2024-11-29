@@ -49,14 +49,14 @@ export class ProfileComponent {
   public form = signal<FormGroup>(null);
   public isSubmitButtonDisabled: Signal<boolean>;
   public submitButtonIcon: Signal<string>;
-  public currentUser: Signal<ICurrentUser>;
+  public user: Signal<ICurrentUser>;
 
   public Urls = Urls;
 
   constructor() {
     this.isSubmitButtonDisabled = this._facade.isSubmitButtonDisabled;
     this.submitButtonIcon = this._facade.submitButtonIcon;
-    this.currentUser = this._facade._authService.currentUser;
+    this.user = this._facade._authService.currentUser;
 
     const form = new FormGroup({
       about: new FormControl<string>(null),
@@ -66,7 +66,7 @@ export class ProfileComponent {
     this.form.set(form);
 
     effect(() => {
-      const user = this.currentUser();
+      const user = this.user();
       if (user) {
         this.form().patchValue({
           about: user.about,
