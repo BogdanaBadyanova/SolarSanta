@@ -5,11 +5,12 @@ import { IParticipantView } from '@/app/core/interfaces/iparticipant-view';
 import { AuthService } from '@/app/features/auth/services/auth.service';
 import { FooterComponent } from '@layouts/components/footer/footer.component';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { LayoutLoaderComponent } from '../components/layout-loader/layout-loader.component';
 
 @UntilDestroy()
 @Component({
   standalone: true,
-  imports: [RouterOutlet, MenuComponent, FooterComponent],
+  imports: [RouterOutlet, MenuComponent, FooterComponent, LayoutLoaderComponent],
   templateUrl: './base-layout.component.html',
   styleUrl: './base-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

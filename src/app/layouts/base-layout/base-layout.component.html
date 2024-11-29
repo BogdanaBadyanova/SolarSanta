@@ -1,4 +1,4 @@
-@defer (on timer(1000ms); when currentUser() !== undefined) {
+@defer (on timer(1000ms)) {
   <div class="h-screen flex flex-column">
     <ss-menu [currentUser]="currentUser()" (logout)="logout()" />
     <div class="flex-grow-1">
@@ -8,6 +8,6 @@
   </div>
 } @placeholder {
   <div class="h-screen flex justify-content-center align-items-center">
-    <p>LOADING content</p>
+    <ss-layout-loader />
   </div>
 }
