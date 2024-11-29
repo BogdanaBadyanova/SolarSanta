@@ -6,7 +6,7 @@ import { CommonConstants } from '@/app/core/utils/common-constants';
 import { ToastService } from '@core/services/toast/toast.service';
 import { IParticipantView } from '@core/interfaces/iparticipant-view';
 import { IAuthResult } from '@auth/interfaces/iauth-result';
-import { catchError, first, iif, map, Observable, of, switchMap, tap } from 'rxjs';
+import { catchError, EMPTY, first, iif, map, Observable, of, switchMap, tap } from 'rxjs';
 import { ISignInRequest } from '@auth/interfaces/isign-in-request';
 import { AuthToastEnum } from '@auth/enums/auth-toast-enum';
 import { ISignUpRequest } from '@auth/interfaces/isign-up-request';
@@ -32,7 +32,7 @@ export class AuthService {
   private _apiAuthResultAdapter = inject(ApiAuthResultAdapter);
   private _userApiService = inject(UserApiService);
 
-  private _currentUser = signal<IParticipantView>(null);
+  private _currentUser = signal<IParticipantView>(undefined);
   private _currentUserClaims = signal<IAuthResult>(null);
 
   public isAuthenticated = computed(() => !!this._currentUser());
@@ -53,7 +53,10 @@ export class AuthService {
         iif(
           () => !!this._currentUserClaims(),
           this.getCurrentUser(),
-          of(null).pipe(tap(() => this._router.navigate(Urls.SIGN_IN_URL))),
+          of(null).pipe(
+            tap(() => this._currentUser.set(null)),
+            tap(() => this._router.navigate(Urls.SIGN_IN_URL)),
+          ),
         ),
       ),
       untilDestroyed(this),
@@ -111,6 +114,10 @@ export class AuthService {
       first(),
       map((user) => this._apiParticipantViewAdapter.fromApi(user)),
       tap((user: IParticipantView) => this._currentUser.set(user)),
+      catchError(() => {
+        this._currentUser.set(null);
+        return EMPTY;
+      }),
       untilDestroyed(this),
     );
   }

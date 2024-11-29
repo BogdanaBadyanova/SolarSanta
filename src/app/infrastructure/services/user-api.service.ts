@@ -36,7 +36,7 @@ export class UserApiService extends BaseService {
   }
 
   /** Path part for operation `currentUserGet()` */
-  static readonly CurrentUserGetPath = '/Current-user';
+  static readonly CurrentUserGetPath = '/current-user';
 
   /**
    * Возвращает информацию о текущем аутентифицированном пользователе.
@@ -102,6 +102,10 @@ export class UserApiService extends BaseService {
   static readonly IdGetPath = '/{id}';
 
   /**
+   * Получение данных выбранного участника.
+   *
+   *
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `idGet$Plain()` instead.
    *
@@ -112,6 +116,10 @@ export class UserApiService extends BaseService {
   }
 
   /**
+   * Получение данных выбранного участника.
+   *
+   *
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `idGet$Plain$Response()` instead.
    *
@@ -124,6 +132,10 @@ export class UserApiService extends BaseService {
   }
 
   /**
+   * Получение данных выбранного участника.
+   *
+   *
+   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `idGet()` instead.
    *
@@ -134,6 +146,10 @@ export class UserApiService extends BaseService {
   }
 
   /**
+   * Получение данных выбранного участника.
+   *
+   *
+   *
    * This method provides access only to the response body.
    * To access the full response (for headers, for example), `idGet$Response()` instead.
    *

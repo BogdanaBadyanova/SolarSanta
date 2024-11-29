@@ -2,25 +2,11 @@
   <h1>Пригласить участников</h1>
   <div>
     <p>Ссылка на игру</p>
-    <input
-      class="w-full"
-      id="disabled-input"
-      type="text"
-      pInputText
-      [disabled]="true"
-      [(ngModel)]="link"
-    />
+    <input class="w-full" id="disabled-input" type="text" pInputText [disabled]="true" [(ngModel)]="link" />
   </div>
   <div class="mt-3">
     <p>Ссылка на игру</p>
-    <textarea
-      class="w-full"
-      [(ngModel)]="message"
-      rows="5"
-      cols="30"
-      pInputTextarea
-      [disabled]="true"
-    ></textarea>
+    <textarea class="w-full" [(ngModel)]="message" rows="5" cols="30" pInputTextarea [disabled]="true"></textarea>
   </div>
 
   <div class="mt-3">

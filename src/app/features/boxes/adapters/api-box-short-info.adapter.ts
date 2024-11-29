@@ -7,10 +7,7 @@ import { BoxLogoEnumAdapter } from '@/app/core/adapters/box-logo-enum.adapter';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiBoxShortInfoAdapter extends AbstractApiResponseAdapter<
-  ApiBoxShortInfo,
-  IBoxShortInfo
-> {
+export class ApiBoxShortInfoAdapter extends AbstractApiResponseAdapter<ApiBoxShortInfo, IBoxShortInfo> {
   private _boxLogoEnumAdapter = inject(BoxLogoEnumAdapter);
 
   public override fromApi(apiModel: ApiBoxShortInfo): IBoxShortInfo {

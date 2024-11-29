@@ -1,23 +1,24 @@
-@if (user(); as user) {
+@if (user && user()) {
+  @let data = user();
   <div class="wrap">
     <div class="flex align-items-center">
       <svg-icon src="image-prof.svg"></svg-icon>
-      <h2 class="name">Мой профиль</h2>
+      <h2 class="name">{{ profileTitle() }}</h2>
     </div>
 
     <div class="info">
       <h3 class="title">Основная информация</h3>
       <div class="flex info__wrap">
         <p class="info__field">Имя:</p>
-        <p class="info__data">{{ user.firstName }} {{ user.lastName }}</p>
+        <p class="info__data">{{ data.firstName }} {{ data.lastName }}</p>
       </div>
       <div class="flex info__wrap">
         <p class="info__field">Пол:</p>
-        <p class="info__data">{{ user.gender | gender }}</p>
+        <p class="info__data">{{ data.gender | gender }}</p>
       </div>
       <div class="flex info__wrap">
         <p class="info__field">Email:</p>
-        <p class="info__data">{{ user.email }}</p>
+        <p class="info__data">{{ data.email }}</p>
       </div>
     </div>
 
@@ -27,45 +28,52 @@
         <textarea
           rows="5"
           class="w-full"
-          [autoResize]="true"
           pInputTextarea
           formControlName="about"
+          [autoResize]="true"
+          [disabled]="!canEditProfile()"
         ></textarea>
       </div>
 
-      <div class="section">
-        <h3 class="title">Мои Коробки</h3>
-        <div class="section__wrap">
-          @for (box of user.boxes; track $index) {
-            <div class="box" [routerLink]="Urls.BOX_DETAILS_URL(box.id)">
-              <ss-box-icon [type]="box.icon"></ss-box-icon>
-              <span>{{ box.name }}</span>
+      @if (canEditProfile()) {
+        <div class="section">
+          <h3 class="title">Мои Коробки</h3>
+          <div class="section__wrap">
+            @for (box of data.boxes; track $index) {
+              <div class="box" [routerLink]="Urls.BOX_DETAILS_URL(box.id)">
+                <ss-box-icon [type]="box.icon"></ss-box-icon>
+                <span>{{ box.name }}</span>
+              </div>
+            }
+            <div class="box justify-content-between box-create" [routerLink]="Urls.BOX_CREATE_URL">
+              <i class="pi pi-gift mt-3" style="font-size: 3rem"></i>
+              <span class="font-bold">Добавить</span>
             </div>
-          }
-          <div class="box justify-content-between box-create" [routerLink]="Urls.BOX_CREATE_URL">
-            <i class="pi pi-gift mt-3" style="font-size: 3rem"></i>
-            <span class="font-bold">Добавить</span>
           </div>
         </div>
-      </div>
+      }
 
       <div class="section mb-4">
         <div class="flex align-items-center gap-2">
           <h3 class="title">Мои интересы</h3>
-          <p>(Добавлять по одному)</p>
+          @if (canEditProfile()) {
+            <p>(Добавлять по одному)</p>
+          }
         </div>
         <div class="card p-fluid">
-          <p-chips formControlName="interests" />
+          <p-chips [disabled]="!canEditProfile" formControlName="interests" />
         </div>
       </div>
 
-      <p-button
-        type="submit"
-        label="Сохранить"
-        class="align-self-center"
-        [disabled]="isSubmitButtonDisabled()"
-        [icon]="submitButtonIcon()"
-      />
+      @if (canEditProfile()) {
+        <p-button
+          type="submit"
+          label="Сохранить"
+          class="align-self-center"
+          [disabled]="isSubmitButtonDisabled()"
+          [icon]="submitButtonIcon()"
+        />
+      }
     </form>
   </div>
   <div class="img"></div>

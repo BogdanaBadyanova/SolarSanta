@@ -10,10 +10,7 @@ import { ApiBoxShortInfoAdapter } from '@/app/features/boxes/adapters/api-box-sh
 @Injectable({
   providedIn: 'root',
 })
-export class ApiParticipantViewAdapter extends AbstractApiResponseAdapter<
-  ApiParticipantView,
-  IParticipantView
-> {
+export class ApiParticipantViewAdapter extends AbstractApiResponseAdapter<ApiParticipantView, IParticipantView> {
   private _apiBoxShortInfoAdapter = inject(ApiBoxShortInfoAdapter);
   private _apiInterestViewAdapter = inject(ApiInterestViewAdapter);
   private _apiGenderEnumAdapter = inject(ApiGenderEnumAdapter);
@@ -25,13 +22,9 @@ export class ApiParticipantViewAdapter extends AbstractApiResponseAdapter<
       firstName: apiModel.firstName ?? '',
       lastName: apiModel.lastName ?? '',
       about: apiModel.aboutMe ?? '',
-      gender: apiModel.gender
-        ? this._apiGenderEnumAdapter.fromApi(apiModel.gender)
-        : GenderEnum.UNDEFINED,
+      gender: apiModel.gender ? this._apiGenderEnumAdapter.fromApi(apiModel.gender) : GenderEnum.UNDEFINED,
       boxes: apiModel.boxes ? this._apiBoxShortInfoAdapter.arrayFromApi(apiModel.boxes) : [],
-      interests: apiModel.interests
-        ? this._apiInterestViewAdapter.arrayFromApi(apiModel.interests)
-        : [],
+      interests: apiModel.interests ? this._apiInterestViewAdapter.arrayFromApi(apiModel.interests) : [],
     };
   }
 }

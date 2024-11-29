@@ -8,14 +8,20 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { ApiParticipantView } from '../../models/api-participant-view';
+import { ApiBoxPairing } from '../../models/api-box-pairing';
 
-export interface CurrentUserGet$Params {
+export interface ApiBoxesBoxIdPairingsGet$Params {
+
+/**
+ * ID коробки.
+ */
+  boxId: string;
 }
 
-export function currentUserGet(http: HttpClient, rootUrl: string, params?: CurrentUserGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiParticipantView>> {
-  const rb = new RequestBuilder(rootUrl, currentUserGet.PATH, 'get');
+export function apiBoxesBoxIdPairingsGet(http: HttpClient, rootUrl: string, params: ApiBoxesBoxIdPairingsGet$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ApiBoxPairing>>> {
+  const rb = new RequestBuilder(rootUrl, apiBoxesBoxIdPairingsGet.PATH, 'get');
   if (params) {
+    rb.path('boxId', params.boxId, {});
   }
 
   return http.request(
@@ -23,9 +29,9 @@ export function currentUserGet(http: HttpClient, rootUrl: string, params?: Curre
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<ApiParticipantView>;
+      return r as StrictHttpResponse<Array<ApiBoxPairing>>;
     })
   );
 }
 
-currentUserGet.PATH = '/current-user';
+apiBoxesBoxIdPairingsGet.PATH = '/api/Boxes/{boxId}/pairings';

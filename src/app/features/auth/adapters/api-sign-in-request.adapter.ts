@@ -6,10 +6,7 @@ import { ApiSignInRequest } from '@/app/infrastructure';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiSignInRequestAdapter extends AbstractApiRequestAdapter<
-  ApiSignInRequest,
-  ISignInRequest
-> {
+export class ApiSignInRequestAdapter extends AbstractApiRequestAdapter<ApiSignInRequest, ISignInRequest> {
   public toApi(appModel: ISignInRequest): ApiSignInRequest {
     return {
       email: appModel.email || null,

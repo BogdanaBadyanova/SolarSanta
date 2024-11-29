@@ -21,12 +21,7 @@
   <div class="menu">
     <ng-container *ngTemplateOutlet="menu"></ng-container>
 
-    <p-button
-      [routerLink]="Urls.SIGN_IN_URL"
-      class="cursor-pointer"
-      label="Войти"
-      severity="danger"
-    />
+    <p-button [routerLink]="Urls.SIGN_IN_URL" class="cursor-pointer" label="Войти" severity="danger" />
   </div>
 </ng-template>
 
@@ -35,15 +30,8 @@
     <ng-container *ngTemplateOutlet="menu"></ng-container>
 
     <div class="gap-2 desktop">
-      <p-button size="small" [routerLink]="Urls.PROFILE_URL(user.id)">
-        {{ user.firstName }} {{ user.lastName }}
-      </p-button>
-      <p-button
-        size="small"
-        icon="pi pi-sign-out"
-        [text]="true"
-        (onClick)="logout.emit()"
-      ></p-button>
+      <p-button size="small" [routerLink]="Urls.PROFILE_URL(user.id)"> {{ user.firstName }} {{ user.lastName }} </p-button>
+      <p-button size="small" icon="pi pi-sign-out" [text]="true" (onClick)="logout.emit()"></p-button>
     </div>
   </div>
 </ng-template>
@@ -66,13 +54,7 @@
       <p class="cursor-pointer" (click)="redirectToIntro()">Правила</p>
 
       <div class="flex gap-2">
-        <p-button
-          size="small"
-          icon="pi pi-sign-out"
-          label="Выйти"
-          [text]="true"
-          (onClick)="logout.emit()"
-        ></p-button>
+        <p-button size="small" icon="pi pi-sign-out" label="Выйти" [text]="true" (onClick)="logout.emit()"></p-button>
       </div>
     </div>
   </div>

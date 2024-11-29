@@ -7,10 +7,7 @@ import { IInterestView } from '../interfaces/iinterest-view';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiInterestViewAdapter extends AbstractApiResponseAdapter<
-  ApiInterestView,
-  IInterestView
-> {
+export class ApiInterestViewAdapter extends AbstractApiResponseAdapter<ApiInterestView, IInterestView> {
   public override fromApi(apiModel: ApiInterestView): IInterestView {
     return {
       id: apiModel.id || 0,

@@ -6,10 +6,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiCreateBoxRequestAdapter extends AbstractApiRequestAdapter<
-  ApiCreateBoxRequest,
-  ICreateBox
-> {
+export class ApiCreateBoxRequestAdapter extends AbstractApiRequestAdapter<ApiCreateBoxRequest, ICreateBox> {
   public override toApi(appModel: ICreateBox): ApiCreateBoxRequest {
     return {
       name: appModel.name,

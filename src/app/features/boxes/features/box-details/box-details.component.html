@@ -5,13 +5,7 @@
       <p-image width="50" height="50" [src]="info.icon"></p-image>
       <p class="title">{{ info.name }}</p>
     </div>
-    <p-button
-      class="delete-button"
-      label="Удалить коробку"
-      severity="secondary"
-      [text]="true"
-      (onClick)="deletebox()"
-    />
+    <p-button class="delete-button" label="Удалить коробку" severity="secondary" [text]="true" (onClick)="deletebox()" />
   </div>
 
   <p class="subtitle">
@@ -42,11 +36,7 @@
 
     @if (info.canStartRandomize) {
       <div class="w-min" tooltipPosition="bottom" [pTooltip]="getButtonTooltip(info)">
-        <p-button
-          class="white-space-nowrap"
-          [disabled]="info.isExpiredDate"
-          label="Запустить Санту"
-        />
+        <p-button class="white-space-nowrap" [disabled]="info.isExpiredDate" label="Запустить Санту" />
       </div>
     }
   </div>

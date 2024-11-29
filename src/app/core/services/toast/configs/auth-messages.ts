@@ -23,8 +23,7 @@ export const authMessages: MessageConfig = {
   [AuthToastEnum.SIGN_UP_FAILED]: {
     severity: 'error',
     summary: 'Ошибка регистрации',
-    detail:
-      'Не удалось создать аккаунт. Пожалуйста, проверьте введенные данные и попробуйте еще раз.',
+    detail: 'Не удалось создать аккаунт. Пожалуйста, проверьте введенные данные и попробуйте еще раз.',
   },
   [AuthToastEnum.ALREADY_AUTHORIZED]: {
     severity: 'info',
@@ -34,7 +33,6 @@ export const authMessages: MessageConfig = {
   [AuthToastEnum.AUTHORIZATION_REQUIRED]: {
     severity: 'error',
     summary: 'Требуется авторизация',
-    detail:
-      'Доступ закрыт для неавторизованных пользователей. Войдите в свой аккаунт или зарегистрируйтесь.',
+    detail: 'Доступ закрыт для неавторизованных пользователей. Войдите в свой аккаунт или зарегистрируйтесь.',
   },
 };

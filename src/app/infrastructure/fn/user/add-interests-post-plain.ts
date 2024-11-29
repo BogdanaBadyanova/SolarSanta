@@ -11,11 +11,7 @@ import { RequestBuilder } from '../../request-builder';
 import { ApiInterestCreateRequest } from '../../models/api-interest-create-request';
 
 export interface AddInterestsPost$Plain$Params {
-  
-    /**
-     * Список запросов для добавления интересов.
-     */
-    body?: Array<ApiInterestCreateRequest>
+      body?: Array<ApiInterestCreateRequest>
 }
 
 export function addInterestsPost$Plain(http: HttpClient, rootUrl: string, params?: AddInterestsPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {

@@ -19,16 +19,7 @@ import { IDialogPaticipant } from './interfaces/idialog-add-participat';
 @Component({
   selector: 'ss-box-details',
   standalone: true,
-  imports: [
-    ButtonModule,
-    ParticipantsComponent,
-    NgIf,
-    AsyncPipe,
-    DateFormatPipe,
-    ImageModule,
-    SantaInfoComponent,
-    TooltipModule,
-  ],
+  imports: [ButtonModule, ParticipantsComponent, NgIf, AsyncPipe, DateFormatPipe, ImageModule, SantaInfoComponent, TooltipModule],
   templateUrl: './box-details.component.html',
   styleUrl: './box-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

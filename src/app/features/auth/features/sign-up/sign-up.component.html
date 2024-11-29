@@ -19,12 +19,7 @@
     <label class="mb-2 mt-3" for="password">Пароль</label>
     <p-password class="w-full" formControlName="password" id="password" [toggleMask]="true" />
     <label class="mb-2 mt-3" for="confirmPassword">Подтвердите пароль</label>
-    <p-password
-      class="w-full"
-      formControlName="confirmPassword"
-      id="confirmPassword"
-      [toggleMask]="true"
-    />
+    <p-password class="w-full" formControlName="confirmPassword" id="confirmPassword" [toggleMask]="true" />
     <p class="my-3">
       Есть аккаунт?
       <span class="reg cursor-pointer" [routerLink]="Urls.SIGN_IN_URL"> Войти</span>

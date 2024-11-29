@@ -29,15 +29,7 @@ export class RuLocale {
   public choose = 'Выбрать';
   public upload = 'Импортировать';
   public cancel = 'Отмена';
-  public dayNames = [
-    'Воскресенье',
-    'Понедельник',
-    'Вторник',
-    'Среда',
-    'Четверг',
-    'Пятница',
-    'Суббота',
-  ];
+  public dayNames = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
   public dayNamesShort = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
   public dayNamesMin = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
   public monthNames = [
@@ -54,20 +46,7 @@ export class RuLocale {
     'Ноябрь',
     'Декабрь',
   ];
-  public monthNamesShort = [
-    'Янв',
-    'Фев',
-    'Мар',
-    'Апр',
-    'Май',
-    'Июн',
-    'Июл',
-    'Авг',
-    'Сен',
-    'Окт',
-    'Ноя',
-    'Дек',
-  ];
+  public monthNamesShort = ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
   public dateFormat = 'dd/mm/yy';
   public firstDayOfWeek = 1;
   public today = 'Сегодня';

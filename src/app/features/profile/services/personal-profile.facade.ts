@@ -1,7 +1,5 @@
-import { FormFacade } from '@/app/core/services/form.facade';
-import { UserApiService } from '@/app/infrastructure';
-import { inject, Injectable } from '@angular/core';
-import { finalize, forkJoin, Observable } from 'rxjs';
+import { inject, Injectable, signal } from '@angular/core';
+import { finalize, forkJoin, Observable, tap } from 'rxjs';
 import { ApiUpdateUserRequestAdapter } from '../adapters/api-update-user-request.adapter';
 import { IUpdateUserRequest } from '../interfaces/iupdate-user-request';
 import { AuthService } from '../../auth/services/auth.service';
@@ -9,20 +7,19 @@ import { IEditUserProfile } from '../interfaces/iedit-user-profile';
 import { IInterestCreateRequest } from '../interfaces/iinterest-create-request';
 import { ApiInterestCreateRequestAdapter } from '../adapters/api-interest-create-request.adapter';
 import { IParticipantView } from '@/app/core/interfaces/iparticipant-view';
+import { AbstractProfileFacade } from './abstract-profile.facade';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class ProfileFacade extends FormFacade {
+@Injectable()
+export class PersonalProfileFacade extends AbstractProfileFacade {
   private _authService = inject(AuthService);
-  private _userApiService = inject(UserApiService);
   private _apiUpdateUserRequestAdapter = inject(ApiUpdateUserRequestAdapter);
   private _apiInterestCreateRequestAdapter = inject(ApiInterestCreateRequestAdapter);
 
-  public currentUser = this._authService.currentUser;
+  public override _canEditProfile = signal<boolean>(true);
+  protected override _profileTitle = signal<string>('Мой профиль');
 
-  public getCurrentUser(): Observable<IParticipantView | null> {
-    return this._authService.getCurrentUser();
+  public getUser(): Observable<IParticipantView | null> {
+    return this._authService.getCurrentUser().pipe(tap((user) => this._user.set(user)));
   }
 
   public override submit(request: IEditUserProfile): Observable<unknown> {
@@ -38,8 +35,7 @@ export class ProfileFacade extends FormFacade {
       };
     });
 
-    const addInterestsDto =
-      this._apiInterestCreateRequestAdapter.arrayToApi(createInterestsRequests);
+    const addInterestsDto = this._apiInterestCreateRequestAdapter.arrayToApi(createInterestsRequests);
 
     return forkJoin([
       this._userApiService.updatePut({ body: editProfileDto }),

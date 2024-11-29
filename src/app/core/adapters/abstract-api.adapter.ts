@@ -4,9 +4,7 @@ import { IAdapter } from '../interfaces/iadapter';
  * Абстрактный класс для адаптации моделей API и приложений.
  * Предоставляет методы для преобразования одной модели или массивов моделей.
  */
-export abstract class AbstractApiAdapter<TApiModel, TAppModel>
-  implements IAdapter<TApiModel, TAppModel>
-{
+export abstract class AbstractApiAdapter<TApiModel, TAppModel> implements IAdapter<TApiModel, TAppModel> {
   /**
    * Преобразует модель из API в модель приложения.
    * @param apiModel Модель из API.

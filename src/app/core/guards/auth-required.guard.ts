@@ -1,20 +1,10 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
-import { Urls } from '@/app/core/utils/urls';
-import { ToastService } from '@core/services/toast/toast.service';
-import { AuthToastEnum } from '@auth/enums/auth-toast-enum';
+import { CanActivateFn } from '@angular/router';
 import { AuthService } from '@/app/features/auth/services/auth.service';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 export const authRequiredGuard: CanActivateFn = () => {
-  const _authService = inject(AuthService);
-  const _router = inject(Router);
-  const _toastService = inject(ToastService);
+  const authService = inject(AuthService);
 
-  if (!_authService.isAuthenticated()) {
-    _toastService.showMessage(AuthToastEnum.AUTHORIZATION_REQUIRED);
-    _router.navigate(Urls.SIGN_IN_URL);
-    return false;
-  }
-
-  return true;
+  return toObservable(authService.isAuthenticated);
 };

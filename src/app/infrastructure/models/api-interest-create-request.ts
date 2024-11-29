@@ -7,5 +7,5 @@ export interface ApiInterestCreateRequest {
   /**
    * Название интереса.
    */
-  title?: string | null;
+  title: string;
 }

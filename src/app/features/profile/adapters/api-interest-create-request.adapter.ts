@@ -6,10 +6,7 @@ import { IInterestCreateRequest } from '../interfaces/iinterest-create-request';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiInterestCreateRequestAdapter extends AbstractApiRequestAdapter<
-  ApiInterestCreateRequest,
-  IInterestCreateRequest
-> {
+export class ApiInterestCreateRequestAdapter extends AbstractApiRequestAdapter<ApiInterestCreateRequest, IInterestCreateRequest> {
   public override toApi(appModel: IInterestCreateRequest): ApiInterestCreateRequest {
     return {
       title: appModel.title,

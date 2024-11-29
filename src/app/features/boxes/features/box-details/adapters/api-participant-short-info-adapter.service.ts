@@ -6,10 +6,7 @@ import { AbstractApiResponseAdapter } from '@/app/core/adapters/abstract-api-res
 @Injectable({
   providedIn: 'root',
 })
-export class ApiParticipantShortInfoAdapter extends AbstractApiResponseAdapter<
-  ApiParticipantShortView,
-  IParticipantShortInfo
-> {
+export class ApiParticipantShortInfoAdapter extends AbstractApiResponseAdapter<ApiParticipantShortView, IParticipantShortInfo> {
   public override fromApi(apiModel: ApiParticipantShortView): IParticipantShortInfo {
     return {
       id: apiModel.id || '',

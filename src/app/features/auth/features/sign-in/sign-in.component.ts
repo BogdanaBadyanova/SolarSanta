@@ -1,13 +1,6 @@
 import { Urls } from '@/app/core/utils/urls';
 import { ChangeDetectionStrategy, Component, inject, OnInit, Signal, signal } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -20,15 +13,7 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 @Component({
   selector: 'ss-sign-in',
   standalone: true,
-  imports: [
-    InputTextModule,
-    FloatLabelModule,
-    FormsModule,
-    PasswordModule,
-    ReactiveFormsModule,
-    ButtonModule,
-    RouterLink,
-  ],
+  imports: [InputTextModule, FloatLabelModule, FormsModule, PasswordModule, ReactiveFormsModule, ButtonModule, RouterLink],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

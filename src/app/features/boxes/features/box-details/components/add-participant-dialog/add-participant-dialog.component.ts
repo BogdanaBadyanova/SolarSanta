@@ -22,8 +22,6 @@ export class AddParticipantDialogComponent implements OnInit {
   public form = signal<FormGroup>(null);
 
   public ngOnInit(): void {
-    console.log(this._dialogConfig.data);
-
     const form = new FormGroup({
       email: new FormControl(),
     });

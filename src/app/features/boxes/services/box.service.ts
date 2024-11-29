@@ -32,8 +32,6 @@ export class BoxService {
   }
 
   public addParticipant(body: IAddPaticipants): Observable<string> {
-    return this._boxesApiService
-      .apiBoxesBoxIdAddParticipantPost({ boxId: body.id, email: body.email })
-      .pipe(first());
+    return this._boxesApiService.apiBoxesBoxIdAddParticipantPost({ boxId: body.id, email: body.email }).pipe(first());
   }
 }

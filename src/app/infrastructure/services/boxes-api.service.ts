@@ -15,6 +15,22 @@ import { apiBoxesBoxIdAddParticipantPost } from '../fn/boxes/api-boxes-box-id-ad
 import { ApiBoxesBoxIdAddParticipantPost$Params } from '../fn/boxes/api-boxes-box-id-add-participant-post';
 import { apiBoxesBoxIdAddParticipantPost$Plain } from '../fn/boxes/api-boxes-box-id-add-participant-post-plain';
 import { ApiBoxesBoxIdAddParticipantPost$Plain$Params } from '../fn/boxes/api-boxes-box-id-add-participant-post-plain';
+import { apiBoxesBoxIdMyGiverGet } from '../fn/boxes/api-boxes-box-id-my-giver-get';
+import { ApiBoxesBoxIdMyGiverGet$Params } from '../fn/boxes/api-boxes-box-id-my-giver-get';
+import { apiBoxesBoxIdMyGiverGet$Plain } from '../fn/boxes/api-boxes-box-id-my-giver-get-plain';
+import { ApiBoxesBoxIdMyGiverGet$Plain$Params } from '../fn/boxes/api-boxes-box-id-my-giver-get-plain';
+import { apiBoxesBoxIdMyReceiverGet } from '../fn/boxes/api-boxes-box-id-my-receiver-get';
+import { ApiBoxesBoxIdMyReceiverGet$Params } from '../fn/boxes/api-boxes-box-id-my-receiver-get';
+import { apiBoxesBoxIdMyReceiverGet$Plain } from '../fn/boxes/api-boxes-box-id-my-receiver-get-plain';
+import { ApiBoxesBoxIdMyReceiverGet$Plain$Params } from '../fn/boxes/api-boxes-box-id-my-receiver-get-plain';
+import { apiBoxesBoxIdPairingsGet } from '../fn/boxes/api-boxes-box-id-pairings-get';
+import { ApiBoxesBoxIdPairingsGet$Params } from '../fn/boxes/api-boxes-box-id-pairings-get';
+import { apiBoxesBoxIdPairingsGet$Plain } from '../fn/boxes/api-boxes-box-id-pairings-get-plain';
+import { ApiBoxesBoxIdPairingsGet$Plain$Params } from '../fn/boxes/api-boxes-box-id-pairings-get-plain';
+import { apiBoxesBoxIdRandomizeParticipantsPost } from '../fn/boxes/api-boxes-box-id-randomize-participants-post';
+import { ApiBoxesBoxIdRandomizeParticipantsPost$Params } from '../fn/boxes/api-boxes-box-id-randomize-participants-post';
+import { apiBoxesBoxIdRandomizeParticipantsPost$Plain } from '../fn/boxes/api-boxes-box-id-randomize-participants-post-plain';
+import { ApiBoxesBoxIdRandomizeParticipantsPost$Plain$Params } from '../fn/boxes/api-boxes-box-id-randomize-participants-post-plain';
 import { apiBoxesIdDelete } from '../fn/boxes/api-boxes-id-delete';
 import { ApiBoxesIdDelete$Params } from '../fn/boxes/api-boxes-id-delete';
 import { apiBoxesIdDelete$Plain } from '../fn/boxes/api-boxes-id-delete-plain';
@@ -32,8 +48,10 @@ import { ApiBoxesPost$Params } from '../fn/boxes/api-boxes-post';
 import { apiBoxesPost$Plain } from '../fn/boxes/api-boxes-post-plain';
 import { ApiBoxesPost$Plain$Params } from '../fn/boxes/api-boxes-post-plain';
 import { ApiBoxDetail } from '../models/api-box-detail';
+import { ApiBoxPairing } from '../models/api-box-pairing';
 import { ApiBoxView } from '../models/api-box-view';
 import { ApiBoxViewPaginatedResponse } from '../models/api-box-view-paginated-response';
+import { ApiParticipantShortView } from '../models/api-participant-short-view';
 
 @Injectable({ providedIn: 'root' })
 export class BoxesApiService extends BaseService {
@@ -353,6 +371,242 @@ export class BoxesApiService extends BaseService {
   apiBoxesBoxIdAddParticipantPost(params: ApiBoxesBoxIdAddParticipantPost$Params, context?: HttpContext): Observable<string> {
     return this.apiBoxesBoxIdAddParticipantPost$Response(params, context).pipe(
       map((r: StrictHttpResponse<string>): string => r.body)
+    );
+  }
+
+  /** Path part for operation `apiBoxesBoxIdPairingsGet()` */
+  static readonly ApiBoxesBoxIdPairingsGetPath = '/api/Boxes/{boxId}/pairings';
+
+  /**
+   * Получает список пар участников для указанной коробки.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiBoxesBoxIdPairingsGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdPairingsGet$Plain$Response(params: ApiBoxesBoxIdPairingsGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ApiBoxPairing>>> {
+    return apiBoxesBoxIdPairingsGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Получает список пар участников для указанной коробки.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiBoxesBoxIdPairingsGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdPairingsGet$Plain(params: ApiBoxesBoxIdPairingsGet$Plain$Params, context?: HttpContext): Observable<Array<ApiBoxPairing>> {
+    return this.apiBoxesBoxIdPairingsGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<ApiBoxPairing>>): Array<ApiBoxPairing> => r.body)
+    );
+  }
+
+  /**
+   * Получает список пар участников для указанной коробки.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiBoxesBoxIdPairingsGet()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdPairingsGet$Response(params: ApiBoxesBoxIdPairingsGet$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ApiBoxPairing>>> {
+    return apiBoxesBoxIdPairingsGet(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Получает список пар участников для указанной коробки.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiBoxesBoxIdPairingsGet$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdPairingsGet(params: ApiBoxesBoxIdPairingsGet$Params, context?: HttpContext): Observable<Array<ApiBoxPairing>> {
+    return this.apiBoxesBoxIdPairingsGet$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<ApiBoxPairing>>): Array<ApiBoxPairing> => r.body)
+    );
+  }
+
+  /** Path part for operation `apiBoxesBoxIdMyReceiverGet()` */
+  static readonly ApiBoxesBoxIdMyReceiverGetPath = '/api/Boxes/{boxId}/my-receiver';
+
+  /**
+   * Возвращает информацию о пользователе, которого поздравляет текущий пользователь в указанной коробке.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiBoxesBoxIdMyReceiverGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdMyReceiverGet$Plain$Response(params: ApiBoxesBoxIdMyReceiverGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiParticipantShortView>> {
+    return apiBoxesBoxIdMyReceiverGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Возвращает информацию о пользователе, которого поздравляет текущий пользователь в указанной коробке.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiBoxesBoxIdMyReceiverGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdMyReceiverGet$Plain(params: ApiBoxesBoxIdMyReceiverGet$Plain$Params, context?: HttpContext): Observable<ApiParticipantShortView> {
+    return this.apiBoxesBoxIdMyReceiverGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ApiParticipantShortView>): ApiParticipantShortView => r.body)
+    );
+  }
+
+  /**
+   * Возвращает информацию о пользователе, которого поздравляет текущий пользователь в указанной коробке.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiBoxesBoxIdMyReceiverGet()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdMyReceiverGet$Response(params: ApiBoxesBoxIdMyReceiverGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiParticipantShortView>> {
+    return apiBoxesBoxIdMyReceiverGet(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Возвращает информацию о пользователе, которого поздравляет текущий пользователь в указанной коробке.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiBoxesBoxIdMyReceiverGet$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdMyReceiverGet(params: ApiBoxesBoxIdMyReceiverGet$Params, context?: HttpContext): Observable<ApiParticipantShortView> {
+    return this.apiBoxesBoxIdMyReceiverGet$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ApiParticipantShortView>): ApiParticipantShortView => r.body)
+    );
+  }
+
+  /** Path part for operation `apiBoxesBoxIdMyGiverGet()` */
+  static readonly ApiBoxesBoxIdMyGiverGetPath = '/api/Boxes/{boxId}/my-giver';
+
+  /**
+   * Возвращает информацию о пользователе, который поздравлял текущего пользователя в указанной коробке.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiBoxesBoxIdMyGiverGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdMyGiverGet$Plain$Response(params: ApiBoxesBoxIdMyGiverGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiParticipantShortView>> {
+    return apiBoxesBoxIdMyGiverGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Возвращает информацию о пользователе, который поздравлял текущего пользователя в указанной коробке.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiBoxesBoxIdMyGiverGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdMyGiverGet$Plain(params: ApiBoxesBoxIdMyGiverGet$Plain$Params, context?: HttpContext): Observable<ApiParticipantShortView> {
+    return this.apiBoxesBoxIdMyGiverGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ApiParticipantShortView>): ApiParticipantShortView => r.body)
+    );
+  }
+
+  /**
+   * Возвращает информацию о пользователе, который поздравлял текущего пользователя в указанной коробке.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiBoxesBoxIdMyGiverGet()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdMyGiverGet$Response(params: ApiBoxesBoxIdMyGiverGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiParticipantShortView>> {
+    return apiBoxesBoxIdMyGiverGet(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * Возвращает информацию о пользователе, который поздравлял текущего пользователя в указанной коробке.
+   *
+   *
+   *
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiBoxesBoxIdMyGiverGet$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdMyGiverGet(params: ApiBoxesBoxIdMyGiverGet$Params, context?: HttpContext): Observable<ApiParticipantShortView> {
+    return this.apiBoxesBoxIdMyGiverGet$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ApiParticipantShortView>): ApiParticipantShortView => r.body)
+    );
+  }
+
+  /** Path part for operation `apiBoxesBoxIdRandomizeParticipantsPost()` */
+  static readonly ApiBoxesBoxIdRandomizeParticipantsPostPath = '/api/Boxes/{boxId}/randomize-participants';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiBoxesBoxIdRandomizeParticipantsPost$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdRandomizeParticipantsPost$Plain$Response(params: ApiBoxesBoxIdRandomizeParticipantsPost$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxPairing>> {
+    return apiBoxesBoxIdRandomizeParticipantsPost$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiBoxesBoxIdRandomizeParticipantsPost$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdRandomizeParticipantsPost$Plain(params: ApiBoxesBoxIdRandomizeParticipantsPost$Plain$Params, context?: HttpContext): Observable<ApiBoxPairing> {
+    return this.apiBoxesBoxIdRandomizeParticipantsPost$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ApiBoxPairing>): ApiBoxPairing => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiBoxesBoxIdRandomizeParticipantsPost()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdRandomizeParticipantsPost$Response(params: ApiBoxesBoxIdRandomizeParticipantsPost$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiBoxPairing>> {
+    return apiBoxesBoxIdRandomizeParticipantsPost(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiBoxesBoxIdRandomizeParticipantsPost$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiBoxesBoxIdRandomizeParticipantsPost(params: ApiBoxesBoxIdRandomizeParticipantsPost$Params, context?: HttpContext): Observable<ApiBoxPairing> {
+    return this.apiBoxesBoxIdRandomizeParticipantsPost$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ApiBoxPairing>): ApiBoxPairing => r.body)
     );
   }
 

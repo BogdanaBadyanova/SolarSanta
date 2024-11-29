@@ -7,10 +7,7 @@ import { ApiGenderEnumAdapter } from '@/app/core/adapters/api-gender-enum.adapte
 @Injectable({
   providedIn: 'root',
 })
-export class ApiSignUpRequestAdapter extends AbstractApiRequestAdapter<
-  ApiSignUpRequest,
-  ISignUpRequest
-> {
+export class ApiSignUpRequestAdapter extends AbstractApiRequestAdapter<ApiSignUpRequest, ISignUpRequest> {
   private _apiGenderEnumAdapter = inject(ApiGenderEnumAdapter);
 
   public toApi(appModel: ISignUpRequest): ApiSignUpRequest {

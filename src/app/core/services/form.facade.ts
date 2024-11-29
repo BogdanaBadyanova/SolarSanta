@@ -8,9 +8,7 @@ export abstract class FormFacade {
   protected _toastService = inject(ToastService);
 
   public isLoading = signal(false);
-  public submitButtonIcon: Signal<string> = computed(() =>
-    this.isLoading() ? 'pi pi-spinner pi-spin' : '',
-  );
+  public submitButtonIcon: Signal<string> = computed(() => (this.isLoading() ? 'pi pi-spinner pi-spin' : ''));
   public isSubmitButtonDisabled = computed(() => this.isLoading());
 
   public abstract submit(data: unknown): Observable<unknown>;

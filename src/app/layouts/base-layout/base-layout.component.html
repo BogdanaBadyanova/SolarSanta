@@ -1,7 +1,13 @@
-<div class="h-screen flex flex-column">
-  <ss-menu [currentUser]="currentUser()" (logout)="logout()" />
-  <div class="flex-grow-1">
-    <router-outlet />
+@defer (on timer(1000ms); when currentUser() !== undefined) {
+  <div class="h-screen flex flex-column">
+    <ss-menu [currentUser]="currentUser()" (logout)="logout()" />
+    <div class="flex-grow-1">
+      <router-outlet />
+    </div>
+    <ss-footer />
   </div>
-  <ss-footer />
-</div>
+} @placeholder {
+  <div class="h-screen flex justify-content-center align-items-center">
+    <p>LOADING content</p>
+  </div>
+}
