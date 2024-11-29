@@ -1,10 +1,11 @@
 import { ICreateBox } from '@/app/features/boxes/features/create-box/interfaces/create-box';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { first, map, Observable } from 'rxjs';
 import { ApiCreateBoxRequestAdapter } from '../features/create-box/adapters/api-create-box-request.adapter';
 import { ApiBoxDetail, BoxesApiService } from '@/app/infrastructure';
-import { IBoxDetails } from '../features/box-details/interfaces/detail-box';
+import { IBoxDetails } from '../features/box-details/interfaces/idetail-box';
 import { ApiBoxDetailAdapter } from '../features/box-details/adapters/api-box-detail.adapter';
+import { IAddPaticipants } from '../features/box-details/interfaces/iadd-participats';
 
 @Injectable({
   providedIn: 'root',
@@ -16,14 +17,23 @@ export class BoxService {
 
   public createBox(request: ICreateBox): Observable<unknown> {
     const dto = this._apiCreateBoxRequestAdapter.toApi(request);
-    return this._boxesApiService.apiBoxesPost({ body: dto });
+    return this._boxesApiService.apiBoxesPost({ body: dto }).pipe(first());
+  }
+
+  public deleteBox(id: string): Observable<string> {
+    return this._boxesApiService.apiBoxesIdDelete({ id }).pipe(first());
   }
 
   public getBoxData(id: string): Observable<IBoxDetails> {
     return this._boxesApiService.apiBoxesIdGet({ id }).pipe(
-      map((response: ApiBoxDetail) => {
-        return this._apiBoxDetailAdapter.fromApi(response);
-      }),
+      first(),
+      map((response: ApiBoxDetail) => this._apiBoxDetailAdapter.fromApi(response)),
     );
+  }
+
+  public addParticipant(body: IAddPaticipants): Observable<string> {
+    return this._boxesApiService
+      .apiBoxesBoxIdAddParticipantPost({ boxId: body.id, email: body.email })
+      .pipe(first());
   }
 }

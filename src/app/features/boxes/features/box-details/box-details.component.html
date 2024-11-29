@@ -1,7 +1,17 @@
-<div class="bg" *ngIf="data$ | async as info">
-  <div class="flex align-items-center gap-3">
-    <p-image width="50" height="50" [src]="info.icon"></p-image>
-    <p class="title">{{ info.name }}</p>
+@let info = data$ | async;
+<div class="bg" *ngIf="info">
+  <div class="flex align-items-center justify-content-between">
+    <div class="flex align-items-center gap-3">
+      <p-image width="50" height="50" [src]="info.icon"></p-image>
+      <p class="title">{{ info.name }}</p>
+    </div>
+    <p-button
+      class="delete-button"
+      label="Удалить коробку"
+      severity="secondary"
+      [text]="true"
+      (onClick)="deletebox()"
+    />
   </div>
 
   <p class="subtitle">
@@ -30,8 +40,23 @@
       <p class="text">{{ info.location }}</p>
     </div>
 
-    <p-button label="Запустить Санту" />
+    @if (info.canStartRandomize) {
+      <div class="w-min" tooltipPosition="bottom" [pTooltip]="getButtonTooltip(info)">
+        <p-button
+          class="white-space-nowrap"
+          [disabled]="info.isExpiredDate"
+          label="Запустить Санту"
+        />
+      </div>
+    }
   </div>
 </div>
-
-<ss-participants [participants]="(data$ | async)?.participants"></ss-participants>
+<div>
+  <ss-participants
+    [participants]="info?.participants"
+    [isSubmitButtonDisabled]="isSubmitButtonDisabled()"
+    [submitButtonIcon]="submitButtonIcon()"
+    (addParticipant)="addParticipant($event)"
+  />
+  <ss-santa-info />
+</div>

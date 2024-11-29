@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Urls } from '@/app/core/utils/urls';
 import { CommonConstants } from '@/app/core/utils/common-constants';
 import { ToastService } from '@core/services/toast/toast.service';
-import { ICurrentUser } from '@core/interfaces/icurrent-user';
+import { IParticipantView } from '@core/interfaces/iparticipant-view';
 import { IAuthResult } from '@auth/interfaces/iauth-result';
 import { catchError, first, iif, map, Observable, of, switchMap, tap } from 'rxjs';
 import { ISignInRequest } from '@auth/interfaces/isign-in-request';
@@ -15,7 +15,7 @@ import { ApiSignUpRequestAdapter } from '@/app/features/auth/adapters/api-sign-u
 import { AuthApiService, UserApiService } from '@/app/infrastructure';
 import { ApiAuthResultAdapter } from '@/app/features/auth/adapters/api-auth-result.adapter';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { ApiCurrentUserAdapter } from '@/app/core/adapters/api-current-user.adapter';
+import { ApiParticipantViewAdapter } from '@/app/core/adapters/api-participant-view.adapter';
 
 @UntilDestroy()
 @Injectable({
@@ -26,13 +26,13 @@ export class AuthService {
   private _router = inject(Router);
   private _toastService = inject(ToastService);
   private _apiService = inject(AuthApiService);
-  private _apiCurrentUserAdapter = inject(ApiCurrentUserAdapter);
+  private _apiParticipantViewAdapter = inject(ApiParticipantViewAdapter);
   private _apiSignInRequestAdapter = inject(ApiSignInRequestAdapter);
   private _apiSignUpRequestAdapter = inject(ApiSignUpRequestAdapter);
   private _apiAuthResultAdapter = inject(ApiAuthResultAdapter);
   private _userApiService = inject(UserApiService);
 
-  private _currentUser = signal<ICurrentUser>(null);
+  private _currentUser = signal<IParticipantView>(null);
   private _currentUserClaims = signal<IAuthResult>(null);
 
   public isAuthenticated = computed(() => !!this._currentUser());
@@ -41,7 +41,7 @@ export class AuthService {
     return this._currentUserClaims.asReadonly();
   }
 
-  public get currentUser(): Signal<ICurrentUser> {
+  public get currentUser(): Signal<IParticipantView> {
     return this._currentUser.asReadonly();
   }
 
@@ -52,7 +52,7 @@ export class AuthService {
       switchMap(() =>
         iif(
           () => !!this._currentUserClaims(),
-          this._getCurrentUser(),
+          this.getCurrentUser(),
           of(null).pipe(tap(() => this._router.navigate(Urls.SIGN_IN_URL))),
         ),
       ),
@@ -60,7 +60,7 @@ export class AuthService {
     );
   }
 
-  public signIn(request: ISignInRequest): Observable<ICurrentUser | null> {
+  public signIn(request: ISignInRequest): Observable<IParticipantView | null> {
     const dto = this._apiSignInRequestAdapter.toApi(request);
     return this._apiService.apiAuthLoginPost({ body: dto }).pipe(
       first(),
@@ -73,7 +73,7 @@ export class AuthService {
       tap((data: IAuthResult) => {
         this._ls.setItem(CommonConstants.userClaimsLocalStorageKey, JSON.stringify(data));
       }),
-      switchMap(() => this._getCurrentUser()),
+      switchMap(() => this.getCurrentUser()),
       untilDestroyed(this),
     );
   }
@@ -106,11 +106,11 @@ export class AuthService {
     }
   }
 
-  private _getCurrentUser(): Observable<ICurrentUser | null> {
+  public getCurrentUser(): Observable<IParticipantView | null> {
     return this._userApiService.currentUserGet().pipe(
       first(),
-      map((user) => this._apiCurrentUserAdapter.fromApi(user)),
-      tap((user: ICurrentUser) => this._currentUser.set(user)),
+      map((user) => this._apiParticipantViewAdapter.fromApi(user)),
+      tap((user: IParticipantView) => this._currentUser.set(user)),
       untilDestroyed(this),
     );
   }

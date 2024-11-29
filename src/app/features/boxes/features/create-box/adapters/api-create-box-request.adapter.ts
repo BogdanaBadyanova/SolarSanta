@@ -20,7 +20,7 @@ export class ApiCreateBoxRequestAdapter extends AbstractApiRequestAdapter<
       minGiftValue: appModel.minGiftValue,
       maxGiftValue: appModel.maxGiftValue,
       location: appModel.location,
-      showResults: appModel.showResults,
+      showResults: appModel.showResults || false,
     };
   }
 }

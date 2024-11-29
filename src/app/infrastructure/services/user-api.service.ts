@@ -15,11 +15,15 @@ import { addInterestsPost } from '../fn/user/add-interests-post';
 import { AddInterestsPost$Params } from '../fn/user/add-interests-post';
 import { addInterestsPost$Plain } from '../fn/user/add-interests-post-plain';
 import { AddInterestsPost$Plain$Params } from '../fn/user/add-interests-post-plain';
-import { ApiCurrentUser } from '../models/api-current-user';
 import { currentUserGet } from '../fn/user/current-user-get';
 import { CurrentUserGet$Params } from '../fn/user/current-user-get';
 import { currentUserGet$Plain } from '../fn/user/current-user-get-plain';
 import { CurrentUserGet$Plain$Params } from '../fn/user/current-user-get-plain';
+import { idGet } from '../fn/user/id-get';
+import { IdGet$Params } from '../fn/user/id-get';
+import { idGet$Plain } from '../fn/user/id-get-plain';
+import { IdGet$Plain$Params } from '../fn/user/id-get-plain';
+import { ApiParticipantView } from '../models/api-participant-view';
 import { updatePut } from '../fn/user/update-put';
 import { UpdatePut$Params } from '../fn/user/update-put';
 import { updatePut$Plain } from '../fn/user/update-put-plain';
@@ -44,7 +48,7 @@ export class UserApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  currentUserGet$Plain$Response(params?: CurrentUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiCurrentUser>> {
+  currentUserGet$Plain$Response(params?: CurrentUserGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiParticipantView>> {
     return currentUserGet$Plain(this.http, this.rootUrl, params, context);
   }
 
@@ -58,9 +62,9 @@ export class UserApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  currentUserGet$Plain(params?: CurrentUserGet$Plain$Params, context?: HttpContext): Observable<ApiCurrentUser> {
+  currentUserGet$Plain(params?: CurrentUserGet$Plain$Params, context?: HttpContext): Observable<ApiParticipantView> {
     return this.currentUserGet$Plain$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiCurrentUser>): ApiCurrentUser => r.body)
+      map((r: StrictHttpResponse<ApiParticipantView>): ApiParticipantView => r.body)
     );
   }
 
@@ -74,7 +78,7 @@ export class UserApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  currentUserGet$Response(params?: CurrentUserGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiCurrentUser>> {
+  currentUserGet$Response(params?: CurrentUserGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiParticipantView>> {
     return currentUserGet(this.http, this.rootUrl, params, context);
   }
 
@@ -88,9 +92,56 @@ export class UserApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  currentUserGet(params?: CurrentUserGet$Params, context?: HttpContext): Observable<ApiCurrentUser> {
+  currentUserGet(params?: CurrentUserGet$Params, context?: HttpContext): Observable<ApiParticipantView> {
     return this.currentUserGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<ApiCurrentUser>): ApiCurrentUser => r.body)
+      map((r: StrictHttpResponse<ApiParticipantView>): ApiParticipantView => r.body)
+    );
+  }
+
+  /** Path part for operation `idGet()` */
+  static readonly IdGetPath = '/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `idGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  idGet$Plain$Response(params: IdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiParticipantView>> {
+    return idGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `idGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  idGet$Plain(params: IdGet$Plain$Params, context?: HttpContext): Observable<ApiParticipantView> {
+    return this.idGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ApiParticipantView>): ApiParticipantView => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `idGet()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  idGet$Response(params: IdGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiParticipantView>> {
+    return idGet(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `idGet$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  idGet(params: IdGet$Params, context?: HttpContext): Observable<ApiParticipantView> {
+    return this.idGet$Response(params, context).pipe(
+      map((r: StrictHttpResponse<ApiParticipantView>): ApiParticipantView => r.body)
     );
   }
 

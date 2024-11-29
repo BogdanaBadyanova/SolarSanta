@@ -1,0 +1,14 @@
+<form [formGroup]="form()" (ngSubmit)="submit()" class="flex flex-column gap-3">
+  <div class="flex flex-column gap-1">
+    <label class="mb-2" for="email">Электронная почта</label>
+    <input pInputText id="email" formControlName="email" class="w-full" />
+  </div>
+
+  <p-button
+    type="submit"
+    class="mx-auto"
+    label="Отправить"
+    [disabled]="isSubmitButtonDisabled()"
+    [icon]="submitButtonIcon()"
+  />
+</form>

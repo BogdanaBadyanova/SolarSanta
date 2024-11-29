@@ -26,8 +26,15 @@ p {
   font-size: 1rem;
   font-weight: 500;
   line-height: 1rem;
+  max-width: 140px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.wrap-info {
-  margin-top: 30px;
+@media screen and (max-width: 769px) {
+  .wrap-participants {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

@@ -10,16 +10,18 @@ import { RequestBuilder } from '../../request-builder';
 
 import { ApiParticipantView } from '../../models/api-participant-view';
 
-export interface CurrentUserGet$Params {
+export interface IdGet$Plain$Params {
+  id: string;
 }
 
-export function currentUserGet(http: HttpClient, rootUrl: string, params?: CurrentUserGet$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiParticipantView>> {
-  const rb = new RequestBuilder(rootUrl, currentUserGet.PATH, 'get');
+export function idGet$Plain(http: HttpClient, rootUrl: string, params: IdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ApiParticipantView>> {
+  const rb = new RequestBuilder(rootUrl, idGet$Plain.PATH, 'get');
   if (params) {
+    rb.path('id', params.id, {});
   }
 
   return http.request(
-    rb.build({ responseType: 'json', accept: 'text/json', context })
+    rb.build({ responseType: 'text', accept: 'text/plain', context })
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
@@ -28,4 +30,4 @@ export function currentUserGet(http: HttpClient, rootUrl: string, params?: Curre
   );
 }
 
-currentUserGet.PATH = '/Current-user';
+idGet$Plain.PATH = '/{id}';

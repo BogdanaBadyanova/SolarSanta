@@ -3,9 +3,9 @@ import { GenderEnum } from '../enums/gender.enum';
 import { IBoxShortInfo } from '@/app/features/boxes/interfaces/ibox-short-info';
 
 /**
- * Интерфейс для представления текущего пользователя.
+ * Интерфейс для представления пользователя.
  */
-export interface ICurrentUser {
+export interface IParticipantView {
   /**
    * Уникальный идентификатор пользователя
    */

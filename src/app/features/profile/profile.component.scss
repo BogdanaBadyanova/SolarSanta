@@ -1,6 +1,7 @@
 .wrap {
   padding: 20px 0 50px 0;
 }
+
 .info {
   max-width: 500px;
   width: 100%;
@@ -23,6 +24,18 @@
     font-weight: 400;
     line-height: 1.31rem;
     color: #222222;
+  }
+}
+
+.box-create {
+  & * {
+    color: var(--primary-color);
+  }
+
+  &:hover {
+    * {
+      color: var(--red-500);
+    }
   }
 }
 
@@ -79,4 +92,19 @@
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
+}
+
+@media screen and (max-width: 769px) {
+  .img {
+    background-position: top;
+    background-size: contain;
+    width: 300px;
+    height: 519px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .img {
+    height: 143px;
+  }
 }
