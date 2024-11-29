@@ -12,12 +12,14 @@ import { IParticipantShortInfo } from '../../interfaces/iparticipant-short-info'
 import { IDialogPaticipant } from '../../interfaces/idialog-add-participat';
 import { SlicePipe } from '@angular/common';
 import { ParticipantsListComponent } from '../participants-list/participants-list.component';
+import { RouterLink } from '@angular/router';
+import { Urls } from '@/app/core/utils/urls';
 
 @UntilDestroy()
 @Component({
   selector: 'ss-participants',
   standalone: true,
-  imports: [SvgIconComponent, ButtonModule, ImageModule, DynamicDialogModule, SlicePipe],
+  imports: [SvgIconComponent, ButtonModule, ImageModule, DynamicDialogModule, SlicePipe, RouterLink],
   templateUrl: './participants.component.html',
   styleUrl: './participants.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,6 +31,7 @@ export class ParticipantsComponent {
   public isSubmitButtonDisabled = input.required<boolean>();
   public submitButtonIcon = input.required<string>();
   public addParticipant = output<IDialogPaticipant>();
+  public Urls = Urls;
 
   private _ref: DynamicDialogRef | undefined;
 
