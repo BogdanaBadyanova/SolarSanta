@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { LayoutRoutes } from './layout-routes.enum';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: LayoutRoutes.BOX },
+  { path: '', pathMatch: 'full', redirectTo: LayoutRoutes.INTRO },
   {
     path: '',
     loadComponent: () => import('@layouts/base-layout/base-layout.component').then((c) => c.BaseLayoutComponent),
