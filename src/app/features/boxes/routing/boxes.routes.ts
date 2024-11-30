@@ -12,14 +12,17 @@ export const boxesRoutes: Routes = [
       {
         path: BoxesRoutes.CREATE,
         loadComponent: () => import('@boxes/features/create-box/create-box.component').then((c) => c.CreateBoxComponent),
+        canActivate: [authRequiredGuard],
       },
       {
         path: `${BoxesRoutes.DETAILS}/:id`,
         loadComponent: () => import('@boxes/features/box-details/box-details.component').then((c) => c.BoxDetailsComponent),
+        canActivate: [authRequiredGuard],
       },
       {
         path: `${BoxesRoutes.SHARE}/:id`,
         loadComponent: () => import('@boxes/features/share-link/share-link.component').then((c) => c.ShareLinkComponent),
+        canActivate: [authRequiredGuard],
       },
     ],
   },

@@ -47,14 +47,20 @@
     </div>
     <div class="link">
       <ng-container *ngTemplateOutlet="logo"></ng-container>
-      <p-button size="small" (onClick)="redirectToProfile()">
-        {{ currentUser().lastName }} {{ currentUser().firstName }}
-      </p-button>
+      @if (currentUser()) {
+        <p-button size="small" (onClick)="redirectToProfile()">
+          {{ currentUser().lastName }} {{ currentUser().firstName }}
+        </p-button>
+      }
       <p class="cursor-pointer" (click)="redirectToIntro()">Об игре</p>
       <p class="cursor-pointer" (click)="redirectToIntro()">Правила</p>
 
       <div class="flex gap-2">
-        <p-button size="small" icon="pi pi-sign-out" label="Выйти" [text]="true" (onClick)="logout.emit()"></p-button>
+        @if (currentUser()) {
+          <p-button size="small" icon="pi pi-sign-out" label="Выйти" [text]="true" (onClick)="logoutClick()"></p-button>
+        } @else {
+          <p-button size="small" icon="pi pi-sign-in" label="Войти" severity="danger" (onClick)="signInClick()" />
+        }
       </div>
     </div>
   </div>

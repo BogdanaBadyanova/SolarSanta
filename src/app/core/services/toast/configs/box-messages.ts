@@ -15,4 +15,9 @@ export const boxMessages: MessageConfig = {
     summary: 'Ошибка создания',
     detail: 'Не удалось создать коробку.',
   },
+  [BoxToastEnum.DELETE_BOX_SUCCESS]: {
+    severity: 'success',
+    summary: 'Успешно',
+    detail: 'Выбранная вами коробка успешно удалена',
+  },
 };

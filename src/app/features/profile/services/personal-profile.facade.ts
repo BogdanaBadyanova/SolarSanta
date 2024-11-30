@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { finalize, forkJoin, Observable, tap } from 'rxjs';
+import { finalize, forkJoin, Observable, of } from 'rxjs';
 import { ApiUpdateUserRequestAdapter } from '../adapters/api-update-user-request.adapter';
 import { IUpdateUserRequest } from '../interfaces/iupdate-user-request';
 import { AuthService } from '../../auth/services/auth.service';
@@ -19,7 +19,7 @@ export class PersonalProfileFacade extends AbstractProfileFacade {
   protected override _profileTitle = signal<string>('Мой профиль');
 
   public getUser(): Observable<IParticipantView | null> {
-    return this._authService.getCurrentUser().pipe(tap((user) => this._user.set(user)));
+    return of(this._authService.currentUser());
   }
 
   public override submit(request: IEditUserProfile): Observable<unknown> {

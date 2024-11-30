@@ -1,46 +1,56 @@
 @let info = data$ | async;
-<div class="bg" *ngIf="info">
-  <div class="flex align-items-center justify-content-between">
-    <div class="flex align-items-center gap-3">
-      <p-image width="50" height="50" [src]="info.icon"></p-image>
-      <p class="title">{{ info.name }}</p>
-    </div>
-    <p-button class="delete-button" label="Удалить коробку" severity="secondary" [text]="true" (onClick)="deletebox()" />
-  </div>
-
-  <p class="subtitle">
-    {{ info.description }}
-  </p>
-  <div class="base-info">
-    <h3>Основная информация</h3>
-    <div class="flex align-items-center justify-content-between mb-2">
-      <p class="head">Принимаем участиков до</p>
-      <p class="text">{{ info.inviteEndDate | dateFormat: 'DD.MM.YYYY' }}</p>
-    </div>
-    <div class="flex align-items-center justify-content-between mb-2">
-      <p class="head">Покупаем подарки до</p>
-      <p class="text">{{ info.meetingDate | dateFormat: 'DD.MM.YYYY' }}</p>
-    </div>
-    <div class="flex align-items-center justify-content-between mb-2">
-      <p class="head">Сумма подарка от</p>
-      <p class="text">{{ info.minGiftValue }} руб.</p>
-    </div>
-    <div class="flex align-items-center justify-content-between mb-2">
-      <p class="head">Сумма подарка до</p>
-      <p class="text">{{ info.maxGiftValue }} руб.</p>
-    </div>
-    <div class="flex align-items-center justify-content-between mb-4">
-      <p class="head">Место проведения</p>
-      <p class="text">{{ info.location }}</p>
-    </div>
-
-    @if (info.canStartRandomize) {
-      <div class="w-min" tooltipPosition="bottom" [pTooltip]="getButtonTooltip(info)">
-        <p-button class="white-space-nowrap" [disabled]="info.isExpiredDate" label="Запустить Санту" />
+@if (info) {
+  <div class="bg">
+    <div class="flex align-items-center justify-content-between">
+      <div class="flex align-items-center gap-3">
+        <p-image width="50" height="50" [src]="info.icon"></p-image>
+        <p class="title">{{ info.name }}</p>
       </div>
-    }
+      <p-button
+        class="delete-button"
+        icon="pi pi-trash"
+        label="Удалить коробку"
+        severity="secondary"
+        [text]="true"
+        (onClick)="confirmDelete($event)"
+      />
+      <!-- (onClick)="deletebox()" -->
+    </div>
+
+    <p class="subtitle">
+      {{ info.description }}
+    </p>
+    <div class="base-info">
+      <h3>Основная информация</h3>
+      <div class="flex align-items-center justify-content-between mb-2">
+        <p class="head">Принимаем участиков до</p>
+        <p class="text">{{ info.inviteEndDate | dateFormat: 'DD.MM.YYYY' }}</p>
+      </div>
+      <div class="flex align-items-center justify-content-between mb-2">
+        <p class="head">Покупаем подарки до</p>
+        <p class="text">{{ info.meetingDate | dateFormat: 'DD.MM.YYYY' }}</p>
+      </div>
+      <div class="flex align-items-center justify-content-between mb-2">
+        <p class="head">Сумма подарка от</p>
+        <p class="text">{{ info.minGiftValue }} руб.</p>
+      </div>
+      <div class="flex align-items-center justify-content-between mb-2">
+        <p class="head">Сумма подарка до</p>
+        <p class="text">{{ info.maxGiftValue }} руб.</p>
+      </div>
+      <div class="flex align-items-center justify-content-between mb-4">
+        <p class="head">Место проведения</p>
+        <p class="text">{{ info.location }}</p>
+      </div>
+
+      @if (info.canStartRandomize) {
+        <div class="w-min" tooltipPosition="bottom" [pTooltip]="getButtonTooltip(info)">
+          <p-button class="white-space-nowrap" [disabled]="info.isExpiredDate" label="Запустить Санту" />
+        </div>
+      }
+    </div>
   </div>
-</div>
+}
 <div>
   <ss-participants
     [participants]="info?.participants"
@@ -50,3 +60,15 @@
   />
   <ss-santa-info />
 </div>
+
+<p-confirmPopup #confirmPopupRef>
+  <ng-template pTemplate="headless" let-message>
+    <div class="border-round p-3">
+      <span>{{ message.message }}</span>
+      <div class="flex align-items-center gap-2 mt-3">
+        <p-button (onClick)="acceptDelete()" label="Удалить" size="small" />
+        <p-button (onClick)="rejectDelete()" label="Отменить" [outlined]="true" size="small" />
+      </div>
+    </div>
+  </ng-template>
+</p-confirmPopup>

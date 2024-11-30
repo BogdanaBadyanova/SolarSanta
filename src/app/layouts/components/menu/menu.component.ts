@@ -28,6 +28,16 @@ export class MenuComponent {
     this.isVisibleMenu.set(!this.isVisibleMenu());
   }
 
+  public logoutClick(): void {
+    this.isVisibleMenu.set(false);
+    this.logout.emit();
+  }
+
+  public signInClick(): void {
+    this.isVisibleMenu.set(false);
+    this._router.navigate(Urls.SIGN_IN_URL);
+  }
+
   public redirectToProfile(): void {
     this.isVisibleMenu.set(false);
     this._router.navigate(Urls.PROFILE_URL(this.currentUser().id));

@@ -1,7 +1,7 @@
 @defer (on timer(1000ms)) {
   <div class="h-screen flex flex-column">
     <ss-menu [currentUser]="currentUser()" (logout)="logout()" />
-    <div class="flex-grow-1">
+    <div class="flex-grow-1 flex flex-column align-items-center justify-content-center">
       <router-outlet />
     </div>
     <ss-footer />

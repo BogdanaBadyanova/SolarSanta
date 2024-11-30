@@ -4,10 +4,8 @@ import { MenuComponent } from '@layouts/components/menu/menu.component';
 import { IParticipantView } from '@/app/core/interfaces/iparticipant-view';
 import { AuthService } from '@/app/features/auth/services/auth.service';
 import { FooterComponent } from '@layouts/components/footer/footer.component';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LayoutLoaderComponent } from '../components/layout-loader/layout-loader.component';
 
-@UntilDestroy()
 @Component({
   standalone: true,
   imports: [RouterOutlet, MenuComponent, FooterComponent, LayoutLoaderComponent],
@@ -21,7 +19,6 @@ export class BaseLayoutComponent implements OnInit {
   public currentUser: Signal<IParticipantView | null>;
 
   public ngOnInit(): void {
-    this._authService.init().pipe(untilDestroyed(this)).subscribe();
     this.currentUser = this._authService.currentUser;
   }
 

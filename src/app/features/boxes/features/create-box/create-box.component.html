@@ -61,11 +61,9 @@
 <div class="img"></div>
 
 <ng-template #iconTemplate>
-  <ng-container *ngIf="boxIcon(); else iconSelector">
+  @if (boxIcon()) {
     <p-image [src]="boxIcon()" alt="Image" width="50" height="50" />
-  </ng-container>
-
-  <ng-template #iconSelector>
+  } @else {
     <svg-icon src="cross.svg" class="cursor-pointer" (click)="showSelectBoxIconDialog()"></svg-icon>
-  </ng-template>
+  }
 </ng-template>

@@ -4,6 +4,8 @@ import { Urls } from '@/app/core/utils/urls';
 import { ToastService } from '@core/services/toast/toast.service';
 import { AuthToastEnum } from '@auth/enums/auth-toast-enum';
 import { AuthService } from '@/app/features/auth/services/auth.service';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { combineLatest, map, tap, timer } from 'rxjs';
 
 /**
  * authAlreadyGuard для предотвращения доступа к маршрутам, требующим неавторизованного пользователя.
@@ -23,11 +25,13 @@ export const authAlreadyGuard: CanActivateFn = () => {
   const _router = inject(Router);
   const _toastService = inject(ToastService);
 
-  if (_authService.isAuthenticated()) {
-    _toastService.showMessage(AuthToastEnum.ALREADY_AUTHORIZED);
-    _router.navigate(Urls.INTRO_URL);
-    return false;
-  }
-
-  return true;
+  return combineLatest([timer(600), toObservable(_authService.isAuthenticated)]).pipe(
+    tap(([_, isAuthenticated]) => {
+      if (isAuthenticated) {
+        _router.navigate(Urls.INTRO_URL);
+        _toastService.showMessage(AuthToastEnum.ALREADY_AUTHORIZED);
+      }
+    }),
+    map(([_, isAuthenticated]) => isAuthenticated),
+  );
 };

@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, Signal, ViewChild } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ParticipantsComponent } from './components/participants/participants.component';
 import { BoxDetailsFacade } from './box-details.facade';
 import { first, Observable, switchMap, tap } from 'rxjs';
-
 import { ActivatedRoute } from '@angular/router';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { DateFormatPipe } from '@/app/core/pipe/date-format.pipe';
 import { ImageModule } from 'primeng/image';
 import { SantaInfoComponent } from './components/santa-info/santa-info.component';
@@ -14,12 +13,23 @@ import { IAddPaticipants } from './interfaces/iadd-participats';
 import { IBoxDetails } from './interfaces/idetail-box';
 import { TooltipModule } from 'primeng/tooltip';
 import { IDialogPaticipant } from './interfaces/idialog-add-participat';
+import { ConfirmPopup, ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmationService } from 'primeng/api';
 
 @UntilDestroy()
 @Component({
   selector: 'ss-box-details',
   standalone: true,
-  imports: [ButtonModule, ParticipantsComponent, NgIf, AsyncPipe, DateFormatPipe, ImageModule, SantaInfoComponent, TooltipModule],
+  imports: [
+    ButtonModule,
+    ParticipantsComponent,
+    AsyncPipe,
+    DateFormatPipe,
+    ImageModule,
+    SantaInfoComponent,
+    TooltipModule,
+    ConfirmPopupModule,
+  ],
   templateUrl: './box-details.component.html',
   styleUrl: './box-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,7 +37,10 @@ import { IDialogPaticipant } from './interfaces/idialog-add-participat';
 export class BoxDetailsComponent implements OnInit {
   private _route = inject(ActivatedRoute);
   private _boxDetailsFacade = inject(BoxDetailsFacade);
+  private _confirmationService = inject(ConfirmationService);
 
+  @ViewChild(ConfirmPopup)
+  private _confirmPopup!: ConfirmPopup;
   public data$: Observable<IBoxDetails>;
   public boxId = '';
   public isSubmitButtonDisabled: Signal<boolean>;
@@ -48,8 +61,26 @@ export class BoxDetailsComponent implements OnInit {
     return box.isExpiredDate ? 'Вы просрали дату' : '';
   }
 
-  public deletebox(): void {
-    this._boxDetailsFacade.deleteBox(this.boxId).pipe(untilDestroyed(this)).subscribe();
+  // public confirmDelete(): void {
+  //   this._boxDetailsFacade.deleteBox(this.boxId).pipe(untilDestroyed(this)).subscribe();
+  // }
+
+  public acceptDelete(): void {
+    this._confirmPopup.accept();
+  }
+
+  public rejectDelete(): void {
+    this._confirmPopup.reject();
+  }
+
+  public confirmDelete(event: Event): void {
+    this._confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Вы точно хотите удалить коробку?',
+      accept: () => {
+        this._boxDetailsFacade.deleteBox(this.boxId).pipe(untilDestroyed(this)).subscribe();
+      },
+    });
   }
 
   public addParticipant(data: IDialogPaticipant): void {

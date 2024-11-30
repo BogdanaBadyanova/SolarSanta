@@ -20,8 +20,8 @@ export const routes: Routes = [
         loadChildren: () => import('@boxes/routing/boxes.routes').then((c) => c.boxesRoutes),
       },
       {
-        path: `${LayoutRoutes.PROFILE}/:id`,
-        loadComponent: () => import('@profile/profile.component').then((c) => c.ProfileComponent),
+        path: LayoutRoutes.PROFILE,
+        loadChildren: () => import('@profile/routing/profile.routing').then((c) => c.profileRoutes),
       },
     ],
   },

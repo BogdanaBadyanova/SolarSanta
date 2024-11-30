@@ -6,6 +6,7 @@ import { Urls } from '@/app/core/utils/urls';
 import { AuthService } from '@/app/features/auth/services/auth.service';
 import { IAddPaticipants } from './interfaces/iadd-participats';
 import { FormFacade } from '@/app/core/services/form.facade';
+import { BoxToastEnum } from '../../enums/box-toast.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +27,7 @@ export class BoxDetailsFacade extends FormFacade {
     return this._boxService.deleteBox(id).pipe(
       first(),
       tap(() => this._router.navigate(Urls.PROFILE_URL(this._authService.currentUser().id))),
+      tap(() => this._toastService.showMessage(BoxToastEnum.DELETE_BOX_SUCCESS)),
     );
   }
 
