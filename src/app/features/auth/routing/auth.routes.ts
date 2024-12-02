@@ -11,11 +11,9 @@ export const authRoutes: Routes = [
   {
     path: AuthRoutes.SIGN_IN,
     loadComponent: () => import('@auth/features/sign-in/sign-in.component').then((c) => c.SignInComponent),
-    canActivate: [authAlreadyGuard],
   },
   {
     path: AuthRoutes.SIGN_UP,
     loadComponent: () => import('@auth/features/sign-up/sign-up.component').then((c) => c.SignUpComponent),
-    canActivate: [authAlreadyGuard],
   },
 ];
