@@ -14,7 +14,6 @@
         [text]="true"
         (onClick)="confirmDelete($event)"
       />
-      <!-- (onClick)="deletebox()" -->
     </div>
 
     <p class="subtitle">
@@ -43,11 +42,14 @@
         <p class="text">{{ info.location }}</p>
       </div>
 
-      @if (info.canStartRandomize) {
-        <div class="w-min" tooltipPosition="bottom" [pTooltip]="getButtonTooltip(info)">
-          <p-button class="white-space-nowrap" [disabled]="info.isExpiredDate" label="Запустить Санту" />
-        </div>
-      }
+      <div class="w-min" tooltipPosition="bottom" [pTooltip]="getButtonTooltip(info)">
+        <p-button
+          class="white-space-nowrap"
+          [disabled]="!info.canStartRandomize"
+          label="Запустить Санту"
+          (onClick)="startGame(info)"
+        />
+      </div>
     </div>
   </div>
 }
@@ -58,7 +60,7 @@
     [submitButtonIcon]="submitButtonIcon()"
     (addParticipant)="addParticipant($event)"
   />
-  <ss-santa-info />
+  <ss-santa-info [myReceiver$]="myReceiver$" [myGiver$]="myGiver$" [date]="date" />
 </div>
 
 <p-confirmPopup #confirmPopupRef>

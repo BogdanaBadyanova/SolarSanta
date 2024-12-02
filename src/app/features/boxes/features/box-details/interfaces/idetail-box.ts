@@ -57,6 +57,10 @@ export interface IBoxDetails {
    */
   canStartRandomize: boolean;
 
+  showResults: boolean;
+
+  randomizationStarted: boolean;
+
   /**
    * Участники
    */

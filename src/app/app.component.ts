@@ -3,11 +3,13 @@ import { RouterOutlet } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { RuLocale } from './core/locales';
 import { PrimeNGConfig } from 'primeng/api';
-import utc from 'dayjs/plugin/utc';
-import isToday from 'dayjs/plugin/isToday';
-import dayjs from 'dayjs';
 import { AuthService } from './features/auth/services/auth.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import isToday from 'dayjs/plugin/isToday';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/ru';
 
 @UntilDestroy()
 @Component({
@@ -24,6 +26,8 @@ export class AppComponent implements OnInit {
   constructor(private _config: PrimeNGConfig) {
     dayjs.extend(utc);
     dayjs.extend(isToday);
+    dayjs.extend(relativeTime);
+    dayjs.locale('ru');
   }
 
   public ngOnInit(): void {

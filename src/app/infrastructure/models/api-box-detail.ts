@@ -61,4 +61,5 @@ export interface ApiBoxDetail {
    */
   participants?: Array<ApiParticipantShortView> | null;
   showResults?: boolean;
+  randomizationStarted?: boolean;
 }

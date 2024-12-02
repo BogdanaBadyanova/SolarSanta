@@ -14,12 +14,13 @@ import { SlicePipe } from '@angular/common';
 import { ParticipantsListComponent } from '../participants-list/participants-list.component';
 import { RouterLink } from '@angular/router';
 import { Urls } from '@/app/core/utils/urls';
+import { TooltipModule } from 'primeng/tooltip';
 
 @UntilDestroy()
 @Component({
   selector: 'ss-participants',
   standalone: true,
-  imports: [SvgIconComponent, ButtonModule, ImageModule, DynamicDialogModule, SlicePipe, RouterLink],
+  imports: [SvgIconComponent, ButtonModule, ImageModule, DynamicDialogModule, SlicePipe, RouterLink, TooltipModule],
   templateUrl: './participants.component.html',
   styleUrl: './participants.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -22,6 +22,8 @@ export class ApiBoxDetailAdapter extends AbstractApiResponseAdapter<ApiBoxDetail
       maxGiftValue: apiModel.maxGiftValue || 0,
       minGiftValue: apiModel.minGiftValue || 0,
       meetingDate: apiModel.meetingDate || '',
+      showResults: apiModel.showResults || false,
+      randomizationStarted: apiModel.randomizationStarted || false,
       name: apiModel.name || '',
       participants: apiModel.participants
         ? apiModel.participants.map((item) => this._apiParticipantShortInfoAdapter.fromApi(item))

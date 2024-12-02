@@ -33,8 +33,20 @@ p {
   text-overflow: ellipsis;
 }
 
+.description {
+  display: none;
+}
+
 @media screen and (max-width: 769px) {
   .wrap-participants {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .description {
+    display: block;
+  }
+
+  .tooltip {
+    display: none;
   }
 }

@@ -1,13 +1,20 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { SvgIconComponent } from 'angular-svg-icon';
-import { ButtonModule } from 'primeng/button';
+import { Observable } from 'rxjs';
+import { IParticipantShortInfo } from '../../interfaces/iparticipant-short-info';
+import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
+import { GenderPipe } from '@/app/core/pipe/gender.pipe';
 
 @Component({
   selector: 'ss-santa-info',
   standalone: true,
-  imports: [SvgIconComponent, ButtonModule],
+  imports: [SvgIconComponent, AsyncPipe, GenderPipe, NgTemplateOutlet],
   templateUrl: './santa-info.component.html',
   styleUrl: './santa-info.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SantaInfoComponent {}
+export class SantaInfoComponent {
+  public myGiver$ = input.required<Observable<IParticipantShortInfo>>();
+  public myReceiver$ = input.required<Observable<IParticipantShortInfo>>();
+  public date = input.required<string>();
+}

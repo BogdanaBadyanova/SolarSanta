@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit, Signal, ViewChild }
 import { ButtonModule } from 'primeng/button';
 import { ParticipantsComponent } from './components/participants/participants.component';
 import { BoxDetailsFacade } from './box-details.facade';
-import { first, Observable, switchMap, tap } from 'rxjs';
+import { first, Observable, of, switchMap, tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { DateFormatPipe } from '@/app/core/pipe/date-format.pipe';
@@ -15,6 +15,8 @@ import { TooltipModule } from 'primeng/tooltip';
 import { IDialogPaticipant } from './interfaces/idialog-add-participat';
 import { ConfirmPopup, ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService } from 'primeng/api';
+import { IParticipantShortInfo } from './interfaces/iparticipant-short-info';
+import dayjs from 'dayjs';
 
 @UntilDestroy()
 @Component({
@@ -36,34 +38,42 @@ import { ConfirmationService } from 'primeng/api';
 })
 export class BoxDetailsComponent implements OnInit {
   private _route = inject(ActivatedRoute);
-  private _boxDetailsFacade = inject(BoxDetailsFacade);
+  private _facade = inject(BoxDetailsFacade);
   private _confirmationService = inject(ConfirmationService);
 
   @ViewChild(ConfirmPopup)
   private _confirmPopup!: ConfirmPopup;
   public data$: Observable<IBoxDetails>;
+  public myReceiver$: Observable<IParticipantShortInfo>;
+  public myGiver$: Observable<IParticipantShortInfo>;
+  public date: string;
   public boxId = '';
   public isSubmitButtonDisabled: Signal<boolean>;
   public submitButtonIcon: Signal<string>;
 
   public ngOnInit(): void {
-    this.isSubmitButtonDisabled = this._boxDetailsFacade.isSubmitButtonDisabled;
-    this.submitButtonIcon = this._boxDetailsFacade.submitButtonIcon;
+    this.isSubmitButtonDisabled = this._facade.isSubmitButtonDisabled;
+    this.submitButtonIcon = this._facade.submitButtonIcon;
     this.data$ = this._route.params.pipe(
       first(),
       tap((params) => (this.boxId = params['id'])),
-      switchMap((params) => this._boxDetailsFacade.getBoxData(params['id'])),
+      switchMap((params) => this._facade.getBoxData(params['id'])),
+      tap((box) => {
+        this.myReceiver$ = box.randomizationStarted ? this._facade.getMyReceiver(this.boxId) : of(null);
+        this.myGiver$ = box.randomizationStarted && box.showResults ? this._facade.getMyGiver(this.boxId) : of(null);
+        this.date = dayjs(box.meetingDate).add(1, 'day').fromNow(true);
+      }),
       untilDestroyed(this),
     );
   }
 
   public getButtonTooltip(box: IBoxDetails): string {
-    return box.isExpiredDate ? 'Вы просрали дату' : '';
-  }
+    if (box.canStartRandomize) return '';
+    if (box.randomizationStarted) return 'Вы уже запустили игру';
+    if (box.isExpiredDate) return 'Вы просрали дату';
 
-  // public confirmDelete(): void {
-  //   this._boxDetailsFacade.deleteBox(this.boxId).pipe(untilDestroyed(this)).subscribe();
-  // }
+    return 'Дождитесь даты окончания приёма участников';
+  }
 
   public acceptDelete(): void {
     this._confirmPopup.accept();
@@ -78,7 +88,7 @@ export class BoxDetailsComponent implements OnInit {
       target: event.target as EventTarget,
       message: 'Вы точно хотите удалить коробку?',
       accept: () => {
-        this._boxDetailsFacade.deleteBox(this.boxId).pipe(untilDestroyed(this)).subscribe();
+        this._facade.deleteBox(this.boxId).pipe(untilDestroyed(this)).subscribe();
       },
     });
   }
@@ -88,6 +98,12 @@ export class BoxDetailsComponent implements OnInit {
       id: this.boxId,
       email: data.email,
     };
-    this.data$ = this._boxDetailsFacade.addParticipant(body).pipe(first(), untilDestroyed(this));
+    this.data$ = this._facade.addParticipant(body);
+  }
+
+  public startGame(box: IBoxDetails): void {
+    if (!box.randomizationStarted) {
+      this._facade.startGame(this.boxId).pipe(untilDestroyed(this)).subscribe();
+    }
   }
 }
