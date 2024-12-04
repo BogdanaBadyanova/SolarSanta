@@ -1,4 +1,3 @@
-import { ApiInterestViewAdapter } from '@/app/features/profile/adapters/api-interest-view.adapter';
 import { ApiParticipantView } from '@/app/infrastructure';
 import { inject, Injectable } from '@angular/core';
 import { IParticipantView } from '../interfaces/iparticipant-view';
@@ -12,7 +11,6 @@ import { ApiBoxShortInfoAdapter } from '@/app/features/boxes/adapters/api-box-sh
 })
 export class ApiParticipantViewAdapter extends AbstractApiResponseAdapter<ApiParticipantView, IParticipantView> {
   private _apiBoxShortInfoAdapter = inject(ApiBoxShortInfoAdapter);
-  private _apiInterestViewAdapter = inject(ApiInterestViewAdapter);
   private _apiGenderEnumAdapter = inject(ApiGenderEnumAdapter);
 
   public fromApi(apiModel: ApiParticipantView): IParticipantView {
@@ -24,7 +22,6 @@ export class ApiParticipantViewAdapter extends AbstractApiResponseAdapter<ApiPar
       about: apiModel.aboutMe ?? '',
       gender: apiModel.gender ? this._apiGenderEnumAdapter.fromApi(apiModel.gender) : GenderEnum.UNDEFINED,
       boxes: apiModel.boxes ? this._apiBoxShortInfoAdapter.arrayFromApi(apiModel.boxes) : [],
-      interests: apiModel.interests ? this._apiInterestViewAdapter.arrayFromApi(apiModel.interests) : [],
     };
   }
 }

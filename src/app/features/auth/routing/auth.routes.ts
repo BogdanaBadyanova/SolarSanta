@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { AuthRoutes } from '@auth/routing/auth.routes.enum';
-import { authAlreadyGuard } from '@/app/core/guards/auth-already.guard';
 
 export const authRoutes: Routes = [
   {

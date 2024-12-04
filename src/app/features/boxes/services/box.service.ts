@@ -1,6 +1,6 @@
 import { ICreateBox } from '@/app/features/boxes/features/create-box/interfaces/create-box';
 import { inject, Injectable } from '@angular/core';
-import { first, map, Observable, tap } from 'rxjs';
+import { first, map, Observable } from 'rxjs';
 import { ApiCreateBoxRequestAdapter } from '../features/create-box/adapters/api-create-box-request.adapter';
 import { ApiBoxDetail, BoxesApiService } from '@/app/infrastructure';
 import { IBoxDetails } from '../features/box-details/interfaces/idetail-box';

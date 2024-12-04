@@ -3,7 +3,10 @@
     <div class="wrap">
       <div class="flex align-items-center">
         <svg-icon src="image-prof.svg"></svg-icon>
-        <h2 class="name">{{ profileTitle() }}</h2>
+        <div class="flex align-items-center justify-content-between w-full">
+          <h2 class="name">{{ profileTitle() }}</h2>
+          <p-button (onClick)="editProfile()" [text]="true" icon="pi pi-pencil" />
+        </div>
       </div>
 
       <div class="info">
@@ -52,18 +55,6 @@
             </div>
           </div>
         }
-
-        <div class="section mb-4">
-          <div class="flex align-items-center gap-2">
-            <h3 class="title">Мои интересы</h3>
-            @if (canEditProfile()) {
-              <p>(Добавлять по одному)</p>
-            }
-          </div>
-          <div class="card p-fluid">
-            <p-chips [disabled]="!canEditProfile" formControlName="interests" />
-          </div>
-        </div>
 
         @if (canEditProfile()) {
           <p-button

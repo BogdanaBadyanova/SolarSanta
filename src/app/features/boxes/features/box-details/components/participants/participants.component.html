@@ -16,8 +16,12 @@
         [routerLink]="Urls.PROFILE_URL(participant.id)"
       >
         <p-image [src]="randomLogo" width="70" height="70"></p-image>
-        <p class="name mt-3 text-center">{{ participant.firstName }}</p>
-        <p class="name mt-2 text-center">{{ participant.lastName }}</p>
+        <p [ngClass]="{ 'font-semibold': isCurrentUser(participant) }" class="name mt-3 text-center">
+          {{ participant.firstName }}
+        </p>
+        <p [ngClass]="{ 'font-semibold': isCurrentUser(participant) }" class="name mt-2 text-center">
+          {{ participant.lastName }}
+        </p>
       </div>
     }
 

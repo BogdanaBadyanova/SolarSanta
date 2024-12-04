@@ -10,17 +10,18 @@ import { untilDestroyed } from '@ngneat/until-destroy';
 import { first, tap } from 'rxjs';
 import { IParticipantShortInfo } from '../../interfaces/iparticipant-short-info';
 import { IDialogPaticipant } from '../../interfaces/idialog-add-participat';
-import { SlicePipe } from '@angular/common';
+import { NgClass, SlicePipe } from '@angular/common';
 import { ParticipantsListComponent } from '../participants-list/participants-list.component';
 import { RouterLink } from '@angular/router';
 import { Urls } from '@/app/core/utils/urls';
 import { TooltipModule } from 'primeng/tooltip';
+import { IParticipantView } from '@/app/core/interfaces/iparticipant-view';
 
 @UntilDestroy()
 @Component({
   selector: 'ss-participants',
   standalone: true,
-  imports: [SvgIconComponent, ButtonModule, ImageModule, DynamicDialogModule, SlicePipe, RouterLink, TooltipModule],
+  imports: [SvgIconComponent, ButtonModule, ImageModule, DynamicDialogModule, SlicePipe, RouterLink, TooltipModule, NgClass],
   templateUrl: './participants.component.html',
   styleUrl: './participants.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,6 +32,9 @@ export class ParticipantsComponent {
   public participants = input.required<IParticipantShortInfo[]>();
   public isSubmitButtonDisabled = input.required<boolean>();
   public submitButtonIcon = input.required<string>();
+
+  public currentUser = input.required<IParticipantView>();
+
   public addParticipant = output<IDialogPaticipant>();
   public Urls = Urls;
 
@@ -68,5 +72,9 @@ export class ParticipantsComponent {
         participants: this.participants,
       },
     });
+  }
+
+  public isCurrentUser(participant: IParticipantShortInfo): boolean {
+    return this.currentUser().id == participant.id;
   }
 }

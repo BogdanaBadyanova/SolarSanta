@@ -50,6 +50,7 @@ export class BoxDetailsComponent implements OnInit {
   public boxId = '';
   public isSubmitButtonDisabled: Signal<boolean>;
   public submitButtonIcon: Signal<string>;
+  public currentUser = this._facade.currentUser;
 
   public ngOnInit(): void {
     this.isSubmitButtonDisabled = this._facade.isSubmitButtonDisabled;

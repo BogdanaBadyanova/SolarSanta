@@ -15,6 +15,7 @@ import { IParticipantShortInfo } from './interfaces/iparticipant-short-info';
 export class BoxDetailsFacade extends FormFacade {
   private _boxService = inject(BoxService);
   private _authService = inject(AuthService);
+  public currentUser = this._authService.currentUser;
 
   public override submit(data: IAddPaticipants): Observable<IBoxDetails> {
     return this.addParticipant(data);

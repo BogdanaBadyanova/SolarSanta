@@ -14,7 +14,7 @@ import { GenderPipe } from '@/app/core/pipe/gender.pipe';
 import { IEditUserProfile } from './interfaces/iedit-user-profile';
 import { PROFILE_FACADE_TOKEN } from './tokens/profile-facade.token';
 import { profileFacadeFactory } from './services/profile-facade.factory';
-import { finalize, first, switchMap, tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { IProfileData } from './interfaces/iprofile-data';
 
 @UntilDestroy()
@@ -61,7 +61,6 @@ export class ProfileComponent implements OnInit {
   public ngOnInit(): void {
     this._route.params
       .pipe(
-        first(),
         switchMap((params) => this._facade.init(params['id'])),
         tap((data: IProfileData) => {
           this.user = data.user;
@@ -70,8 +69,8 @@ export class ProfileComponent implements OnInit {
           this.canEditProfile = data.canEditProfile;
           this.isSubmitButtonDisabled = data.isSubmitButtonDisabled;
           this.submitButtonIcon = data.submitButtonIcon;
+          this._cdr.markForCheck();
         }),
-        finalize(() => this._cdr.markForCheck()),
         untilDestroyed(this),
       )
       .subscribe();
@@ -83,6 +82,12 @@ export class ProfileComponent implements OnInit {
         .submit(this.form().getRawValue() as IEditUserProfile)
         .pipe(untilDestroyed(this))
         .subscribe();
+    }
+  }
+
+  public editProfile(): void {
+    if (this.canEditProfile()) {
+      this._facade.editProfile();
     }
   }
 }

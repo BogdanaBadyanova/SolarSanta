@@ -1,4 +1,3 @@
-import { IInterestView } from '../../features/profile/interfaces/iinterest-view';
 import { GenderEnum } from '../enums/gender.enum';
 import { IBoxShortInfo } from '@/app/features/boxes/interfaces/ibox-short-info';
 
@@ -25,11 +24,6 @@ export interface IParticipantView {
    * Фамилия пользователя
    */
   lastName: string;
-
-  /**
-   * Интересы пользователя
-   */
-  interests: IInterestView[];
 
   /**
    * Пол пользователя

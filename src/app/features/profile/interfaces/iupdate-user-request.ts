@@ -1,16 +1,23 @@
+import { GenderEnum } from '@/app/core/enums/gender.enum';
+
 export interface IUpdateUserRequest {
   /**
    * Поле "О себе".
    */
-  aboutMe?: string;
+  about: string;
 
   /**
    * Имя пользователя.
    */
-  firstName?: string;
+  firstName: string;
 
   /**
    * Фамилия пользователя.
    */
-  lastName?: string;
+  lastName: string;
+
+  /**
+   * Пол пользователя.
+   */
+  gender: GenderEnum;
 }

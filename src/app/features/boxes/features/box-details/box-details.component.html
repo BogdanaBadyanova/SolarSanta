@@ -56,6 +56,7 @@
 <div>
   <ss-participants
     [participants]="info?.participants"
+    [currentUser]="currentUser()"
     [isSubmitButtonDisabled]="isSubmitButtonDisabled()"
     [submitButtonIcon]="submitButtonIcon()"
     (addParticipant)="addParticipant($event)"

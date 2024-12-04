@@ -1,0 +1,28 @@
+<form [formGroup]="form()" (submit)="submit()">
+  <div class="flex gap-3">
+    <p-floatLabel>
+      <input type="text" pInputText id="firstName" formControlName="firstName" />
+      <label for="firstName">Имя</label>
+    </p-floatLabel>
+    <p-floatLabel>
+      <input type="text" pInputText id="lastName" formControlName="lastName" />
+      <label for="lastName">Фамилия</label>
+    </p-floatLabel>
+  </div>
+  <div class="field-checkbox mt-3">
+    @for (gender of genders; track $index) {
+      <p-radioButton [inputId]="gender.value" [value]="gender.key" formControlName="gender" />
+      <label [for]="gender.key" class="mr-4">
+        {{ gender.value }}
+      </label>
+    }
+  </div>
+  <div class="section mt-5 mb-3">
+    <p-floatLabel>
+      <textarea rows="5" class="w-full" id="about" pInputTextarea formControlName="about" [autoResize]="true"></textarea>
+      <label for="about">О Себе</label>
+    </p-floatLabel>
+  </div>
+
+  <p-button type="submit" label="Сохранить" />
+</form>
