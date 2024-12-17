@@ -12,11 +12,13 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { IAddPaticipants } from './interfaces/iadd-participats';
 import { IBoxDetails } from './interfaces/idetail-box';
 import { TooltipModule } from 'primeng/tooltip';
-import { IDialogPaticipant } from './interfaces/idialog-add-participat';
 import { ConfirmPopup, ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService } from 'primeng/api';
 import { IParticipantShortInfo } from './interfaces/iparticipant-short-info';
 import dayjs from 'dayjs';
+import { environment } from '@/environments/environment.development';
+import { LayoutRoutes } from '@/app/layouts/routing/layout-routes.enum';
+import { BoxesRoutes } from '../../routing/boxes-routes.enum';
 
 @UntilDestroy()
 @Component({
@@ -48,6 +50,7 @@ export class BoxDetailsComponent implements OnInit {
   public myGiver$: Observable<IParticipantShortInfo>;
   public date: string;
   public boxId = '';
+  public shareLink = '';
   public isSubmitButtonDisabled: Signal<boolean>;
   public submitButtonIcon: Signal<string>;
   public currentUser = this._facade.currentUser;
@@ -58,6 +61,7 @@ export class BoxDetailsComponent implements OnInit {
     this.data$ = this._route.params.pipe(
       first(),
       tap((params) => (this.boxId = params['id'])),
+      tap(() => (this.shareLink = `${environment.appUrl}${LayoutRoutes.BOX}/${BoxesRoutes.ADD_PARTICIPANTS}/${this.boxId}`)),
       switchMap((params) => this._facade.getBoxData(params['id'])),
       tap((box) => {
         this.myReceiver$ = box.randomizationStarted ? this._facade.getMyReceiver(this.boxId) : of(null);
@@ -94,10 +98,10 @@ export class BoxDetailsComponent implements OnInit {
     });
   }
 
-  public addParticipant(data: IDialogPaticipant): void {
+  public addParticipant(email: string): void {
     const body: IAddPaticipants = {
       id: this.boxId,
-      email: data.email,
+      email: email,
     };
     this.data$ = this._facade.addParticipant(body);
   }

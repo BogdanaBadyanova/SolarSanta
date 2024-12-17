@@ -1,5 +1,5 @@
 export enum BoxesRoutes {
   CREATE = 'create',
-  SHARE = 'share',
+  ADD_PARTICIPANTS = 'add-participants',
   DETAILS = 'details',
 }

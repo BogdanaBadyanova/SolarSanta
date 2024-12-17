@@ -7,7 +7,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ApiConfiguration, ApiModule } from '@/app/infrastructure';
-import { environment } from '@/environments/environment';
+import { environment } from '@/environments/environment.development';
 import { TokenInterceptor } from './core/interceptor/token.interceptor';
 
 const apiConfig: ApiConfiguration = {

@@ -4,18 +4,19 @@
       <div class="flex align-items-center gap-2">
         <p class="title">Участники ({{ participants()?.length }})</p>
         <i class="pi pi-info-circle tooltip" pTooltip="Минумум 3 участника"></i>
+        <ss-share-link [shareLink]="shareLink()" (addParticipant)="addParticipant.emit($event)" />
       </div>
       <p class="font-normal text-xs description">мин 3 чел.</p>
     </div>
     <p (click)="showListParticipants()" class="see-all cursor-pointer">Смотреть всех</p>
   </div>
   <div class="wrap-participants">
-    @for (participant of participants() | slice: 0 : 5; track participant) {
+    @for (participant of participants() | slice: 0 : 5; track participant; let i = $index) {
       <div
         class="flex align-items-center justify-content-center flex-column cursor-pointer"
         [routerLink]="Urls.PROFILE_URL(participant.id)"
       >
-        <p-image [src]="randomLogo" width="70" height="70"></p-image>
+        <p-image [src]="randomParticipantsLogo()[i]" width="70" height="70"></p-image>
         <p [ngClass]="{ 'font-semibold': isCurrentUser(participant) }" class="name mt-3 text-center">
           {{ participant.firstName }}
         </p>
@@ -24,10 +25,5 @@
         </p>
       </div>
     }
-
-    <div (click)="show()" class="flex align-items-center justify-content-center flex-column cursor-pointer">
-      <svg-icon src="holder.svg"></svg-icon>
-      <p class="name text-center mt-3">Добавить</p>
-    </div>
   </div>
 </div>

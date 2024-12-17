@@ -1,22 +1,22 @@
 <div class="card flex justify-content-center">
-  <p-button (onClick)="op.toggle($event)" icon="pi pi-share-alt" label="Share" />
+  <p-button (onClick)="op.toggle($event)" icon="pi pi-share-alt" [text]="true" />
   <p-overlayPanel #op>
     <div class="flex flex-column gap-3 w-25rem">
       <div>
-        <span class="font-medium text-900 block mb-2">Share this document</span>
+        <span class="font-medium text-900 block mb-2">Поделиться ссылкой</span>
         <p-inputGroup>
-          <input pInputText value="https://primeng.org/12323ff26t2g243g423g234gg52hy25XADXAG3" readonly class="w-25rem" />
+          <input pInputText [value]="shareLink()" readonly class="w-25rem" />
           <p-inputGroupAddon>
-            <i class="pi pi-copy"></i>
+            <i class="pi pi-copy" [cdkCopyToClipboard]="shareLink()"></i>
           </p-inputGroupAddon>
         </p-inputGroup>
       </div>
       <div>
-        <span class="font-medium text-900 block mb-2">Invite Member</span>
-        <div class="flex">
-          <p-chips disabled />
-          <p-button label="Invite" icon="pi pi-users" />
-        </div>
+        <span class="font-medium text-900 block mb-2">Пригласить</span>
+        <p-inputGroup>
+          <input type="text" pInputText [(ngModel)]="participantEmail" />
+          <button pButton (onClick)="addParticipant.emit(participantEmail)">Добавить</button>
+        </p-inputGroup>
       </div>
     </div>
   </p-overlayPanel>

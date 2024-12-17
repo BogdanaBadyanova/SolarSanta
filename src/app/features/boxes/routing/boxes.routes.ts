@@ -16,7 +16,7 @@ export const boxesRoutes: Routes = [
         loadComponent: () => import('@boxes/features/box-details/box-details.component').then((c) => c.BoxDetailsComponent),
       },
       {
-        path: `${BoxesRoutes.SHARE}/:id`,
+        path: `${BoxesRoutes.ADD_PARTICIPANTS}/:id`,
         loadComponent: () => import('@boxes/features/share-link/share-link.component').then((c) => c.ShareLinkComponent),
       },
     ],

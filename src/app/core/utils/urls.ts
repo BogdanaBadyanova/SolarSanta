@@ -57,7 +57,7 @@ export class Urls {
    * URL для страницы приглашения участника в коробку.
    */
   public static SHARE_LINK_URL = (id: string): string[] => {
-    return [...this.BOX_URL, BoxesRoutes.SHARE, id];
+    return [...this.BOX_URL, BoxesRoutes.ADD_PARTICIPANTS, id];
   };
 
   /**
