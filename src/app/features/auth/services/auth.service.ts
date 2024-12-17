@@ -16,6 +16,7 @@ import { AuthApiService, UserApiService } from '@/app/infrastructure';
 import { ApiAuthResultAdapter } from '@/app/features/auth/adapters/api-auth-result.adapter';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ApiParticipantViewAdapter } from '@/app/core/adapters/api-participant-view.adapter';
+import dayjs from 'dayjs';
 
 @UntilDestroy()
 @Injectable({
@@ -48,7 +49,7 @@ export class AuthService {
   public init(): Observable<unknown> {
     return of(null).pipe(
       first(),
-      tap(() => this._getCurrentUserClaims()),
+      tap(() => this._checkCurrentUserClaims()),
       switchMap(() =>
         iif(
           () => !!this._currentUserClaims(),
@@ -100,20 +101,23 @@ export class AuthService {
     this._router.navigate(Urls.SIGN_IN_URL);
   }
 
-  private _getCurrentUserClaims(): void {
+  private _checkCurrentUserClaims(): void {
     const claimsString = this._ls.getItem(CommonConstants.userClaimsLocalStorageKey);
     const claims = claimsString ? (JSON.parse(claimsString) as IAuthResult) : null;
 
-    if (claims?.token) {
+    if (claims?.token && dayjs().isBefore(claims.expiryDate)) {
       this._currentUserClaims.set(claims);
+      return;
     }
+
+    this._ls.removeItem(CommonConstants.userClaimsLocalStorageKey);
   }
 
   public getCurrentUser(): Observable<IParticipantView | null> {
     return this._userApiService.currentUserGet().pipe(
       first(),
       map((user) => this._apiParticipantViewAdapter.fromApi(user)),
-      tap((user: IParticipantView) => this._currentUser.set(user)),
+      tap((user) => this._currentUser.set(user)),
       catchError(() => {
         this._currentUser.set(null);
         return EMPTY;
