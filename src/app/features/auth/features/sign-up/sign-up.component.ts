@@ -11,12 +11,15 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { CommonConstants } from '@/app/core/utils/common-constants';
 import { RouterLink } from '@angular/router';
 import { Urls } from '@/app/core/utils/urls';
+import { mustMatchValidator } from '@/app/core/validators/must-match.validators';
+import { CommonModule } from '@angular/common';
 
 @UntilDestroy()
 @Component({
   selector: 'ss-sign-up',
   standalone: true,
   imports: [
+    CommonModule,
     InputTextModule,
     FloatLabelModule,
     FormsModule,
@@ -42,18 +45,23 @@ export class SignUpComponent implements OnInit {
 
   public ngOnInit(): void {
     this.form.set(
-      this._fb.group({
-        firstName: new FormControl(''),
-        lastName: new FormControl(''),
-        gender: new FormControl(''),
-        email: new FormControl('', [Validators.email]),
-        password: new FormControl(),
-        confirmPassword: new FormControl(),
-      }),
+      this._fb.group(
+        {
+          firstName: new FormControl('', [Validators.required]),
+          lastName: new FormControl('', [Validators.required]),
+          gender: new FormControl('', [Validators.required]),
+          email: new FormControl('', [Validators.email]),
+          password: new FormControl('', [Validators.required]),
+          confirmPassword: new FormControl(),
+        },
+        { validators: mustMatchValidator('password', 'confirmPassword') },
+      ),
     );
   }
 
   public submit(): void {
-    this._facade.submit(this.form().getRawValue()).pipe(untilDestroyed(this)).subscribe();
+    if (this.form().valid) {
+      this._facade.submit(this.form().getRawValue()).pipe(untilDestroyed(this)).subscribe();
+    }
   }
 }

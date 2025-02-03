@@ -20,6 +20,9 @@
     <p-password class="w-full" formControlName="password" id="password" [toggleMask]="true" />
     <label class="mb-2 mt-3" for="confirmPassword">Подтвердите пароль</label>
     <p-password class="w-full" formControlName="confirmPassword" id="confirmPassword" [toggleMask]="true" />
+    @if (form().errors?.['mustmatch'] && form().controls['confirmPassword'].touched) {
+      <small class="text-red-500">Пароли должны совпадать</small>
+    }
     <p class="my-3">
       Есть аккаунт?
       <span class="reg cursor-pointer" [routerLink]="Urls.SIGN_IN_URL"> Войти</span>
@@ -28,7 +31,7 @@
       type="submit"
       class="mx-auto mt-2"
       label="Зарегистрироваться"
-      [disabled]="isSubmitButtonDisabled()"
+      [disabled]="isSubmitButtonDisabled() || this.form().invalid"
       [icon]="submitButtonIcon()"
     />
   </form>
