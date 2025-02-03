@@ -47,6 +47,12 @@ export class Urls {
   public static readonly BOX_CREATE_URL = [...this.BOX_URL, BoxesRoutes.CREATE];
 
   /**
+   * URL для страницы просмотра моих коробки.
+   */
+
+  public static readonly SHOW_MY_BOXES = [...this.BOX_URL, BoxesRoutes.SHOW_MY_BOXES];
+
+  /**
    * URL для страницы просмотра коробки.
    */
   public static BOX_DETAILS_URL = (id: string): string[] => {

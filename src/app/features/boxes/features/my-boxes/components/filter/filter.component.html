@@ -1,0 +1,4 @@
+<p-inputGroup>
+  <input type="text" pInputText placeholder="Поиск по названию" [(ngModel)]="name" (keydown.enter)="changeFilters()" />
+  <button pButton icon="pi pi-search" (onClick)="changeFilters()"></button>
+</p-inputGroup>

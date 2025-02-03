@@ -19,6 +19,10 @@ export const boxesRoutes: Routes = [
         path: `${BoxesRoutes.ADD_PARTICIPANTS}/:id`,
         loadComponent: () => import('@boxes/features/share-link/share-link.component').then((c) => c.ShareLinkComponent),
       },
+      {
+        path: `${BoxesRoutes.SHOW_MY_BOXES}`,
+        loadComponent: () => import('@boxes/features/my-boxes/my-boxes.component').then((c) => c.MyBoxesComponent),
+      },
     ],
   },
 ];

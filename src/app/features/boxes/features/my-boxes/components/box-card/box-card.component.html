@@ -1,0 +1,38 @@
+@if (box(); as data) {
+  <div class="card flex justify-content-center w-full">
+    <p-card [header]="data.name">
+      <p>{{ data.description }}</p>
+
+      <p class="text-center font-bold mt-3">Основная информация</p>
+
+      <div class="flex align-items-center justify-content-between mt-3 gap-3">
+        <p>Принимаем участников</p>
+        <p>{{ data.inviteEndDate | dateFormat: 'DD.MM.YYYY' }}</p>
+      </div>
+
+      <div class="flex align-items-center justify-content-between mt-3 gap-3">
+        <p>Покупаем подарки</p>
+        <p>{{ data.meetingDate | dateFormat: 'DD.MM.YYYY' }}</p>
+      </div>
+
+      <div class="flex align-items-center justify-content-between mt-3 gap-3">
+        <p>Сумма подарка от</p>
+        <p>{{ data.minGiftValue }} руб</p>
+      </div>
+
+      <div class="flex align-items-center justify-content-between mt-3 gap-3">
+        <p>Сумма подарка до</p>
+        <p>{{ data.maxGiftValue }} руб</p>
+      </div>
+
+      <div class="flex align-items-center justify-content-between mt-3 gap-3">
+        <p>Место проведения</p>
+        <p>{{ data.location }}</p>
+      </div>
+
+      <div class="flex gap-3 mt-3">
+        <p-button label="Просмотреть" styleClass="p-button-error" [routerLink]="Urls.BOX_DETAILS_URL(data.id)" />
+      </div>
+    </p-card>
+  </div>
+}
